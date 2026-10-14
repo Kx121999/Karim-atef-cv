@@ -1212,6 +1212,17 @@ html.lite .ps.on>*{animation:none}
 .st-preview{position:sticky;top:90px}
 .st-preview canvas{width:100%;height:auto;display:block;border-radius:22px;border:1px solid var(--line);box-shadow:0 30px 80px rgba(0,0,0,.5);background:#111}
 @media(max-width:900px){.studio{grid-template-columns:1fr}.st-preview{position:static;order:-1;max-width:420px;margin:0 auto;width:100%}}
+/* ---------- reel hooks ---------- */
+.hooks{display:grid;grid-template-columns:minmax(260px,420px) 1fr;gap:26px;align-items:start}
+.hook-list{display:grid;gap:12px}
+.hk{border:1px solid var(--line);background:var(--soft);border-radius:22px;padding:18px 20px;display:grid;gap:12px;transition:border-color .3s,transform .3s var(--ease)}
+.hk:hover{border-color:rgba(215,255,95,.5);transform:translateY(-2px)}
+.hk p{font-size:clamp(1.05rem,1.8vw,1.35rem);letter-spacing:-.03em;line-height:1.2;font-weight:700}
+.hk .acts{display:flex;gap:8px;flex-wrap:wrap}
+.hk .acts button{border:1px solid var(--line);background:transparent;color:var(--text);border-radius:999px;padding:8px 14px;font-size:.68rem;font-weight:900;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;transition:.25s}
+.hk .acts button:hover{background:var(--accent);color:#000;border-color:var(--accent)}
+@media(max-width:900px){.hooks{grid-template-columns:1fr}}
+
 /* language switch + RTL */
 main{overflow-x:clip}
 .lang{border:1px solid rgba(255,255,255,.5);background:transparent;color:#fff;border-radius:999px;padding:8px 16px;font-size:.78rem;font-weight:800;letter-spacing:.06em;cursor:pointer;transition:background .25s,color .25s;font-family:Cairo,Inter,sans-serif}
@@ -1645,7 +1656,7 @@ main{overflow-x:clip}
       <div class="cform studio-controls">
         <div>
           <label>Business type</label>
-          <div class="chips" id="stType"><button type="button" class="on" data-v="real">Real estate</button><button type="button" data-v="food">Restaurant</button><button type="button" data-v="clinic">Clinic</button><button type="button" data-v="finance">Finance</button></div>
+          <div class="chips" id="stType"><button type="button" class="on" data-v="real">Real estate</button><button type="button" data-v="food">Restaurant</button><button type="button" data-v="clinic">Clinic</button><button type="button" data-v="finance">Finance</button><button type="button" data-v="edu">Education</button><button type="button" data-v="beauty">Beauty</button><button type="button" data-v="shop">Shop</button><button type="button" data-v="fit">Fitness</button></div>
         </div>
         <div class="cf-row">
           <div>
@@ -1654,7 +1665,7 @@ main{overflow-x:clip}
           </div>
           <div>
             <label>Colors</label>
-            <div class="swatches" id="stPal"><button type="button" class="on" data-v="gold" style="--c:#e3b04b;--b:#0b1020" aria-label="Gold"></button><button type="button" data-v="lime" style="--c:#d7ff5f;--b:#050505" aria-label="Lime"></button><button type="button" data-v="green" style="--c:#7ee787;--b:#06241a" aria-label="Green"></button><button type="button" data-v="blue" style="--c:#0a6cc4;--b:#eaf4ff" aria-label="Blue"></button><button type="button" data-v="warm" style="--c:#ff7a2f;--b:#2a0f06" aria-label="Warm"></button></div>
+            <div class="swatches" id="stPal"><button type="button" class="on" data-v="gold" style="--c:#e3b04b;--b:#0b1020" aria-label="Gold"></button><button type="button" data-v="lime" style="--c:#d7ff5f;--b:#050505" aria-label="Lime"></button><button type="button" data-v="green" style="--c:#7ee787;--b:#06241a" aria-label="Green"></button><button type="button" data-v="blue" style="--c:#0a6cc4;--b:#eaf4ff" aria-label="Blue"></button><button type="button" data-v="warm" style="--c:#ff7a2f;--b:#2a0f06" aria-label="Warm"></button><button type="button" data-v="rose" style="--c:#ff6fa5;--b:#2a0a1c" aria-label="Rose"></button><button type="button" data-v="violet" style="--c:#a98bff;--b:#120a2a" aria-label="Violet"></button></div>
           </div>
         </div>
         <label>Headline<input id="stHead" type="text" maxlength="60" dir="auto" autocomplete="off"></label>
@@ -1666,6 +1677,34 @@ main{overflow-x:clip}
         <div class="cf-actions"><button class="btn" type="button" id="stDl">Download PNG</button><button class="btn dark" type="button" id="stWa">Send the idea on WhatsApp</button></div>
       </div>
       <div class="st-preview"><canvas id="posterCv" width="1080" height="1080" role="img" aria-label="Poster preview"></canvas></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="hooks">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">Reel Hooks</div>
+      </div>
+      <div>
+        <h2 class="section-title">Opening lines for your next reel</h2>
+        <p class="section-copy">Starter formulas for the first three seconds. Pick your business and goal, then copy a line or send it to the poster.</p>
+      </div>
+    </div>
+    <div class="hooks reveal">
+      <div class="cform hooks-controls">
+        <div>
+          <label>Business type</label>
+          <div class="chips" id="hkType"><button type="button" class="on" data-v="real">Real estate</button><button type="button" data-v="food">Restaurant</button><button type="button" data-v="clinic">Clinic</button><button type="button" data-v="finance">Finance</button><button type="button" data-v="edu">Education</button><button type="button" data-v="beauty">Beauty</button><button type="button" data-v="shop">Shop</button><button type="button" data-v="fit">Fitness</button></div>
+        </div>
+        <div>
+          <label>Goal</label>
+          <div class="chips" id="hkGoal"><button type="button" class="on" data-v="msg">Messages</button><button type="button" data-v="lead">Leads</button><button type="button" data-v="sale">Sales</button></div>
+        </div>
+        <p class="est-note">Starter formulas, not guaranteed results. Test them and adapt them to your offer.</p>
+      </div>
+      <div class="hook-list" id="hkList" data-dyn></div>
     </div>
   </div>
 </section>
@@ -1860,6 +1899,11 @@ const AR={
 'Business type':'نوع النشاط','Format':'المقاس','Colors':'الألوان','Headline':'العنوان','Sub line':'سطر فرعي','Button text':'نص الزر','Brand name':'اسم العلامة',
 'Real estate':'عقارات','Restaurant':'مطعم','Clinic':'عيادة','Finance':'تمويل','Post':'بوست','Story':'ستوري','Banner':'بانر',
 'Download PNG':'تحميل PNG','Send the idea on WhatsApp':'أرسل الفكرة عبر واتساب',
+'Education':'تعليم','Beauty':'تجميل','Shop':'متجر','Fitness':'لياقة',
+'Reel Hooks':'هوكس الريلز','Opening lines for your next reel':'جمل افتتاحية لريلزك القادم',
+'Starter formulas for the first three seconds. Pick your business and goal, then copy a line or send it to the poster.':'صيغ جاهزة لأول ثلاث ثوانٍ. اختر نشاطك وهدفك، ثم انسخ الجملة أو أرسلها للبوستر.',
+'Goal':'الهدف','Sales':'مبيعات',
+'Starter formulas, not guaranteed results. Test them and adapt them to your offer.':'صيغ تمهيدية وليست نتائج مضمونة. جرّبها وعدّلها حسب عرضك.',
 '© 2026 Karim Atef — Creative Performance Marketer':'© 2026 كريم عاطف — مسوّق أداء إبداعي'
 };
 AR['Real Estate']=AR['Real Estate'];
@@ -2354,12 +2398,18 @@ function caseInfo(card){
     lime:{bg:['#050505','#12170a'],fg:'#f5f1e8',ac:'#d7ff5f',on:'#000000'},
     green:{bg:['#06241a','#0d4a33'],fg:'#eafff4',ac:'#7ee787',on:'#00210f'},
     blue:{bg:['#eaf4ff','#cfe6ff'],fg:'#08243f',ac:'#0a6cc4',on:'#ffffff'},
-    warm:{bg:['#2a0f06','#5a1d0a'],fg:'#fff1e6',ac:'#ff7a2f',on:'#2a0f06'}
+    warm:{bg:['#2a0f06','#5a1d0a'],fg:'#fff1e6',ac:'#ff7a2f',on:'#2a0f06'},
+    rose:{bg:['#2a0a1c','#4d1233'],fg:'#fff0f6',ac:'#ff6fa5',on:'#2a0a1c'},
+    violet:{bg:['#120a2a','#2b1a5e'],fg:'#f3eeff',ac:'#a98bff',on:'#120a2a'}
   };
   const TYPES={
     real:{pal:'gold',shape:'skyline',en:['Your next home starts here','Limited units available','Book a viewing','Your Brand'],ar:['بيتك القادم يبدأ من هنا','وحدات محدودة متاحة','احجز معاينة','اسم علامتك']},
     food:{pal:'warm',shape:'rings',en:['Taste the difference','Fresh every day, order now','Order on WhatsApp','Your Brand'],ar:['تذوّق الفرق','طازج كل يوم، اطلب الآن','اطلب عبر واتساب','اسم علامتك']},
     clinic:{pal:'blue',shape:'cross',en:['Smile with confidence','Book your consultation','Book now','Your Brand'],ar:['ابتسم بثقة','احجز استشارتك','احجز الآن','اسم علامتك']},
+    edu:{pal:'violet',shape:'steps',en:['Learn it. Own it.','Start your course today','Join now','Your Brand'],ar:['تعلّم وأتقن','ابدأ دورتك اليوم','انضم الآن','اسم علامتك']},
+    beauty:{pal:'rose',shape:'blobs',en:['Your best look starts here','Book your appointment','Book now','Your Brand'],ar:['إطلالتك الأجمل تبدأ هنا','احجز موعدك','احجز الآن','اسم علامتك']},
+    shop:{pal:'lime',shape:'dots',en:['New arrivals are here','Shop the collection','Shop now','Your Brand'],ar:['وصل الجديد','تسوّق التشكيلة','تسوّق الآن','اسم علامتك']},
+    fit:{pal:'warm',shape:'slash',en:['Build a routine you can keep','Join this month','Join now','Your Brand'],ar:['ابنِ روتينًا تلتزم به','انضم هذا الشهر','انضم الآن','اسم علامتك']},
     finance:{pal:'green',shape:'chart',en:['Simple financing for your plans','Ask for your quote today','Get a quote','Your Brand'],ar:['تمويل بسيط لخططك','اطلب عرض السعر اليوم','اطلب عرض سعر','اسم علامتك']}
   };
   const st={type:'real',fmt:'post',pal:'gold',dirty:{}};
@@ -2398,6 +2448,16 @@ function caseInfo(card){
         const a=arm*sc,cx=W*fx,cy=H*fy;ctx.fillStyle=rgba(P.ac,.22+sc*.2);
         rr(cx-a*.45,cy-a*1.5,a*.9,a*3,a*.3);ctx.fill();rr(cx-a*1.5,cy-a*.45,a*3,a*.9,a*.3);ctx.fill();
       });
+    }else if(type==='steps'){
+      const n=6,bw=W/n*.9;
+      for(let i=0;i<n;i++){const h=H*(.05+i*.055),x=W-(n-i)*bw*1.08,y=H-h;ctx.fillStyle=rgba(P.ac,.12+i*.05);rr(x,y,bw,h,14);ctx.fill()}
+      ctx.fillStyle=P.ac;ctx.beginPath();ctx.arc(W-bw*.5-W*.02,H-H*(.05+5*.055)-W*.05,W*.025,0,6.283);ctx.fill();
+    }else if(type==='blobs'){
+      [[.86,.16,.16,.22],[.7,.36,.09,.14],[.94,.46,.07,.12],[.62,.12,.05,.18]].forEach(([fx,fy,r,a])=>{ctx.fillStyle=rgba(P.ac,a);ctx.beginPath();ctx.arc(W*fx,H*fy,W*r,0,6.283);ctx.fill()});
+    }else if(type==='dots'){
+      const g=W*.06;for(let r=0;r<7;r++)for(let c=0;c<7;c++){const x=W*.58+c*g,y=H*.07+r*g,k=(r+c)/12;ctx.fillStyle=rgba(P.ac,.55-k*.4);ctx.beginPath();ctx.arc(x,y,W*.011*(1.3-k*.6),0,6.283);ctx.fill()}
+    }else if(type==='slash'){
+      for(let i=0;i<6;i++){ctx.fillStyle=rgba(P.ac,.10+i*.04);ctx.beginPath();const x=W*(.55+i*.09);ctx.moveTo(x,0);ctx.lineTo(x+W*.06,0);ctx.lineTo(x-W*.3+W*.06,H*.5);ctx.lineTo(x-W*.3,H*.5);ctx.closePath();ctx.fill()}
     }else{
       const n=7,bw=W*.07,base=H*.46,gx=W*.1;
       for(let i=0;i<n;i++){
@@ -2466,10 +2526,63 @@ function caseInfo(card){
     window.open('https://wa.me/971527366719?text='+encodeURIComponent(t),'_blank','noopener');
     track('poster_whatsapp',{type:st.type});
   });
+  document.addEventListener('hook-to-poster',e=>{
+    const d=e.detail||{};
+    if(d.type&&TYPES[d.type]&&d.type!==st.type){st.type=d.type;st.pal=TYPES[d.type].pal;$$('#stType button').forEach(x=>x.classList.toggle('on',x.dataset.v===d.type));$$('#stPal button').forEach(x=>x.classList.toggle('on',x.dataset.v===st.pal));st.dirty={};fillDefaults(true)}
+    el.head.value=d.text.replace(/[.?]+$/,'');st.dirty.head=true;redraw();
+    $('#studio').scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});
+  });
   new MutationObserver(()=>{fillDefaults(false);redraw()}).observe(root,{attributes:true,attributeFilter:['lang']});
   fillDefaults(true);draw();
   (document.fonts&&document.fonts.load?Promise.all([document.fonts.load('900 60px Inter'),document.fonts.load('900 60px Cairo'),document.fonts.load('800 40px Inter')]):Promise.resolve()).then(redraw).catch(()=>{});
   if(document.fonts&&document.fonts.addEventListener)document.fonts.addEventListener('loadingdone',redraw);
+})();
+
+/* ---------- reel hooks ---------- */
+(function hooks(){
+  const list=$('#hkList');if(!list)return;
+  const D={
+    real:{en:['an apartment','stuck choosing between too many listings','a short list that fits your budget','buying property'],ar:['شقة','محتارًا بين عروض كثيرة','قائمة قصيرة تناسب ميزانيتك','شراء العقار']},
+    food:{en:['your next meal','tired of the same takeaway','something fresh and different','ordering food'],ar:['وجبتك القادمة','تشعر بالملل من نفس الطلب','شيئًا طازجًا ومختلفًا','طلب الطعام']},
+    clinic:{en:['a clinic','putting off your appointment','a plan you feel good about','your treatment'],ar:['عيادة','تؤجل موعدك','خطة تطمئن لها','علاجك']},
+    finance:{en:['financing','confused by the paperwork','clear steps and a clear number','getting financing'],ar:['تمويل','محتارًا من الأوراق','خطوات واضحة ورقمًا واضحًا','الحصول على تمويل']},
+    edu:{en:['a course','not sure where to start','a simple path to follow','learning a new skill'],ar:['دورة','لا تعرف من أين تبدأ','طريقًا بسيطًا تتبعه','تعلّم مهارة جديدة']},
+    beauty:{en:['a salon','searching for a look that suits you','a look you love','your next look'],ar:['صالون','تبحث عن إطلالة تناسبك','إطلالة تحبها','إطلالتك القادمة']},
+    shop:{en:['this product','scrolling without finding the right one','the right one, delivered to your door','shopping online'],ar:['هذا المنتج','تتصفح دون أن تجد المناسب','المنتج المناسب إلى باب بيتك','التسوق عبر الإنترنت']},
+    fit:{en:['a training plan','starting over every Monday','a routine you can keep','getting fit'],ar:['خطة تدريب','تبدأ من جديد كل يوم اثنين','روتينًا تستطيع الالتزام به','اللياقة']}
+  };
+  const CTA={msg:{en:'Send us a message',ar:'راسلنا الآن'},lead:{en:'Leave your details',ar:'اترك بياناتك'},sale:{en:'Order today',ar:'اطلب اليوم'}};
+  const TPL={
+    en:['Still {pain}? Watch this.','The one thing nobody tells you about {topic}.','3 mistakes that make people scroll past {thing}.','Before: {pain}. After: {gain}.','Stop scrolling if you want {gain}.','What to check before you choose {thing}.','{thing}, step by step.','{thing}, made simple. {cta}.'],
+    ar:['ما زلت {pain}؟ شاهد هذا.','الشيء الوحيد الذي لا يخبرك به أحد عن {topic}.','3 أخطاء تجعل الناس يتجاوزون {thing}.','قبل: {pain}. بعد: {gain}.','توقف عن التمرير إن كنت تريد {gain}.','ما يجب أن تتأكد منه قبل اختيار {thing}.','{thing}، خطوة بخطوة.','{thing} بكل بساطة. {cta}.']
+  };
+  const st={type:'real',goal:'msg'};
+  const ar=()=>root.lang==='ar';
+  const esc=t=>t.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  function lines(){
+    const L=ar()?'ar':'en',d=D[st.type][L],cta=CTA[st.goal][L];
+    return TPL[L].map(t=>t.replace('{thing}',d[0]).replace('{pain}',d[1]).replace('{gain}',d[2]).replace('{topic}',d[3]).replace('{cta}',cta)).map(t=>t.charAt(0).toUpperCase()+t.slice(1));
+  }
+  function render(){
+    const ls=lines(),a=ar();
+    list.innerHTML=ls.map((t,i)=>`<div class="hk"><p dir="auto">${esc(t)}</p><div class="acts"><button type="button" data-act="copy" data-i="${i}">${a?'نسخ':'Copy'}</button><button type="button" data-act="poster" data-i="${i}">${a?'استخدمه في البوستر':'Use in poster'}</button></div></div>`).join('');
+  }
+  function group(id,key){$$('#'+id+' button').forEach(b=>b.addEventListener('click',()=>{$$('#'+id+' button').forEach(x=>x.classList.toggle('on',x===b));st[key]=b.dataset.v;render()}))}
+  group('hkType','type');group('hkGoal','goal');
+  list.addEventListener('click',e=>{
+    const b=e.target.closest('button[data-act]');if(!b)return;
+    const text=lines()[+b.dataset.i];
+    if(b.dataset.act==='copy'){
+      const done=()=>{const o=b.textContent;b.textContent=ar()?'تم النسخ':'Copied';setTimeout(()=>{b.textContent=o},1400)};
+      if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(text).then(done,done);else{const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();try{document.execCommand('copy')}catch(err){}ta.remove();done()}
+      track('hook_copy',{type:st.type,goal:st.goal});
+    }else{
+      document.dispatchEvent(new CustomEvent('hook-to-poster',{detail:{text,type:st.type}}));
+      track('hook_to_poster',{type:st.type});
+    }
+  });
+  new MutationObserver(render).observe(root,{attributes:true,attributeFilter:['lang']});
+  render();
 })();
 
 /* loader counter, then start hero */
