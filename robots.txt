@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kx121999.github.io/Karim-atef-cv/sitemap.xml
