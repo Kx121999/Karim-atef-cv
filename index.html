@@ -1198,6 +1198,20 @@ html.js[dir=rtl] .vname{--m:url(mask-name-ar.png);--r:1.543;margin-left:auto;-we
 @media(max-width:900px){.pgrid.g3,.pgrid.g4,.pgrid.g5,.pgrid.g2{grid-template-columns:1fr 1fr}.ps{padding:7vh 6vw 110px;overflow-y:auto}.ps-hint{display:none}.ptable div.r{grid-template-columns:1.2fr .9fr .9fr;padding:8px 12px;gap:8px}.ps-bar{padding:14px 6vw}}
 @media(max-width:520px){.pgrid.g3{grid-template-columns:1fr}.ps h1{font-size:clamp(3rem,18vw,5rem)}}
 html.lite .ps.on>*{animation:none}
+/* ---------- poster lab ---------- */
+.studio{display:grid;grid-template-columns:1fr minmax(280px,440px);gap:26px;align-items:start}
+.studio-controls{margin-top:0}
+.chips{display:flex;gap:10px;flex-wrap:wrap}
+.chips button{border:1px solid var(--line);background:transparent;border-radius:999px;padding:11px 18px;font-weight:900;letter-spacing:.05em;text-transform:uppercase;font-size:.72rem;cursor:pointer;transition:.3s;color:var(--text)}
+.chips button:hover{border-color:var(--accent)}
+.chips button.on{background:var(--accent);color:#000;border-color:var(--accent)}
+.swatches{display:flex;gap:10px;flex-wrap:wrap;margin-top:2px}
+.swatches button{width:42px;height:42px;border-radius:50%;border:2px solid var(--line);background:linear-gradient(135deg,var(--b) 50%,var(--c) 50%);cursor:pointer;transition:.3s;padding:0}
+.swatches button:hover{transform:scale(1.1)}
+.swatches button.on{border-color:var(--text);box-shadow:0 0 0 3px rgba(245,241,232,.2)}
+.st-preview{position:sticky;top:90px}
+.st-preview canvas{width:100%;height:auto;display:block;border-radius:22px;border:1px solid var(--line);box-shadow:0 30px 80px rgba(0,0,0,.5);background:#111}
+@media(max-width:900px){.studio{grid-template-columns:1fr}.st-preview{position:static;order:-1;max-width:420px;margin:0 auto;width:100%}}
 /* language switch + RTL */
 main{overflow-x:clip}
 .lang{border:1px solid rgba(255,255,255,.5);background:transparent;color:#fff;border-radius:999px;padding:8px 16px;font-size:.78rem;font-weight:800;letter-spacing:.06em;cursor:pointer;transition:background .25s,color .25s;font-family:Cairo,Inter,sans-serif}
@@ -1616,6 +1630,46 @@ main{overflow-x:clip}
   </div>
 </section>
 
+<section class="section" id="studio">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">Poster Lab</div>
+      </div>
+      <div>
+        <h2 class="section-title">Design a poster in seconds</h2>
+        <p class="section-copy">Pick a business type, edit the text and download the poster. Sample copy only: replace it with your own offer.</p>
+      </div>
+    </div>
+    <div class="studio reveal">
+      <div class="cform studio-controls">
+        <div>
+          <label>Business type</label>
+          <div class="chips" id="stType"><button type="button" class="on" data-v="real">Real estate</button><button type="button" data-v="food">Restaurant</button><button type="button" data-v="clinic">Clinic</button><button type="button" data-v="finance">Finance</button></div>
+        </div>
+        <div class="cf-row">
+          <div>
+            <label>Format</label>
+            <div class="chips" id="stFmt"><button type="button" class="on" data-v="post">Post</button><button type="button" data-v="story">Story</button><button type="button" data-v="banner">Banner</button></div>
+          </div>
+          <div>
+            <label>Colors</label>
+            <div class="swatches" id="stPal"><button type="button" class="on" data-v="gold" style="--c:#e3b04b;--b:#0b1020" aria-label="Gold"></button><button type="button" data-v="lime" style="--c:#d7ff5f;--b:#050505" aria-label="Lime"></button><button type="button" data-v="green" style="--c:#7ee787;--b:#06241a" aria-label="Green"></button><button type="button" data-v="blue" style="--c:#0a6cc4;--b:#eaf4ff" aria-label="Blue"></button><button type="button" data-v="warm" style="--c:#ff7a2f;--b:#2a0f06" aria-label="Warm"></button></div>
+          </div>
+        </div>
+        <label>Headline<input id="stHead" type="text" maxlength="60" dir="auto" autocomplete="off"></label>
+        <label>Sub line<input id="stSub" type="text" maxlength="70" dir="auto" autocomplete="off"></label>
+        <div class="cf-row">
+          <label>Button text<input id="stCta" type="text" maxlength="28" dir="auto" autocomplete="off"></label>
+          <label>Brand name<input id="stBrand" type="text" maxlength="28" dir="auto" autocomplete="off"></label>
+        </div>
+        <div class="cf-actions"><button class="btn" type="button" id="stDl">Download PNG</button><button class="btn dark" type="button" id="stWa">Send the idea on WhatsApp</button></div>
+      </div>
+      <div class="st-preview"><canvas id="posterCv" width="1080" height="1080" role="img" aria-label="Poster preview"></canvas></div>
+    </div>
+  </div>
+</section>
+
 <section class="section" id="videos">
   <div class="container">
     <div class="section-head reveal">
@@ -1801,6 +1855,11 @@ const AR={
 'Campaign overview':'نظرة على الحملات','Campaign':'الحملة','Results':'النتائج','Cost per result':'تكلفة النتيجة',
 'Based in the UAE':'مقيم في الإمارات','Testimonials':'آراء العملاء','What clients say':'ماذا يقول العملاء',
 'Present':'عرض تقديمي','▶ Present':'▶ عرض تقديمي','Arrow keys to navigate, Esc to exit':'مفاتيح الأسهم للتنقل، و Esc للخروج',
+'Poster Lab':'مختبر البوسترات','Design a poster in seconds':'صمّم بوستر في ثوانٍ',
+'Pick a business type, edit the text and download the poster. Sample copy only: replace it with your own offer.':'اختر نوع النشاط وعدّل النص ثم حمّل البوستر. النص تجريبي فقط، استبدله بعرضك.',
+'Business type':'نوع النشاط','Format':'المقاس','Colors':'الألوان','Headline':'العنوان','Sub line':'سطر فرعي','Button text':'نص الزر','Brand name':'اسم العلامة',
+'Real estate':'عقارات','Restaurant':'مطعم','Clinic':'عيادة','Finance':'تمويل','Post':'بوست','Story':'ستوري','Banner':'بانر',
+'Download PNG':'تحميل PNG','Send the idea on WhatsApp':'أرسل الفكرة عبر واتساب',
 '© 2026 Karim Atef — Creative Performance Marketer':'© 2026 كريم عاطف — مسوّق أداء إبداعي'
 };
 AR['Real Estate']=AR['Real Estate'];
@@ -2283,6 +2342,134 @@ function caseInfo(card){
     else if(e.key==='Home')show(0);
     else if(e.key==='End')show(n-1);
   });
+})();
+
+/* ---------- poster lab ---------- */
+(function studio(){
+  const cv=$('#posterCv');if(!cv)return;
+  const ctx=cv.getContext('2d');
+  const FMT={post:[1080,1080],story:[1080,1920],banner:[1200,628]};
+  const PAL={
+    gold:{bg:['#0b1020','#1b2440'],fg:'#fff7e6',ac:'#e3b04b',on:'#1a1200'},
+    lime:{bg:['#050505','#12170a'],fg:'#f5f1e8',ac:'#d7ff5f',on:'#000000'},
+    green:{bg:['#06241a','#0d4a33'],fg:'#eafff4',ac:'#7ee787',on:'#00210f'},
+    blue:{bg:['#eaf4ff','#cfe6ff'],fg:'#08243f',ac:'#0a6cc4',on:'#ffffff'},
+    warm:{bg:['#2a0f06','#5a1d0a'],fg:'#fff1e6',ac:'#ff7a2f',on:'#2a0f06'}
+  };
+  const TYPES={
+    real:{pal:'gold',shape:'skyline',en:['Your next home starts here','Limited units available','Book a viewing','Your Brand'],ar:['بيتك القادم يبدأ من هنا','وحدات محدودة متاحة','احجز معاينة','اسم علامتك']},
+    food:{pal:'warm',shape:'rings',en:['Taste the difference','Fresh every day, order now','Order on WhatsApp','Your Brand'],ar:['تذوّق الفرق','طازج كل يوم، اطلب الآن','اطلب عبر واتساب','اسم علامتك']},
+    clinic:{pal:'blue',shape:'cross',en:['Smile with confidence','Book your consultation','Book now','Your Brand'],ar:['ابتسم بثقة','احجز استشارتك','احجز الآن','اسم علامتك']},
+    finance:{pal:'green',shape:'chart',en:['Simple financing for your plans','Ask for your quote today','Get a quote','Your Brand'],ar:['تمويل بسيط لخططك','اطلب عرض السعر اليوم','اطلب عرض سعر','اسم علامتك']}
+  };
+  const st={type:'real',fmt:'post',pal:'gold',dirty:{}};
+  const el={head:$('#stHead'),sub:$('#stSub'),cta:$('#stCta'),brand:$('#stBrand')};
+  const keys=['head','sub','cta','brand'];
+  const ar=()=>root.lang==='ar';
+  const rr=(x,y,w,h,r)=>{ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath()};
+  const rgba=(hex,a)=>{const n=parseInt(hex.slice(1),16);return 'rgba('+(n>>16)+','+((n>>8)&255)+','+(n&255)+','+a+')'};
+  function fillDefaults(force){
+    const d=TYPES[st.type][ar()?'ar':'en'];
+    keys.forEach((k,i)=>{if(force||!st.dirty[k])el[k].value=d[i]});
+  }
+  function wrap(text,font,max){
+    ctx.font=font;const words=text.split(/\s+/).filter(Boolean),lines=[];let cur='';
+    for(const w of words){const t=cur?cur+' '+w:w;if(ctx.measureText(t).width>max&&cur){lines.push(cur);cur=w}else cur=t}
+    if(cur)lines.push(cur);return lines;
+  }
+  function shapes(P,W,H,type){
+    ctx.save();
+    if(type==='skyline'){
+      const n=11,bw=W/n;let seed=7;const rnd=()=>(seed=(seed*9301+49297)%233280)/233280;
+      for(let i=0;i<n;i++){
+        const h=H*(.10+rnd()*.2),x=i*bw,y=H-h;
+        ctx.fillStyle=rgba(P.ac,.08+(i%3)*.04);ctx.fillRect(x+4,y,bw-8,h);
+        ctx.fillStyle=rgba(P.fg,.16);
+        for(let r=0;r<Math.floor(h/46);r++)for(let c=0;c<3;c++)ctx.fillRect(x+bw*.18+c*bw*.24,y+18+r*46,bw*.1,16);
+      }
+      ctx.fillStyle=P.ac;ctx.fillRect(0,H-6,W,6);
+    }else if(type==='rings'){
+      const cx=W*.82,cy=H*.2;
+      for(let i=1;i<=6;i++){ctx.strokeStyle=rgba(P.ac,.5-i*.06);ctx.lineWidth=6;ctx.beginPath();ctx.arc(cx,cy,i*W*.075,0,6.283);ctx.stroke()}
+      ctx.fillStyle=rgba(P.ac,.9);ctx.beginPath();ctx.arc(cx,cy,W*.05,0,6.283);ctx.fill();
+    }else if(type==='cross'){
+      const arm=Math.min(W,H)*.1;
+      [[.85,.16,1],[.7,.34,.55],[.92,.42,.4]].forEach(([fx,fy,sc])=>{
+        const a=arm*sc,cx=W*fx,cy=H*fy;ctx.fillStyle=rgba(P.ac,.22+sc*.2);
+        rr(cx-a*.45,cy-a*1.5,a*.9,a*3,a*.3);ctx.fill();rr(cx-a*1.5,cy-a*.45,a*3,a*.9,a*.3);ctx.fill();
+      });
+    }else{
+      const n=7,bw=W*.07,base=H*.46,gx=W*.1;
+      for(let i=0;i<n;i++){
+        const h=H*(.05+i*.04),x=W-gx-(n-i)*bw*1.35,y=base-h;
+        ctx.fillStyle=rgba(P.ac,.16+i*.05);rr(x,y,bw,h,10);ctx.fill();
+      }
+      ctx.strokeStyle=P.ac;ctx.lineWidth=7;ctx.lineJoin='round';ctx.beginPath();
+      for(let i=0;i<n;i++){const x=W-gx-(n-i)*bw*1.35+bw/2,y=base-H*(.05+i*.04)-24;i?ctx.lineTo(x,y):ctx.moveTo(x,y)}ctx.stroke();
+    }
+    ctx.restore();
+  }
+  function draw(){
+    const [W,H]=FMT[st.fmt],P=PAL[st.pal],rtl=ar();
+    if(cv.width!==W||cv.height!==H){cv.width=W;cv.height=H}
+    const g=ctx.createLinearGradient(0,0,W,H);g.addColorStop(0,P.bg[0]);g.addColorStop(1,P.bg[1]);
+    ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+    shapes(P,W,H,TYPES[st.type].shape);
+    const fam=rtl?'Cairo, Inter, sans-serif':'Inter, Cairo, sans-serif',pad=W*.08,maxW=W-pad*2;
+    ctx.direction=rtl?'rtl':'ltr';ctx.textAlign=rtl?'right':'left';ctx.textBaseline='alphabetic';
+    const X=rtl?W-pad:pad;
+    const banner=st.fmt==='banner',story=st.fmt==='story';
+    let y=pad+(banner?4:W*.03);
+    const brand=el.brand.value.trim();
+    if(brand){
+      ctx.fillStyle=P.ac;ctx.font='800 '+Math.round(W*(banner?.024:.032))+'px '+fam;
+      ctx.fillText(rtl?brand:brand.toUpperCase(),X,y+W*.03);y+=W*(banner?.045:.07);
+      if(!banner){ctx.fillRect(rtl?X-W*.08:X,y,W*.08,5);y+=W*.06}
+    }
+    const head=(el.head.value.trim()||' ')[rtl?'toString':'toUpperCase']();
+    const sub=el.sub.value.trim(),cta=el.cta.value.trim();
+    const cs=Math.round(W*(banner?.024:.038)),bh=cs*2.3,ctaY=H-pad*(banner?1.15:1.9)-bh;
+    const ss=Math.round(W*(banner?.026:.04)),subFont='600 '+ss+'px '+fam;
+    const subLines=sub?wrap(sub,subFont,maxW*.8).slice(0,2):[];
+    const subH=subLines.length?subLines.length*ss*1.35+W*.025:0;
+    const top=story?Math.max(y,H*.2):y+W*.01;
+    const maxH=Math.max(H*.12,ctaY-subH-W*.04-top);
+    let size=Math.round(W*(banner?.08:.13)),lines;
+    for(;size>34;size-=4){lines=wrap(head,'900 '+size+'px '+fam,maxW);if(lines.length<=4&&lines.length*size*(rtl?1.2:.98)<=maxH)break}
+    const lh=size*(rtl?1.2:.98);
+    ctx.fillStyle=P.fg;ctx.font='900 '+size+'px '+fam;
+    lines.forEach((l,i)=>ctx.fillText(l,X,top+size*.9+i*lh));
+    const by=top+lines.length*lh+W*.02;
+    if(subLines.length){ctx.fillStyle=rgba(P.fg,.82);ctx.font=subFont;subLines.forEach((l,i)=>ctx.fillText(l,X,by+ss+i*ss*1.35))}
+    if(cta){
+      ctx.font='900 '+cs+'px '+fam;
+      const label=rtl?cta:cta.toUpperCase(),tw=ctx.measureText(label).width,bw=tw+cs*2.2;
+      const bx=rtl?X-bw:X;
+      ctx.fillStyle=P.ac;rr(bx,ctaY,bw,bh,bh/2);ctx.fill();
+      ctx.fillStyle=P.on;ctx.textAlign='center';ctx.fillText(label,bx+bw/2,ctaY+bh/2+cs*.35);
+      ctx.textAlign=rtl?'right':'left';
+    }
+    ctx.fillStyle=rgba(P.fg,.4);ctx.font='700 '+Math.round(W*.02)+'px '+fam;ctx.fillText('Poster Lab · Karim Atef',X,H-pad*.55);
+  }
+  let pend=0;const redraw=()=>{if(!pend)pend=requestAnimationFrame(()=>{pend=0;draw()})};
+  const group=(id,fn)=>$$('#'+id+' button').forEach(b=>b.addEventListener('click',()=>{$$('#'+id+' button').forEach(x=>x.classList.toggle('on',x===b));fn(b.dataset.v)}));
+  group('stType',v=>{st.type=v;st.pal=TYPES[v].pal;$$('#stPal button').forEach(x=>x.classList.toggle('on',x.dataset.v===st.pal));st.dirty={};fillDefaults(true);redraw()});
+  group('stFmt',v=>{st.fmt=v;redraw()});
+  group('stPal',v=>{st.pal=v;redraw()});
+  keys.forEach(k=>el[k].addEventListener('input',()=>{st.dirty[k]=true;redraw()}));
+  $('#stDl').addEventListener('click',()=>{
+    draw();cv.toBlob(b=>{const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='poster-'+st.fmt+'.png';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),2000)},'image/png');
+    track('poster_download',{type:st.type,fmt:st.fmt});
+  });
+  $('#stWa').addEventListener('click',()=>{
+    const t=ar()?`أهلًا كريم، صمّمت فكرة بوستر (${st.type}، ${st.fmt}) من مختبر البوسترات.\nالعنوان: ${el.head.value}\nأريد تنفيذها لنشاطي.`:`Hi Karim, I designed a poster idea (${st.type}, ${st.fmt}) in your Poster Lab.\nHeadline: ${el.head.value}\nI would like to build it for my business.`;
+    window.open('https://wa.me/971527366719?text='+encodeURIComponent(t),'_blank','noopener');
+    track('poster_whatsapp',{type:st.type});
+  });
+  new MutationObserver(()=>{fillDefaults(false);redraw()}).observe(root,{attributes:true,attributeFilter:['lang']});
+  fillDefaults(true);draw();
+  (document.fonts&&document.fonts.load?Promise.all([document.fonts.load('900 60px Inter'),document.fonts.load('900 60px Cairo'),document.fonts.load('800 40px Inter')]):Promise.resolve()).then(redraw).catch(()=>{});
+  if(document.fonts&&document.fonts.addEventListener)document.fonts.addEventListener('loadingdone',redraw);
 })();
 
 /* loader counter, then start hero */
