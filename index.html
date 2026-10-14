@@ -940,6 +940,59 @@ body.menu-open .burger span{background:#000}
 .contact-panel h2{display:block}
 
 
+/* ---------- creative layer ---------- */
+#fx{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.hero .container{position:relative;z-index:2}
+
+/* process */
+.process{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:22px;padding-top:34px}
+.process:before,.process:after{content:"";position:absolute;top:0;left:0;right:0;height:2px}
+.process:before{background:var(--line)}
+.process:after{background:var(--accent);box-shadow:0 0 18px var(--accent);transform:scaleX(var(--p,0));transform-origin:left}
+.step{position:relative;padding:10px 4px 0}
+.step:before{content:"";position:absolute;top:-39px;left:0;width:10px;height:10px;border-radius:50%;background:var(--bg);border:2px solid var(--line);transition:.5s var(--ease)}
+.step.on:before{background:var(--accent);border-color:var(--accent);box-shadow:0 0 0 7px rgba(215,255,95,.15),0 0 20px var(--accent)}
+.step b{display:block;color:var(--accent);font-weight:900;letter-spacing:.12em;font-size:.8rem}
+.step h3{font-size:clamp(1.3rem,2.2vw,2rem);letter-spacing:-.05em;line-height:1;margin:14px 0 12px}
+.step p{color:var(--muted);font-size:.95rem}
+@media(max-width:1050px){.process{grid-template-columns:1fr 1fr;row-gap:44px}.process:after,.process:before{display:none}.step:before{display:none}.step{border-top:1px solid var(--line);padding-top:22px}}
+@media(max-width:700px){.process{grid-template-columns:1fr}}
+
+/* estimator */
+.est{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:34px;background:var(--soft);overflow:hidden}
+.est-controls,.est-out{padding:40px}
+.est-out{background:linear-gradient(160deg,rgba(215,255,95,.10),rgba(215,255,95,.02));border-left:1px solid var(--line)}
+.est label,.est small{display:block;color:var(--muted);text-transform:uppercase;letter-spacing:.14em;font-size:.72rem;font-weight:800}
+.est-budget{display:flex;align-items:baseline;gap:10px;margin:14px 0 18px;direction:ltr}
+.est-budget b{font-size:clamp(2.6rem,6vw,4.6rem);letter-spacing:-.07em;line-height:.9;font-variant-numeric:tabular-nums}
+.est-budget span{color:var(--accent);font-weight:900}
+#budget{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:99px;outline:none;margin-bottom:34px;background:linear-gradient(90deg,var(--accent) var(--v,25%),var(--line) var(--v,25%));direction:ltr}
+#budget::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:var(--accent);border:4px solid #050505;box-shadow:0 0 0 2px var(--accent),0 0 24px rgba(215,255,95,.6);cursor:grab;transition:transform .2s}
+#budget::-webkit-slider-thumb:hover{transform:scale(1.15)}
+#budget::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--accent);border:4px solid #050505;box-shadow:0 0 0 2px var(--accent);cursor:grab}
+.seg{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.seg button{border:1px solid var(--line);background:transparent;border-radius:999px;padding:13px 22px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;font-size:.78rem;cursor:pointer;transition:.3s}
+.seg button:hover{border-color:var(--accent)}
+.seg button.on{background:var(--accent);color:#000;border-color:var(--accent)}
+.est-big{font-size:clamp(3.4rem,8vw,6.4rem);font-weight:900;letter-spacing:-.08em;line-height:.9;color:var(--accent);margin-top:14px;font-variant-numeric:tabular-nums;direction:ltr;text-align:start}
+.est-unit{font-size:1.1rem;font-weight:800;margin:8px 0 26px}
+.est-rows{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:20px}
+.est-rows div{background:#070707;padding:14px}
+.est-rows em{display:block;font-style:normal;color:var(--muted);font-size:.66rem;text-transform:uppercase;letter-spacing:.08em}
+.est-rows b{display:block;margin-top:6px;font-size:1.2rem;direction:ltr;text-align:start}
+.est-note{color:var(--muted);font-size:.82rem;margin-bottom:22px}
+.est-out .btn{display:inline-block}
+@media(max-width:900px){.est{grid-template-columns:1fr}.est-out{border-left:0;border-top:1px solid var(--line)}.est-controls,.est-out{padding:26px}}
+[dir=rtl] .est-out{border-left:0;border-right:1px solid var(--line)}
+@media(max-width:900px){[dir=rtl] .est-out{border-right:0}}
+[dir=rtl] .step:before{left:auto;right:0}
+[dir=rtl] .process:after{transform-origin:right}
+
+/* video hover hint */
+.video-frame{position:relative}
+.video-frame:after{content:"";position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 0 0 var(--accent);transition:box-shadow .4s}
+.video-card.live .video-frame:after{box-shadow:inset 0 0 0 3px var(--accent)}
+
 /* language switch + RTL */
 main{overflow-x:clip}
 .lang{border:1px solid rgba(255,255,255,.5);background:transparent;color:#fff;border-radius:999px;padding:8px 16px;font-size:.78rem;font-weight:800;letter-spacing:.06em;cursor:pointer;transition:background .25s,color .25s;font-family:Cairo,Inter,sans-serif}
@@ -1080,6 +1133,7 @@ main{overflow-x:clip}
 
 <main>
 <section class="hero" id="home">
+  <canvas id="fx" aria-hidden="true"></canvas>
   <div class="container">
     <div class="hero-top">
       <div class="hero-kicker">Media Buyer / Content Creator / Video Editor</div>
@@ -1152,6 +1206,21 @@ main{overflow-x:clip}
       <div class="service spot"><div><div class="service-num">01</div><h3>Media Buying</h3><p>Meta, TikTok and LinkedIn campaigns built for messages and qualified leads, with tracking and constant optimization.</p></div><ul><li>Lead generation</li><li>WhatsApp funnels</li><li>Performance analysis</li></ul></div>
       <div class="service spot"><div><div class="service-num">02</div><h3>Content &amp; Video</h3><p>Reels, UGC concepts and commercial videos edited to hold attention and sell.</p></div><ul><li>Content calendars</li><li>Reels and UGC ads</li><li>Video editing</li></ul></div>
       <div class="service spot"><div><div class="service-num">03</div><h3>Graphic Design</h3><p>Posters and ad creatives for restaurants, clinics, finance, agriculture and education.</p></div><ul><li>Commercial posters</li><li>Ad creatives</li><li>Campaign visuals</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="process">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">How I Work</div>
+      <h2 class="section-title">From idea to results</h2>
+    </div>
+    <div class="process" id="processLine">
+      <div class="step reveal"><b>01</b><h3>Strategy</h3><p>Understand the offer, the audience and the goal, then set the target: messages, leads or sales.</p></div>
+      <div class="step reveal"><b>02</b><h3>Creative</h3><p>Hooks, posters and reels built for the platform and the audience.</p></div>
+      <div class="step reveal"><b>03</b><h3>Launch &amp; Track</h3><p>Campaigns on Meta, TikTok or LinkedIn with tracking and WhatsApp or lead-form funnels.</p></div>
+      <div class="step reveal"><b>04</b><h3>Optimize</h3><p>Daily analysis: cut what does not work and scale what does.</p></div>
     </div>
   </div>
 </section>
@@ -1245,6 +1314,32 @@ main{overflow-x:clip}
         <div class="project-media"><img loading="lazy" decoding="async" src="campaign-7.jpg" alt="Carbon Footprint"><span>Sustainability</span></div>
         <div class="project-body"><small>Lead Generation</small><h3>Carbon Footprint</h3><div class="metrics"><div><b>116</b><em>Leads</em></div><div><b>AED 4.17</b><em>CPL</em></div><div><b>AED 483</b><em>Budget</em></div></div></div>
       </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="estimator">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Campaign Estimator</div>
+      <h2 class="section-title">What could your budget do?</h2>
+    </div>
+    <div class="est reveal spot">
+      <div class="est-controls">
+        <label for="budget">Your budget</label>
+        <div class="est-budget"><b data-dyn id="budgetVal">5,000</b><span>AED</span></div>
+        <input id="budget" type="range" min="500" max="20000" step="250" value="5000" aria-label="Budget in AED">
+        <label>Campaign goal</label>
+        <div class="seg" role="group"><button type="button" class="on" data-t="msg">Messages</button><button type="button" data-t="lead">Leads</button></div>
+      </div>
+      <div class="est-out">
+        <small>Estimated results</small>
+        <div class="est-big" data-dyn id="estBig">0</div>
+        <div class="est-unit" data-dyn id="estUnit">conversations</div>
+        <div class="est-rows"><div><em>Typical cost per result</em><b data-dyn id="estCpr">AED 0</b></div><div><em>Range</em><b data-dyn id="estRange">0</b></div></div>
+        <p class="est-note">Estimate based on my past campaigns. Results vary with the industry, offer and creative.</p>
+        <a class="btn" id="estCta" href="https://wa.me/971527366719" target="_blank" rel="noopener">Get a plan on WhatsApp</a>
+      </div>
     </div>
   </div>
 </section>
@@ -1397,6 +1492,15 @@ const AR={
 'About Me':'نبذة عني',
 'I combine media buying with creative production. That means I do not just run ads; I create the hooks, visuals, videos and funnels that make the campaign convert.':'أجمع بين الشراء الإعلاني والإنتاج الإبداعي. أي أنني لا أدير الإعلانات فقط، بل أصنع الأفكار الجاذبة والتصاميم والفيديوهات والمسارات التي تجعل الحملة تحقق نتائج.',
 "Let's Work":'لنعمل معًا','WhatsApp: +971 52 736 6719':'واتساب: ‎+971 52 736 6719','LinkedIn Profile':'الملف الشخصي على لينكدإن',
+'How I Work':'طريقة عملي','From idea to results':'من الفكرة إلى النتائج',
+'Strategy':'الاستراتيجية','Understand the offer, the audience and the goal, then set the target: messages, leads or sales.':'أفهم العرض والجمهور والهدف، ثم أحدد المستهدف: رسائل أو عملاء محتملون أو مبيعات.',
+'Creative':'الإبداع','Hooks, posters and reels built for the platform and the audience.':'أفكار جاذبة وبوسترات وريلز مصممة للمنصة والجمهور.',
+'Launch & Track':'الإطلاق والتتبع','Campaigns on Meta, TikTok or LinkedIn with tracking and WhatsApp or lead-form funnels.':'حملات على ميتا أو تيك توك أو لينكدإن مع التتبع ومسارات واتساب أو نماذج العملاء.',
+'Optimize':'التحسين','Daily analysis: cut what does not work and scale what does.':'تحليل يومي: أوقف ما لا يعمل وأوسّع ما ينجح.',
+'Campaign Estimator':'حاسبة الحملات','What could your budget do?':'ماذا تحقق ميزانيتك؟','Your budget':'ميزانيتك','AED':'درهم','Campaign goal':'هدف الحملة',
+'Estimated results':'النتائج المتوقعة','Typical cost per result':'التكلفة المعتادة للنتيجة','Range':'النطاق',
+'Estimate based on my past campaigns. Results vary with the industry, offer and creative.':'تقدير مبني على حملاتي السابقة. تختلف النتائج حسب المجال والعرض والتصميم.',
+'Get a plan on WhatsApp':'احصل على خطة عبر واتساب',
 '© 2026 Karim Atef — Creative Performance Marketer':'© 2026 كريم عاطف — مسوّق أداء إبداعي'
 };
 AR['Real Estate']=AR['Real Estate'];
@@ -1413,7 +1517,7 @@ function setLang(lang,animate){
   document.title=ar?TITLE_AR:TITLE_EN;
   const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode(n){
     const p=n.parentElement;
-    if(!p||p.closest('script,style,.w,.ch,.line'))return NodeFilter.FILTER_REJECT;
+    if(!p||p.closest('script,style,.w,.ch,.line,[data-dyn]'))return NodeFilter.FILTER_REJECT;
     return n.nodeValue.trim()?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_REJECT;
   }});
   const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);
@@ -1438,6 +1542,113 @@ function setLang(lang,animate){
 let saved=null;try{saved=localStorage.getItem('lang')}catch(e){}
 if(saved==='ar')setLang('ar');
 $('#lang')?.addEventListener('click',()=>setLang(root.lang==='ar'?'en':'ar'));
+
+/* ---------- creative layer: funnel canvas, estimator, process, video preview ---------- */
+(function funnel(){
+  const cv=$('#fx');if(!cv||reduce)return;
+  const ctx=cv.getContext('2d');let W=0,H=0,FH=0,cx=0,topW=0,neck=0,dpr=1,P=[],run=false,mx=-999,my=-999;
+  const N=()=>innerWidth<700?46:120;
+  const mk=(init)=>({x:Math.random()*W,y:init?Math.random()*FH*.9:-10-Math.random()*60,vy:.35+Math.random()*.7,ph:Math.random()*6.28,r:1+Math.random()*1.8,c:0});
+  function size(){
+    const r=cv.getBoundingClientRect();dpr=Math.min(devicePixelRatio||1,2);W=r.width;H=r.height;
+    cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);
+    FH=Math.min(H,Math.max(innerHeight*.95,620));
+    cx=innerWidth<900?W*.5:W*.72;topW=Math.min(W*.5,520);neck=34;
+    P=Array.from({length:N()},()=>mk(true));
+  }
+  const NY=()=>FH*.62;
+  function edge(y,side){const t=Math.min(Math.max((y-FH*.04)/(NY()-FH*.04),0),1);const e=1-Math.pow(1-t,2.2);const half=(topW/2)*(1-e)+(neck/2)*e;return cx+side*half}
+  function frame(){
+    if(!run)return;
+    ctx.clearRect(0,0,W,H);
+    ctx.lineWidth=1;ctx.strokeStyle='rgba(215,255,95,.13)';
+    for(const side of[-1,1]){ctx.beginPath();for(let y=FH*.04;y<=NY();y+=8){const x=edge(y,side);y===FH*.04?ctx.moveTo(x,y):ctx.lineTo(x,y)}ctx.stroke()}
+    ctx.beginPath();ctx.moveTo(cx-neck/2,NY());ctx.lineTo(cx-neck/2,FH*.86);ctx.moveTo(cx+neck/2,NY());ctx.lineTo(cx+neck/2,FH*.86);ctx.stroke();
+    for(const p of P){
+      p.ph+=.02;p.y+=p.vy;
+      const inFun=p.y<NY();
+      if(inFun){
+        const l=edge(p.y,-1),r=edge(p.y,1);
+        p.x+=Math.sin(p.ph)*.35;
+        if(p.x<l)p.x+=(l-p.x)*.08;if(p.x>r)p.x+=(r-p.x)*.08;
+        if(p.y>FH*.04&&(p.x<l-30||p.x>r+30))p.x+=(cx-p.x)*.02;
+      }else{p.c=1;p.x+=(cx-p.x)*.08;p.vy=Math.min(p.vy+.01,1.6)}
+      const dx=p.x-mx,dy=p.y-my,d=Math.hypot(dx,dy);
+      if(d<120){const f=(120-d)/120;p.x+=dx/d*f*3.2;p.y+=dy/d*f*3.2}
+      let a=.75;
+      if(p.y<FH*.1)a=.75*(p.y/(FH*.1));
+      if(p.y>FH*.7)a=Math.max(0,.9*(1-(p.y-FH*.7)/(FH*.2)));
+      if(p.c){ctx.fillStyle=`rgba(215,255,95,${a})`;ctx.shadowColor='rgba(215,255,95,.9)';ctx.shadowBlur=14;ctx.beginPath();ctx.arc(p.x,p.y,p.r+1.2,0,6.283);ctx.fill();ctx.shadowBlur=0}
+      else{ctx.fillStyle=`rgba(245,241,232,${a*.7})`;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,6.283);ctx.fill()}
+      if(p.y>FH*.9)Object.assign(p,mk(false));
+    }
+    requestAnimationFrame(frame);
+  }
+  size();addEventListener('resize',()=>{size()});
+  addEventListener('pointermove',e=>{const r=cv.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top},{passive:true});
+  new IntersectionObserver(es=>es.forEach(e=>{const on=e.isIntersecting;if(on&&!run){run=true;requestAnimationFrame(frame)}else if(!on)run=false})).observe(cv);
+})();
+
+(function estimator(){
+  const rng=$('#budget');if(!rng)return;
+  const avg=a=>a.reduce((x,y)=>x+y,0)/a.length;
+  /* cost per result (AED) from the campaigns listed above; the AED 4.17 sustainability campaign is left out of the lead average on purpose so the estimate stays conservative */
+  const DATA={msg:{costs:[38.10,14.60,35.52]},lead:{costs:[59.41,42.78]}};
+  let type='msg',shown=0,target=0,raf=0;
+  const fmt=n=>Math.round(n).toLocaleString('en-US');
+  const ar=()=>root.lang==='ar';
+  function calc(){
+    const b=+rng.value,c=DATA[type].costs,lo=Math.min(...c),hi=Math.max(...c),av=avg(c);
+    return{b,typ:b/av,min:b/hi,max:b/lo,cpr:av};
+  }
+  function render(){
+    const r=calc();
+    $('#budgetVal').textContent=fmt(r.b);
+    rng.style.setProperty('--v',((r.b-rng.min)/(rng.max-rng.min)*100)+'%');
+    $('#estUnit').textContent=type==='msg'?(ar()?'محادثة':'conversations'):(ar()?'عميل محتمل':'leads');
+    $('#estCpr').textContent='AED '+fmt(r.cpr);
+    $('#estRange').textContent=fmt(r.min)+' – '+fmt(r.max);
+    const goal=type==='msg'?(ar()?'رسائل':'messages'):(ar()?'عملاء محتملين':'leads');
+    const txt=ar()?`أهلًا كريم، أريد خطة لحملة ${goal} بميزانية ${fmt(r.b)} درهم.`:`Hi Karim, I would like a plan for a ${goal} campaign with a budget of AED ${fmt(r.b)}.`;
+    $('#estCta').href='https://wa.me/971527366719?text='+encodeURIComponent(txt);
+    target=r.typ;
+    if(reduce){shown=target;$('#estBig').textContent='≈ '+fmt(shown)}else if(!raf)raf=requestAnimationFrame(tween);
+  }
+  function tween(){
+    shown+=(target-shown)*.14;
+    if(Math.abs(target-shown)<.5){shown=target;raf=0}else raf=requestAnimationFrame(tween);
+    $('#estBig').textContent='≈ '+fmt(shown);
+  }
+  rng.addEventListener('input',render);
+  $$('.seg button').forEach(b=>b.addEventListener('click',()=>{type=b.dataset.t;$$('.seg button').forEach(x=>x.classList.toggle('on',x===b));render()}));
+  new MutationObserver(render).observe(root,{attributes:true,attributeFilter:['lang']});
+  render();
+})();
+
+(function process(){
+  const line=$('#processLine');if(!line)return;
+  const steps=$$('.step',line);
+  function upd(){
+    const r=line.getBoundingClientRect(),vh=innerHeight;
+    const p=Math.min(Math.max((vh*.8-r.top)/(Math.max(r.height,200)+vh*.25),0),1);
+    line.style.setProperty('--p',p);
+    steps.forEach((s,i)=>s.classList.toggle('on',p>=(i+.4)/steps.length*.9));
+  }
+  addEventListener('scroll',()=>requestAnimationFrame(upd),{passive:true});addEventListener('resize',upd);upd();
+})();
+
+(function videoPreview(){
+  if(!matchMedia('(hover:hover) and (pointer:fine)').matches||reduce)return;
+  $$('.video-card').forEach(card=>{
+    const v=$('video',card);if(!v)return;
+    let user=false;
+    card.addEventListener('pointerdown',()=>{user=true});
+    card.addEventListener('pointerenter',()=>{if(user||!v.paused)return;v.muted=true;v.loop=true;v.play().then(()=>card.classList.add('live')).catch(()=>{})});
+    card.addEventListener('pointerleave',()=>{card.classList.remove('live');if(!user){v.pause();v.currentTime=0;v.loop=false;v.muted=false}});
+    v.addEventListener('ended',()=>{user=false});
+    v.addEventListener('pause',()=>{if(user&&v.paused&&!v.seeking)user=false});
+  });
+})();
 
 /* loader counter, then start hero */
 const count=$('.loader-count b');
