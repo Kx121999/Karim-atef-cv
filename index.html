@@ -1135,6 +1135,69 @@ html.lite .ring-stage:after{display:none}
 html.lite .dash{backdrop-filter:none}
 .lite-btn{margin-top:12px;background:none;border:1px solid var(--line);border-radius:999px;color:var(--muted);padding:8px 16px;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:.25s}
 .lite-btn:hover{color:#000;background:var(--accent);border-color:var(--accent)}
+/* ---------- video name + present mode ---------- */
+.vname{display:none}
+.js .vname{display:block;--m:url(mask-name.png);--r:2.003;position:relative;width:min(100%,clamp(330px,52vw,720px));aspect-ratio:var(--r);-webkit-mask:var(--m) left center/100% 100% no-repeat;mask:var(--m) left center/100% 100% no-repeat;background:#f5f1e8;opacity:0;transform:translateY(28px) scale(.98);transition:opacity 1s var(--ease),transform 1.1s var(--ease)}
+.js.ready .vname{opacity:1;transform:none}
+.js .big-name h1{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.vname img,.vname video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 64%}
+.vname video{opacity:0;transition:opacity .8s}
+.vname.play video{opacity:1}
+.vname:after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.06),rgba(5,5,5,.12));pointer-events:none}
+html.js[dir=rtl] .vname{--m:url(mask-name-ar.png);--r:1.543;margin-left:auto;-webkit-mask-position:right center;mask-position:right center;width:min(100%,clamp(260px,40vw,540px))}
+@media(prefers-reduced-motion:reduce){.js .vname{opacity:1;transform:none}}
+
+.present-btn{border:1px solid rgba(255,255,255,.5);background:transparent;color:#fff;border-radius:999px;padding:8px 16px;font-size:.78rem;font-weight:800;letter-spacing:.06em;cursor:pointer;transition:background .25s,color .25s;font-family:Cairo,Inter,sans-serif;text-transform:uppercase}
+.present-btn:hover{background:#fff;color:#000}
+@media(max-width:1050px){.present-btn{display:none}}
+.present{position:fixed;inset:0;z-index:500;background:radial-gradient(circle at 15% 0%,rgba(215,255,95,.12),transparent 40%),#050505;color:var(--text)}
+.present[hidden]{display:none}
+.ps-stage{position:absolute;inset:0;overflow:hidden}
+.ps{position:absolute;inset:0;padding:8vh 8vw 12vh;display:flex;flex-direction:column;justify-content:center;opacity:0;visibility:hidden;transform:translateX(60px);transition:opacity .5s,transform .7s var(--ease),visibility 0s .7s}
+[dir=rtl] .ps{transform:translateX(-60px)}
+.ps.on{opacity:1;visibility:visible;transform:none;transition:opacity .5s,transform .7s var(--ease),visibility 0s}
+.ps.past{transform:translateX(-60px)}
+[dir=rtl] .ps.past{transform:translateX(60px)}
+.ps small{color:var(--accent);text-transform:uppercase;letter-spacing:.2em;font-weight:900;font-size:clamp(.7rem,1.2vw,.95rem)}
+.ps h1{font-size:clamp(3.6rem,12vw,11rem);line-height:.86;letter-spacing:-.08em;text-transform:uppercase;margin:3vh 0 2vh}
+.ps h2{font-size:clamp(2rem,5.4vw,5rem);line-height:.95;letter-spacing:-.06em;text-transform:uppercase;margin:2vh 0 4vh}
+.ps p.lead{font-size:clamp(1.1rem,2.4vw,2rem);color:var(--muted);letter-spacing:-.03em}
+.ps-contact{display:flex;gap:18px;flex-wrap:wrap;margin-top:5vh;color:var(--muted);font-size:clamp(.85rem,1.4vw,1.15rem)}
+.ps-contact span{border:1px solid var(--line);border-radius:999px;padding:10px 18px}
+.pgrid{display:grid;gap:18px}
+.pgrid.g3{grid-template-columns:repeat(3,1fr)}
+.pgrid.g4{grid-template-columns:repeat(4,1fr)}
+.pgrid.g5{grid-template-columns:repeat(5,1fr)}
+.pgrid.g2{grid-template-columns:repeat(2,1fr)}
+.pc{border:1px solid var(--line);background:var(--soft);border-radius:24px;padding:clamp(16px,2.2vw,30px)}
+.pc b{display:block;color:var(--accent);font-size:clamp(1.8rem,5vw,4.6rem);letter-spacing:-.07em;line-height:.9;font-variant-numeric:tabular-nums;direction:ltr}
+.pc b.sm{font-size:clamp(.9rem,1.3vw,1.1rem);letter-spacing:.1em;margin-bottom:10px}
+.pc h3{font-size:clamp(1.2rem,2.4vw,2.2rem);letter-spacing:-.05em;line-height:1;margin:10px 0}
+.pc p,.pc span{color:var(--muted);font-size:clamp(.8rem,1.3vw,1.05rem)}
+.pc span.lbl{display:block;margin-top:10px;text-transform:uppercase;letter-spacing:.08em;font-size:clamp(.62rem,.95vw,.8rem)}
+.pc ul{list-style:none;margin-top:14px;display:grid;gap:8px}
+.pc li{border-top:1px solid var(--line);padding-top:8px;font-size:clamp(.8rem,1.3vw,1.05rem)}
+.ptable{border:1px solid var(--line);border-radius:24px;overflow:hidden;background:rgba(10,10,10,.7)}
+.ptable div.r{display:grid;grid-template-columns:1.3fr 1.2fr 1fr;gap:16px;align-items:center;padding:clamp(8px,1.4vh,16px) 24px;border-bottom:1px solid var(--line);font-size:clamp(.85rem,1.6vw,1.3rem)}
+.ptable div.r:last-child{border-bottom:0}
+.ptable .h{color:var(--muted);text-transform:uppercase;letter-spacing:.1em;font-size:clamp(.6rem,.95vw,.8rem)}
+.ptable .bar{display:flex;align-items:center;gap:12px;direction:ltr}
+.ptable .bar u{display:block;height:10px;border-radius:99px;background:var(--accent);box-shadow:0 0 14px rgba(215,255,95,.4);text-decoration:none;width:calc(var(--w)*.5)}
+.ptable b{font-variant-numeric:tabular-nums}
+.ps.on>*{animation:psrise .7s var(--ease) both}
+.ps.on>*:nth-child(2){animation-delay:.08s}.ps.on>*:nth-child(3){animation-delay:.16s}.ps.on>*:nth-child(4){animation-delay:.24s}
+@keyframes psrise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.ps-bar{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;gap:18px;padding:18px 8vw;z-index:3;background:linear-gradient(0deg,#050505 55%,transparent)}
+.ps-dots{display:flex;gap:8px}
+.ps-dots i{width:9px;height:9px;border-radius:50%;background:var(--line);cursor:pointer;transition:.3s}
+.ps-dots i.on{background:var(--accent);box-shadow:0 0 14px var(--accent);width:26px;border-radius:99px}
+.ps-count{direction:ltr;color:var(--muted);font-size:.8rem;letter-spacing:.14em;font-variant-numeric:tabular-nums}
+.ps-hint{margin-inline-start:auto;color:var(--muted);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase}
+.ps-close{width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--text);font-size:1.8rem;line-height:1;cursor:pointer;transition:.3s}
+.ps-close:hover{background:var(--accent);color:#000}
+@media(max-width:900px){.pgrid.g3,.pgrid.g4,.pgrid.g5,.pgrid.g2{grid-template-columns:1fr 1fr}.ps{padding:7vh 6vw 110px;overflow-y:auto}.ps-hint{display:none}.ptable div.r{grid-template-columns:1.2fr .9fr .9fr;padding:8px 12px;gap:8px}.ps-bar{padding:14px 6vw}}
+@media(max-width:520px){.pgrid.g3{grid-template-columns:1fr}.ps h1{font-size:clamp(3rem,18vw,5rem)}}
+html.lite .ps.on>*{animation:none}
 /* language switch + RTL */
 main{overflow-x:clip}
 .lang{border:1px solid rgba(255,255,255,.5);background:transparent;color:#fff;border-radius:999px;padding:8px 16px;font-size:.78rem;font-weight:800;letter-spacing:.06em;cursor:pointer;transition:background .25s,color .25s;font-family:Cairo,Inter,sans-serif}
@@ -1261,6 +1324,7 @@ main{overflow-x:clip}
       <a href="#contact">Contact</a>
     </nav>
     <div class="status"><i></i> Available for Work</div>
+    <button class="present-btn" id="presentBtn" type="button">&#9654; Present</button>
     <button class="lang" id="lang" type="button" aria-label="التبديل إلى العربية">عربي</button>
     <button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
   </div>
@@ -1274,6 +1338,7 @@ main{overflow-x:clip}
   <a href="#videos">Videos</a>
   <a href="#about">About</a>
   <a href="#contact">Contact</a>
+  <a href="#" id="menuPresent">Present</a>
 </nav>
 
 <main>
@@ -1287,6 +1352,7 @@ main{overflow-x:clip}
 
     <div class="big-name">
       <h1><span>KARIM</span><span class="surname">ATEF</span></h1>
+      <div class="vname" id="vname" aria-hidden="true"><img src="video-5.webp" alt="" fetchpriority="high" decoding="async"><video muted loop playsinline preload="none" poster="video-5.webp"></video></div>
     </div>
 
     <div class="hero-role">
@@ -1632,6 +1698,11 @@ main{overflow-x:clip}
   <div class="container">© 2026 Karim Atef — Creative Performance Marketer<br><button class="lite-btn" id="liteBtn" type="button">Lite mode</button><br><a class="foot-link" href="campaign-costs.html">Insights: what my Meta Ads campaigns really cost</a></div>
 </footer>
 
+<div class="present" id="present" role="dialog" aria-modal="true" aria-label="Presentation" hidden>
+  <div class="ps-stage" id="psStage"></div>
+  <div class="ps-bar"><div class="ps-dots" id="psDots"></div><span class="ps-count" id="psCount"></span><span class="ps-hint">Arrow keys to navigate, Esc to exit</span><button class="ps-close" id="psClose" type="button" aria-label="Close">&times;</button></div>
+</div>
+
 <div class="lightbox" id="lightbox" aria-hidden="true">
   <button id="closeBox" type="button" aria-label="Close">×</button>
   <button class="nv prev" id="prevBox" type="button" aria-label="Previous">←</button>
@@ -1729,6 +1800,7 @@ const AR={
 'Every campaign tracked: results, cost per result and budget.':'كل حملة متتبعة: النتائج وتكلفة النتيجة والميزانية.',
 'Campaign overview':'نظرة على الحملات','Campaign':'الحملة','Results':'النتائج','Cost per result':'تكلفة النتيجة',
 'Based in the UAE':'مقيم في الإمارات','Testimonials':'آراء العملاء','What clients say':'ماذا يقول العملاء',
+'Present':'عرض تقديمي','▶ Present':'▶ عرض تقديمي','Arrow keys to navigate, Esc to exit':'مفاتيح الأسهم للتنقل، و Esc للخروج',
 '© 2026 Karim Atef — Creative Performance Marketer':'© 2026 كريم عاطف — مسوّق أداء إبداعي'
 };
 AR['Real Estate']=AR['Real Estate'];
@@ -2133,6 +2205,84 @@ function caseInfo(card){
   label();
   b.addEventListener('click',()=>{try{localStorage.setItem('lite',lite?'0':'1')}catch(e){}location.reload()});
   new MutationObserver(label).observe(root,{attributes:true,attributeFilter:['lang']});
+})();
+
+/* ---------- video-filled name + present mode ---------- */
+(function vname(){
+  const box=$('#vname');if(!box)return;
+  const v=$('video',box),saveData=navigator.connection&&navigator.connection.saveData;
+  if(lite||reduce||saveData)return;
+  let started=false;
+  function start(){
+    if(started)return;started=true;
+    v.src='video-5.mp4';v.play().then(()=>box.classList.add('play')).catch(()=>{});
+  }
+  const go=()=>setTimeout(()=>{(window.requestIdleCallback||setTimeout)(start)},1800);
+  if(document.readyState==='complete')go();else addEventListener('load',go);
+  new IntersectionObserver(es=>es.forEach(e=>{if(!started)return;if(e.isIntersecting)v.play().catch(()=>{});else v.pause()}),{rootMargin:'60px'}).observe(box);
+})();
+
+(function present(){
+  const ov=$('#present');if(!ov)return;
+  const stage=$('#psStage'),dotsEl=$('#psDots'),count=$('#psCount');
+  const T=el=>el?el.textContent.trim():'';
+  const lab=el=>el?(el.getAttribute('aria-label')||el.textContent.trim()):'';
+  const fin=b=>b.dataset.count?(+b.dataset.count).toFixed(+b.dataset.dec||0)+(b.dataset.suffix||''):T(b);
+  const sec=(id,cls)=>`<small>${T($('#'+id+' .eyebrow'))}</small><h2>${lab($('#'+id+' .section-title'))}</h2>`;
+  function build(){
+    const S=[];
+    S.push(`<small>${T($('.hero-kicker'))}</small><h1>${lab($('.big-name h1'))}</h1><p class="lead">${T($('.role-title'))}</p><div class="ps-contact"><span>${T($('.phone-link'))}</span><span>${T($('.contact-actions a[href^="mailto"]'))}</span></div>`);
+    S.push(sec('services')+`<div class="pgrid g3">${$$('.service').map(x=>`<div class="pc"><b class="sm">${T($('.service-num',x))}</b><h3>${T($('h3',x))}</h3><p>${T($('p',x))}</p><ul>${$$('li',x).map(l=>`<li>${T(l)}</li>`).join('')}</ul></div>`).join('')}</div>`);
+    S.push(`<small>${T($('.sc3 .cap'))}</small><h2>${T($('.sc3 .big'))}</h2><div class="pgrid g5">${$$('.bigstats > div').map(x=>`<div class="pc"><b>${fin($('b',x))}</b><span class="lbl">${T($('span',x))}</span></div>`).join('')}</div>`);
+    const hd=$$('.dtable .dh span').map(T);
+    S.push(`<small>${T($('.dash-top em'))}</small><h2>${T($('.dash-top b'))}</h2><div class="ptable"><div class="r h"><span>${hd[0]}</span><span>${hd[1]}</span><span>${hd[2]}</span></div>${$$('.dr').map(r=>`<div class="r"><b>${T($('.dn',r))}</b><span class="bar"><u style="--w:${r.style.getPropertyValue('--w')}"></u><b>${T($('.db b',r))}</b></span><b>${T($('.dc b',r))}</b></div>`).join('')}</div>`);
+    S.push(sec('process')+`<div class="pgrid g4">${$$('.step').map(x=>`<div class="pc"><b class="sm">${T($('b',x))}</b><h3>${T($('h3',x))}</h3><p>${T($('p',x))}</p></div>`).join('')}</div>`);
+    S.push(sec('experience')+`<div class="pgrid g2">${$$('.exp-row').map(x=>`<div class="pc"><b class="sm">${T($('time',x))}</b><h3>${T($('h3',x))}</h3><p>${T($('p',x))}</p></div>`).join('')}</div>`);
+    S.push(`<small>${T($('#contact .eyebrow'))||''}</small><h1>${lab($('.contact-panel h2'))}</h1><div class="ps-contact">${$$('.contact-actions a').map(a=>`<span>${T(a)}</span>`).join('')}</div>`);
+    return S;
+  }
+  let i=0,n=0,open=false;
+  function show(k){
+    i=Math.max(0,Math.min(n-1,k));
+    $$('.ps',stage).forEach((s,j)=>{s.classList.toggle('on',j===i);s.classList.toggle('past',j<i)});
+    $$('i',dotsEl).forEach((d,j)=>d.classList.toggle('on',j===i));
+    count.textContent=(i+1)+' / '+n;
+  }
+  function openP(){
+    const S=build();n=S.length;
+    stage.innerHTML=S.map(h=>`<section class="ps">${h}</section>`).join('');
+    dotsEl.innerHTML=S.map((_,j)=>`<i data-i="${j}"></i>`).join('');
+    ov.hidden=false;open=true;document.body.style.overflow='hidden';
+    show(0);ov.focus&&ov.setAttribute('tabindex','-1');ov.focus();
+    try{if(ov.requestFullscreen&&!document.fullscreenElement)ov.requestFullscreen().catch(()=>{})}catch(e){}
+    track('present_open',{lang:root.lang});
+  }
+  function closeP(){
+    if(!open)return;open=false;wasFs=false;ov.hidden=true;document.body.style.overflow='';
+    try{if(document.fullscreenElement)document.exitFullscreen()}catch(e){}
+  }
+  $('#presentBtn')?.addEventListener('click',openP);
+  $('#menuPresent')?.addEventListener('click',e=>{e.preventDefault();toggleMenu(false);openP()});
+  $('#psClose').addEventListener('click',closeP);
+  dotsEl.addEventListener('click',e=>{const d=e.target.closest('i');if(d)show(+d.dataset.i)});
+  stage.addEventListener('click',e=>{if(e.target.closest('a,button'))return;const r=stage.getBoundingClientRect();const left=e.clientX<r.left+r.width/2;const rtl=root.dir==='rtl';show(i+((left!==rtl)?-1:1))});
+  let sx=null;
+  stage.addEventListener('touchstart',e=>{sx=e.touches[0].clientX},{passive:true});
+  stage.addEventListener('touchend',e=>{if(sx===null)return;const dx=e.changedTouches[0].clientX-sx;sx=null;if(Math.abs(dx)>50){const rtl=root.dir==='rtl';show(i+((dx<0)!==rtl?1:-1))}});
+  let wasFs=false;
+  document.addEventListener('fullscreenchange',()=>{if(document.fullscreenElement)wasFs=true;else if(open&&wasFs){wasFs=false;closeP()}});
+  addEventListener('keydown',e=>{
+    const tag=(e.target.tagName||'').toLowerCase();
+    if(!open){if((e.key==='p'||e.key==='P')&&!e.ctrlKey&&!e.metaKey&&!e.altKey&&!['input','textarea','select'].includes(tag)&&!$('#lightbox').classList.contains('open')){openP()}return}
+    const rtl=root.dir==='rtl';
+    if(e.key==='Escape')closeP();
+    else if(e.key==='ArrowRight')show(i+(rtl?-1:1));
+    else if(e.key==='ArrowLeft')show(i+(rtl?1:-1));
+    else if(e.key===' '||e.key==='PageDown')(e.preventDefault(),show(i+1));
+    else if(e.key==='PageUp')show(i-1);
+    else if(e.key==='Home')show(0);
+    else if(e.key==='End')show(n-1);
+  });
 })();
 
 /* loader counter, then start hero */
