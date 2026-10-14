@@ -23,11 +23,13 @@
 <link rel="canonical" href="https://kx121999.github.io/Karim-atef-cv/" />
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Karim Atef","jobTitle":"Creative Performance Marketer","url":"https://kx121999.github.io/Karim-atef-cv/","image":"https://kx121999.github.io/Karim-atef-cv/profile.jpg","email":"mailto:kx121999@gmail.com","telephone":"+971527366719","address":{"@type":"PostalAddress","addressCountry":"AE"},"sameAs":["https://www.linkedin.com/in/karim-atef-64ba80334"],"knowsAbout":["Media Buying","Meta Ads","TikTok Ads","LinkedIn Ads","Lead Generation","Video Editing","Graphic Design","Content Strategy","Real Estate Marketing"],"worksFor":{"@type":"Organization","name":"MIG FARM"}}</script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23050505'/%3E%3Ctext x='32' y='44' font-size='34' font-weight='900' text-anchor='middle' fill='%23d7ff5f' font-family='Arial'%3EK%3C/text%3E%3C/svg%3E" />
-<script>document.documentElement.classList.add('js')</script>
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var pref=localStorage.getItem('lite');var weak=(navigator.hardwareConcurrency&&navigator.hardwareConcurrency<=4)||(navigator.deviceMemory&&navigator.deviceMemory<=4)||(navigator.connection&&navigator.connection.saveData)||matchMedia('(pointer:coarse)').matches;if(pref==='1'||(pref!=='0'&&weak))d.classList.add('lite')}catch(e){}})()</script>
 <meta name="description" content="Karim Atef - Creative Performance Marketer in the UAE: media buying (Meta, TikTok, LinkedIn), lead generation, reels, video editing and commercial design. Real campaign results and a campaign estimator." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap"></noscript>
+<link rel="preload" as="image" href="profile.webp" fetchpriority="high">
 <style>
 :root{
   --bg:#050505;
@@ -88,8 +90,8 @@ button{font-family:inherit;color:inherit}
   display:grid;
   place-items:center;
   overflow:hidden;
-  animation:loaderOut .9s cubic-bezier(.7,0,.2,1) forwards;
-  animation-delay:2.35s;
+  animation:loaderOut .7s cubic-bezier(.7,0,.2,1) forwards;
+  animation-delay:1.45s;
   pointer-events:none;
 }
 .loader .face{
@@ -100,7 +102,7 @@ button{font-family:inherit;color:inherit}
   position:relative;
   filter:grayscale(.05) contrast(1.05);
   transform-origin:center;
-  animation:faceMove 2.35s cubic-bezier(.18,.9,.2,1) forwards;
+  animation:faceMove 1.5s cubic-bezier(.18,.9,.2,1) forwards;
 }
 .loader .face img{
   width:100%;
@@ -121,7 +123,7 @@ button{font-family:inherit;color:inherit}
   transform:translateX(-50%);
   text-align:center;
   width:90%;
-  animation:titleReveal 1.6s ease forwards;
+  animation:titleReveal 1.1s ease forwards;
 }
 .loader-title b{
   display:block;
@@ -850,8 +852,6 @@ footer{
 /* images */
 .reveal img.zoomin{scale:1.3;transition:scale 1.8s var(--ease)}
 .reveal.show img.zoomin{scale:1}
-.creative-photo-wrap:before{animation:frame 4s ease-in-out infinite alternate}
-@keyframes frame{from{inset:18px;opacity:.6}to{inset:10px;opacity:1}}
 .design-card img,.video-frame{transition:transform .6s var(--ease)}
 .design-card:hover img{transform:scale(1.06)}
 .design-card,.project-card{position:relative}
@@ -871,11 +871,10 @@ footer{
 .cursor.view span{opacity:1;color:#000}
 @media(hover:hover) and (pointer:fine){.cursor.on{display:grid}}
 .orbs{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
-.orbs i{position:absolute;border-radius:50%;filter:blur(70px);opacity:.5;translate:var(--ox,0) var(--oy,0);transition:translate .8s ease-out}
-.orbs i:nth-child(1){width:38vw;height:38vw;left:-10vw;top:5vh;background:rgba(215,255,95,.12);animation:float 14s ease-in-out infinite alternate}
-.orbs i:nth-child(2){width:30vw;height:30vw;right:-8vw;top:40vh;background:rgba(255,255,255,.07);animation:float 18s ease-in-out infinite alternate-reverse}
-.orbs i:nth-child(3){width:26vw;height:26vw;left:35vw;bottom:-12vh;background:rgba(215,255,95,.08);animation:float 16s ease-in-out infinite alternate}
-@keyframes float{from{transform:translate(0,0) scale(1)}to{transform:translate(8vw,-6vh) scale(1.2)}}
+.orbs i{position:absolute;border-radius:50%}
+.orbs i:nth-child(1){width:70vw;height:70vw;left:-22vw;top:-8vh;background:radial-gradient(closest-side,rgba(215,255,95,.11),transparent)}
+.orbs i:nth-child(2){width:55vw;height:55vw;right:-16vw;top:38vh;background:radial-gradient(closest-side,rgba(255,255,255,.06),transparent)}
+.orbs i:nth-child(3){width:50vw;height:50vw;left:30vw;bottom:-22vh;background:radial-gradient(closest-side,rgba(215,255,95,.07),transparent)}
 
 /* loader count */
 .loader-count{position:absolute;right:5vw;bottom:6vh;z-index:3;font-weight:900;letter-spacing:-.08em;line-height:.8;font-size:clamp(3rem,12vw,9rem);font-variant-numeric:tabular-nums}
@@ -888,8 +887,9 @@ header.hide{transform:translateY(-100%)}
 .nav-links a:after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:#fff;transform:scaleX(0);transform-origin:right;transition:transform .4s var(--ease)}
 .nav-links a:hover:after,.nav-links a.active:after{transform:scaleX(1);transform-origin:left}
 .nav-links a.active{color:#fff}
-.status i{animation:pulse 2s ease-out infinite}
-@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(215,255,95,.7)}100%{box-shadow:0 0 0 16px rgba(215,255,95,0)}}
+.status i{position:relative}
+.status i:after,.dash-top .dot:after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--accent);animation:ping 2.2s ease-out infinite}
+@keyframes ping{0%{transform:scale(1);opacity:.65}100%{transform:scale(3.4);opacity:0}}
 .brand{display:inline-block;transition:letter-spacing .4s var(--ease)}
 .brand:hover{letter-spacing:.02em}
 .burger{display:none;width:46px;height:46px;border:1px solid rgba(255,255,255,.5);border-radius:50%;background:transparent;cursor:pointer;position:relative;z-index:90}
@@ -907,10 +907,11 @@ body.menu-open .burger span{background:#000}
 .menu.open a{transform:none;opacity:1;transition-delay:calc(.25s + var(--i)*60ms)}
 
 /* tickers */
-.tickers{border-top:1px solid var(--line);padding:26px 0;overflow:hidden;transform:rotate(-1.2deg);margin:40px 0;background:var(--accent);color:#000}
+.tickers{contain:paint;border-top:1px solid var(--line);padding:26px 0;overflow:hidden;transform:rotate(-1.2deg);margin:40px 0;background:var(--accent);color:#000}
 .ticker{overflow:hidden;white-space:nowrap}
 .ticker+.ticker{margin-top:6px}
 .ticker-track{display:inline-flex;align-items:center;gap:30px;animation:marquee 32s linear infinite;will-change:transform}
+.tickers.off .ticker-track{animation-play-state:paused}
 .ticker.rev .ticker-track{animation-direction:reverse;animation-duration:38s}
 .tickers:hover .ticker-track{animation-play-state:paused}
 .ticker span{font-size:clamp(1.6rem,4.5vw,3.6rem);font-weight:900;letter-spacing:-.06em;text-transform:uppercase}
@@ -923,8 +924,6 @@ body.menu-open .burger span{background:#000}
 .btn{position:relative;overflow:hidden}
 .btn:after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);transition:left .7s var(--ease)}
 .btn:hover:after{left:130%}
-.wa{animation:wabob 3s ease-in-out infinite}
-@keyframes wabob{50%{transform:translateY(-8px)}}
 .exp-row{position:relative;transition:padding .45s var(--ease),background .45s}
 .exp-row:before{content:"";position:absolute;left:0;bottom:-1px;height:1px;width:100%;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .6s var(--ease)}
 .exp-row:hover:before{transform:scaleX(1)}
@@ -954,7 +953,7 @@ body.menu-open .burger span{background:#000}
 
 
 /* ---------- creative layer ---------- */
-#fx{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+#fx{position:absolute;left:0;top:0;width:100%;height:min(100%,max(95vh,620px));z-index:0;pointer-events:none}
 .hero .container{position:relative;z-index:2}
 
 /* process */
@@ -1034,8 +1033,9 @@ body.menu-open .burger span{background:#000}
 .ring-stage.drag{cursor:grabbing}
 .ring-stage:after{content:"";position:absolute;left:50%;bottom:8%;width:62%;height:70px;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(215,255,95,.28),transparent);filter:blur(12px);pointer-events:none}
 .ring{position:absolute;left:50%;top:46%;width:0;height:0;transform-style:preserve-3d;transform:translateZ(calc(var(--R)*-1)) rotateX(-7deg) rotateY(var(--a,0deg))}
-.rc{position:absolute;left:calc(var(--w)/-2);top:calc(var(--h)/-2);width:var(--w);height:var(--h);margin:0;transform:rotateY(calc(var(--i)*60deg)) translateZ(var(--R));border-radius:22px;overflow:hidden;border:1px solid rgba(245,241,232,.2);background:#111;box-shadow:0 30px 70px rgba(0,0,0,.55);outline:none}
-.rc video{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.rc{position:absolute;left:calc(var(--w)/-2);top:calc(var(--h)/-2);width:var(--w);height:var(--h);margin:0;transform:rotateY(calc(var(--i)*60deg)) translateZ(var(--R));border-radius:22px;overflow:hidden;border:1px solid rgba(245,241,232,.2);background:#111;box-shadow:0 14px 30px rgba(0,0,0,.5);outline:none}
+.rc video,.rc img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.rc video{position:absolute;inset:0}
 .rc figcaption{position:absolute;left:0;right:0;bottom:0;padding:34px 14px 14px;font-size:.78rem;font-weight:800;background:linear-gradient(180deg,transparent,rgba(0,0,0,.85));pointer-events:none}
 .rplay{position:absolute;left:50%;top:50%;width:54px;height:54px;margin:-27px 0 0 -27px;border-radius:50%;background:rgba(215,255,95,.92);color:#000;display:grid;place-items:center;font-size:1rem;padding-left:3px;transition:opacity .3s,transform .3s;pointer-events:none}
 .rc.live .rplay{opacity:0;transform:scale(.6)}
@@ -1045,8 +1045,9 @@ body.menu-open .burger span{background:#000}
 
 .story{position:relative;height:340vh;border-top:1px solid var(--line)}
 .stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:grid;place-items:center}
-.sc{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 22px;opacity:0;pointer-events:none;will-change:opacity,transform}
+.sc{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 22px;opacity:0;pointer-events:none;visibility:hidden}
 .sc.act{pointer-events:auto}
+.sc.on{visibility:visible}
 .big{font-size:clamp(4rem,17vw,15rem);font-weight:900;letter-spacing:-.09em;line-height:.8;text-transform:uppercase;position:relative;z-index:2}
 .big.small{font-size:clamp(2.6rem,8vw,6.4rem);letter-spacing:-.07em;margin-bottom:12px}
 .cap{color:var(--muted);font-size:clamp(.95rem,1.6vw,1.25rem);margin-top:22px;max-width:560px;position:relative;z-index:2}
@@ -1058,7 +1059,7 @@ body.menu-open .burger span{background:#000}
 
 .dash{width:min(900px,100%);margin-top:18px;border:1px solid var(--line);border-radius:26px;background:rgba(10,10,10,.82);backdrop-filter:blur(8px);overflow:hidden;text-align:left;box-shadow:0 40px 100px rgba(0,0,0,.5)}
 .dash-top{display:flex;align-items:center;gap:12px;padding:14px 20px;border-bottom:1px solid var(--line);font-size:.8rem}
-.dash-top .dot{width:9px;height:9px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px var(--accent);animation:pulse 2s ease-out infinite}
+.dash-top .dot{position:relative;width:9px;height:9px;border-radius:50%;background:var(--accent)}
 .dash-top em{margin-left:auto;font-style:normal;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;font-size:.68rem}
 .dash-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line)}
 .dash-kpis div{background:#070707;padding:14px 20px}
@@ -1097,6 +1098,43 @@ body.menu-open .burger span{background:#000}
 [dir=rtl] .dash-top em{margin-left:0;margin-right:auto}
 [dir=rtl] .sc .big{line-height:1.1}
 
+/* ---------- globe, case info, testimonials ---------- */
+.globe-wrap{position:relative;height:clamp(300px,46vw,460px);margin-bottom:22px;border:1px solid var(--line);border-radius:34px;background:radial-gradient(circle at 50% 45%,rgba(215,255,95,.08),transparent 60%),var(--soft);overflow:hidden;cursor:grab}
+.globe-wrap canvas{position:absolute;inset:0;width:100%;height:100%}
+.globe-cap{position:absolute;left:30px;bottom:26px;pointer-events:none}
+.globe-cap b{display:block;font-size:clamp(2.4rem,6vw,4.8rem);font-weight:900;letter-spacing:-.08em;line-height:.85}
+.globe-cap span{display:block;margin-top:8px;color:var(--accent);text-transform:uppercase;letter-spacing:.16em;font-size:.7rem;font-weight:800}
+[dir=rtl] .globe-cap{left:auto;right:30px}
+.foot-link{display:inline-block;margin-top:12px;color:var(--accent);letter-spacing:.06em;text-transform:none;font-size:.82rem;border-bottom:1px solid rgba(215,255,95,.4)}
+.foot-link:hover{border-color:var(--accent)}
+.lightbox{flex-direction:column;gap:16px}
+.lightbox.info img{max-height:58vh}
+.lb-info{display:none;width:min(1100px,94vw);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden;grid-template-columns:repeat(4,1fr);text-align:left}
+.lightbox.info .lb-info{display:grid}
+.lightbox.vid .lb-info{display:none}
+.lb-info div{background:rgba(8,8,8,.92);padding:12px 16px}
+.lb-info b{display:block;color:var(--accent);font-size:clamp(1rem,2.2vw,1.5rem);letter-spacing:-.03em;line-height:1.1}
+.lb-info span{display:block;color:var(--muted);font-size:.64rem;text-transform:uppercase;letter-spacing:.09em;margin-top:5px}
+.lb-info p{grid-column:1/-1;background:rgba(8,8,8,.92);padding:12px 16px;color:var(--text);font-size:.9rem}
+[dir=rtl] .lb-info{text-align:right}
+@media(max-width:700px){.lb-info{grid-template-columns:1fr 1fr}.lightbox.info img{max-height:46vh}}
+.voices-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.voice{border:1px solid var(--line);border-radius:28px;background:var(--soft);padding:28px}
+.voice p{font-size:1.1rem;line-height:1.35;letter-spacing:-.02em}
+.voice b{display:block;margin-top:18px}
+.voice span{color:var(--muted);font-size:.85rem}
+
+/* lite mode: weak or touch devices, Save-Data, or the footer switch */
+html.lite .orbs,html.lite #fx,html.lite .cursor{display:none!important}
+html.lite .spot:after{display:none}
+html.lite .status i:after,html.lite .dash-top .dot:after{animation:none;opacity:0}
+html.lite .ticker-track{animation-duration:60s}
+html.lite .reveal{transition-duration:.45s}
+html.lite .rc{box-shadow:none}
+html.lite .ring-stage:after{display:none}
+html.lite .dash{backdrop-filter:none}
+.lite-btn{margin-top:12px;background:none;border:1px solid var(--line);border-radius:999px;color:var(--muted);padding:8px 16px;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:.25s}
+.lite-btn:hover{color:#000;background:var(--accent);border-color:var(--accent)}
 /* language switch + RTL */
 main{overflow-x:clip}
 .lang{border:1px solid rgba(255,255,255,.5);background:transparent;color:#fff;border-radius:999px;padding:8px 16px;font-size:.78rem;font-weight:800;letter-spacing:.06em;cursor:pointer;transition:background .25s,color .25s;font-family:Cairo,Inter,sans-serif}
@@ -1202,7 +1240,7 @@ main{overflow-x:clip}
 <div class="loader">
   <div class="loader-count" aria-hidden="true"><b>0</b><span>%</span></div>
   <div class="face">
-    <img src="profile.jpg" alt="Karim Atef">
+    <img src="profile.webp" alt="Karim Atef" fetchpriority="high" decoding="async">
     <div class="loader-title">
       <b>KARIM</b>
       <span>Creative Performance Marketer</span>
@@ -1262,19 +1300,19 @@ main{overflow-x:clip}
 
     <div class="ring-stage" id="ringStage">
       <div class="ring" id="ring">
-        <figure class="rc" data-play data-src="video-1.mp4" tabindex="0" role="button"><video muted loop playsinline preload="none" poster="video-1.jpg" src="video-1.mp4"></video><span class="rplay" aria-hidden="true">&#9654;</span><figcaption>Real Estate Reel</figcaption></figure>
-        <figure class="rc" data-play data-src="video-2.mp4" tabindex="0" role="button"><video muted loop playsinline preload="none" poster="video-2.jpg" src="video-2.mp4"></video><span class="rplay" aria-hidden="true">&#9654;</span><figcaption>Promo Video</figcaption></figure>
-        <figure class="rc" data-play data-src="video-3.mp4" tabindex="0" role="button"><video muted loop playsinline preload="none" poster="video-3.jpg" src="video-3.mp4"></video><span class="rplay" aria-hidden="true">&#9654;</span><figcaption>Social Media Reel</figcaption></figure>
-        <figure class="rc" data-play data-src="video-4.mp4" tabindex="0" role="button"><video muted loop playsinline preload="none" poster="video-4.jpg" src="video-4.mp4"></video><span class="rplay" aria-hidden="true">&#9654;</span><figcaption>Campaign Video</figcaption></figure>
-        <figure class="rc" data-play data-src="video-5.mp4" tabindex="0" role="button"><video muted loop playsinline preload="none" poster="video-5.jpg" src="video-5.mp4"></video><span class="rplay" aria-hidden="true">&#9654;</span><figcaption>UGC Style Video</figcaption></figure>
-        <figure class="rc" data-play data-src="video-6.mp4" tabindex="0" role="button"><video muted loop playsinline preload="none" poster="video-6.jpg" src="video-6.mp4"></video><span class="rplay" aria-hidden="true">&#9654;</span><figcaption>Creative Reel</figcaption></figure>
+        <figure class="rc" data-play data-src="video-1.mp4" tabindex="0"><img src="video-1.webp" alt="" decoding="async"><span class="rplay" aria-hidden="true">&#9654;</span><figcaption>Real Estate Reel</figcaption></figure>
+        <figure class="rc" data-play data-src="video-2.mp4" tabindex="0"><img src="video-2.webp" alt="" decoding="async"><span class="rplay" aria-hidden="true">&#9654;</span><figcaption>Promo Video</figcaption></figure>
+        <figure class="rc" data-play data-src="video-3.mp4" tabindex="0"><img src="video-3.jpg" alt="" decoding="async"><span class="rplay" aria-hidden="true">&#9654;</span><figcaption>Social Media Reel</figcaption></figure>
+        <figure class="rc" data-play data-src="video-4.mp4" tabindex="0"><img src="video-4.webp" alt="" decoding="async"><span class="rplay" aria-hidden="true">&#9654;</span><figcaption>Campaign Video</figcaption></figure>
+        <figure class="rc" data-play data-src="video-5.mp4" tabindex="0"><img src="video-5.webp" alt="" decoding="async"><span class="rplay" aria-hidden="true">&#9654;</span><figcaption>UGC Style Video</figcaption></figure>
+        <figure class="rc" data-play data-src="video-6.mp4" tabindex="0"><img src="video-6.webp" alt="" decoding="async"><span class="rplay" aria-hidden="true">&#9654;</span><figcaption>Creative Reel</figcaption></figure>
       </div>
       <div class="ring-hint">Drag to spin, tap a reel to play</div>
     </div>
 
     <div class="creative-center reveal">
       <div class="creative-photo-wrap">
-        <img class="zoomin" src="hero-photo.jpg" alt="Karim Atef creative portrait">
+        <img class="zoomin" src="hero-photo.webp" alt="Karim Atef creative portrait">
       </div>
       <div class="creative-card spot">
         <div>
@@ -1303,10 +1341,10 @@ main{overflow-x:clip}
   <div class="stage">
     <div class="sc sc1" data-i="0">
       <div class="fan" aria-hidden="true">
-        <img src="design-1.jpg" alt="" style="--x:-150%;--r:-14deg">
-        <img src="design-2.jpg" alt="" style="--x:-50%;--r:-5deg">
-        <img src="design-3.jpg" alt="" style="--x:50%;--r:5deg">
-        <img src="design-4.jpg" alt="" style="--x:150%;--r:14deg">
+        <img src="design-1.webp" alt="" style="--x:-150%;--r:-14deg">
+        <img src="design-2.webp" alt="" style="--x:-50%;--r:-5deg">
+        <img src="design-3.webp" alt="" style="--x:50%;--r:5deg">
+        <img src="design-4.webp" alt="" style="--x:150%;--r:14deg">
       </div>
       <h2 class="big">Create</h2>
       <p class="cap">Posters, reels and hooks that stop the scroll.</p>
@@ -1438,33 +1476,33 @@ main{overflow-x:clip}
     <div class="filters" role="group" aria-label="Filter campaigns"><button type="button" class="on" data-f="all">All</button><button type="button" data-f="real-estate">Real Estate</button><button type="button" data-f="messages">Messages</button><button type="button" data-f="leads">Leads</button></div>
 
     <div class="project-grid">
-      <article class="project-card reveal tilt spot" data-cat="real-estate messages" data-img="campaign-1.jpg">
-        <div class="project-media"><img loading="lazy" decoding="async" src="campaign-1.jpg" alt="Zaora Campaign"><span>Real Estate</span></div>
+      <article class="project-card reveal tilt spot" data-cat="real-estate messages" data-img="campaign-1.webp">
+        <div class="project-media"><img loading="lazy" decoding="async" src="campaign-1.webp" alt="Zaora Campaign"><span>Real Estate</span></div>
         <div class="project-body"><small>Messages Campaign</small><h3>Zaora Campaign</h3><div class="metrics"><div><b>43</b><em>Conversations</em></div><div><b>AED 38.10</b><em>CPR</em></div><div><b>AED 1,638</b><em>Budget</em></div></div></div>
       </article>
 
-      <article class="project-card reveal tilt spot" data-cat="messages" data-img="campaign-2.jpg">
-        <div class="project-media"><img loading="lazy" decoding="async" src="campaign-2.jpg" alt="Mosque Campaign"><span>Messages</span></div>
+      <article class="project-card reveal tilt spot" data-cat="messages" data-img="campaign-2.webp">
+        <div class="project-media"><img loading="lazy" decoding="async" src="campaign-2.webp" alt="Mosque Campaign"><span>Messages</span></div>
         <div class="project-body"><small>Messages Campaign</small><h3>Mosque Campaign</h3><div class="metrics"><div><b>440</b><em>Conversations</em></div><div><b>AED 14.60</b><em>CPR</em></div><div><b>AED 6,422</b><em>Budget</em></div></div></div>
       </article>
 
-      <article class="project-card reveal tilt spot" data-cat="leads" data-img="campaign-3.jpg">
-        <div class="project-media"><img loading="lazy" decoding="async" src="campaign-3.jpg" alt="Lead Campaign"><span>Lead Gen</span></div>
+      <article class="project-card reveal tilt spot" data-cat="leads" data-img="campaign-3.webp">
+        <div class="project-media"><img loading="lazy" decoding="async" src="campaign-3.webp" alt="Lead Campaign"><span>Lead Gen</span></div>
         <div class="project-body"><small>Lead Generation</small><h3>Meta Lead Campaign</h3><div class="metrics"><div><b>61</b><em>Qualified Leads</em></div><div><b>AED 59.41</b><em>CPL</em></div><div><b>AED 3,623</b><em>Budget</em></div></div></div>
       </article>
 
-      <article class="project-card reveal tilt spot" data-cat="leads" data-img="campaign-4.jpg">
-        <div class="project-media"><img loading="lazy" decoding="async" src="campaign-4.jpg" alt="April Leads"><span>Leads</span></div>
+      <article class="project-card reveal tilt spot" data-cat="leads" data-img="campaign-4.webp">
+        <div class="project-media"><img loading="lazy" decoding="async" src="campaign-4.webp" alt="April Leads"><span>Leads</span></div>
         <div class="project-body"><small>Lead Generation</small><h3>April Leads Campaign</h3><div class="metrics"><div><b>168</b><em>Leads</em></div><div><b>AED 42.78</b><em>CPL</em></div><div><b>AED 7,186</b><em>Budget</em></div></div></div>
       </article>
 
-      <article class="project-card reveal tilt spot" data-cat="real-estate messages" data-img="campaign-5.jpg">
-        <div class="project-media"><img loading="lazy" decoding="async" src="campaign-5.jpg" alt="Salsabeel Park DS"><span>Real Estate</span></div>
+      <article class="project-card reveal tilt spot" data-cat="real-estate messages" data-img="campaign-5.webp">
+        <div class="project-media"><img loading="lazy" decoding="async" src="campaign-5.webp" alt="Salsabeel Park DS"><span>Real Estate</span></div>
         <div class="project-body"><small>Real Estate Messages</small><h3>Salsabeel / Park DS</h3><div class="metrics"><div><b>119</b><em>Conversations</em></div><div><b>AED 35.52</b><em>AVG CPR</em></div><div><b>AED 4,184</b><em>Budget</em></div></div></div>
       </article>
 
-      <article class="project-card reveal tilt spot" data-cat="leads" data-img="campaign-7.jpg">
-        <div class="project-media"><img loading="lazy" decoding="async" src="campaign-7.jpg" alt="Carbon Footprint"><span>Sustainability</span></div>
+      <article class="project-card reveal tilt spot" data-cat="leads" data-img="campaign-7.webp">
+        <div class="project-media"><img loading="lazy" decoding="async" src="campaign-7.webp" alt="Carbon Footprint"><span>Sustainability</span></div>
         <div class="project-body"><small>Lead Generation</small><h3>Carbon Footprint</h3><div class="metrics"><div><b>116</b><em>Leads</em></div><div><b>AED 4.17</b><em>CPL</em></div><div><b>AED 483</b><em>Budget</em></div></div></div>
       </article>
     </div>
@@ -1504,10 +1542,10 @@ main{overflow-x:clip}
       <h2 class="section-title">Commercial posters</h2>
     </div>
     <div class="design-grid">
-      <article class="design-card reveal tilt spot" data-img="design-1.jpg"><img loading="lazy" decoding="async" src="design-1.jpg" alt="MIG FARM"><div class="design-info"><small>Agriculture</small><h3>MIG FARM Agricultural Poster</h3></div></article>
-      <article class="design-card reveal tilt spot" data-img="design-2.jpg"><img loading="lazy" decoding="async" src="design-2.jpg" alt="Course Poster"><div class="design-info"><small>Education</small><h3>DR/Rahaf shkeir Course Poster</h3></div></article>
-      <article class="design-card reveal tilt spot" data-img="design-3.jpg"><img loading="lazy" decoding="async" src="design-3.jpg" alt="Food Offer"><div class="design-info"><small>Food</small><h3>WhatsApp Lelhlo Offer</h3></div></article>
-      <article class="design-card reveal tilt spot" data-img="design-4.jpg"><img loading="lazy" decoding="async" src="design-4.jpg" alt="Finance"><div class="design-info"><small>Finance</small><h3>Thiqah Finance Campaign</h3></div></article>
+      <article class="design-card reveal tilt spot" data-img="design-1.webp"><img loading="lazy" decoding="async" src="design-1.webp" alt="MIG FARM"><div class="design-info"><small>Agriculture</small><h3>MIG FARM Agricultural Poster</h3></div></article>
+      <article class="design-card reveal tilt spot" data-img="design-2.webp"><img loading="lazy" decoding="async" src="design-2.webp" alt="Course Poster"><div class="design-info"><small>Education</small><h3>DR/Rahaf shkeir Course Poster</h3></div></article>
+      <article class="design-card reveal tilt spot" data-img="design-3.webp"><img loading="lazy" decoding="async" src="design-3.webp" alt="Food Offer"><div class="design-info"><small>Food</small><h3>WhatsApp Lelhlo Offer</h3></div></article>
+      <article class="design-card reveal tilt spot" data-img="design-4.webp"><img loading="lazy" decoding="async" src="design-4.webp" alt="Finance"><div class="design-info"><small>Finance</small><h3>Thiqah Finance Campaign</h3></div></article>
     </div>
   </div>
 </section>
@@ -1525,19 +1563,19 @@ main{overflow-x:clip}
     </div>
 
     <div class="video-grid">
-      <article class="video-card reveal"><div class="video-frame"><video controls preload="none" playsinline poster="video-1.jpg"><source src="video-1.mp4" type="video/mp4"></video></div><div class="video-info"><small>Video 01</small><h3>Real Estate Reel</h3></div></article>
-      <article class="video-card reveal"><div class="video-frame"><video controls preload="none" playsinline poster="video-2.jpg"><source src="video-2.mp4" type="video/mp4"></video></div><div class="video-info"><small>Video 02</small><h3>Promo Video</h3></div></article>
+      <article class="video-card reveal"><div class="video-frame"><video controls preload="none" playsinline poster="video-1.webp"><source src="video-1.mp4" type="video/mp4"></video></div><div class="video-info"><small>Video 01</small><h3>Real Estate Reel</h3></div></article>
+      <article class="video-card reveal"><div class="video-frame"><video controls preload="none" playsinline poster="video-2.webp"><source src="video-2.mp4" type="video/mp4"></video></div><div class="video-info"><small>Video 02</small><h3>Promo Video</h3></div></article>
       <article class="video-card reveal"><div class="video-frame"><video controls preload="none" playsinline poster="video-3.jpg"><source src="video-3.mp4" type="video/mp4"></video></div><div class="video-info"><small>Video 03</small><h3>Social Media Reel</h3></div></article>
-      <article class="video-card reveal"><div class="video-frame"><video controls preload="none" playsinline poster="video-4.jpg"><source src="video-4.mp4" type="video/mp4"></video></div><div class="video-info"><small>Video 04</small><h3>Campaign Video</h3></div></article>
-      <article class="video-card reveal"><div class="video-frame"><video controls preload="none" playsinline poster="video-5.jpg"><source src="video-5.mp4" type="video/mp4"></video></div><div class="video-info"><small>Video 05</small><h3>UGC Style Video</h3></div></article>
-      <article class="video-card reveal"><div class="video-frame"><video controls preload="none" playsinline poster="video-6.jpg"><source src="video-6.mp4" type="video/mp4"></video></div><div class="video-info"><small>Video 06</small><h3>Creative Reel</h3></div></article>
+      <article class="video-card reveal"><div class="video-frame"><video controls preload="none" playsinline poster="video-4.webp"><source src="video-4.mp4" type="video/mp4"></video></div><div class="video-info"><small>Video 04</small><h3>Campaign Video</h3></div></article>
+      <article class="video-card reveal"><div class="video-frame"><video controls preload="none" playsinline poster="video-5.webp"><source src="video-5.mp4" type="video/mp4"></video></div><div class="video-info"><small>Video 05</small><h3>UGC Style Video</h3></div></article>
+      <article class="video-card reveal"><div class="video-frame"><video controls preload="none" playsinline poster="video-6.webp"><source src="video-6.mp4" type="video/mp4"></video></div><div class="video-info"><small>Video 06</small><h3>Creative Reel</h3></div></article>
     </div>
   </div>
 </section>
 
 <section class="section" id="about">
   <div class="container about-grid">
-    <div class="about-photo reveal"><img class="zoomin" loading="lazy" src="profile.jpg" alt="Karim Atef"></div>
+    <div class="about-photo reveal"><img class="zoomin" loading="lazy" src="profile.webp" alt="Karim Atef"></div>
     <div class="about-text reveal">
       <div class="eyebrow">About Me</div>
       <p>I combine media buying with creative production. That means I do not just run ads; I create the hooks, visuals, videos and funnels that make the campaign convert.</p>
@@ -1548,8 +1586,22 @@ main{overflow-x:clip}
   </div>
 </section>
 
+<section class="section" id="voices" hidden>
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">Testimonials</div>
+      <h2 class="section-title">What clients say</h2>
+    </div>
+    <div class="voices-grid" id="voicesGrid"></div>
+  </div>
+</section>
+
 <section class="section" id="contact">
   <div class="container">
+    <div class="globe-wrap reveal">
+      <canvas id="globe" aria-hidden="true"></canvas>
+      <div class="globe-cap"><b>UAE</b><span>Based in the UAE</span></div>
+    </div>
     <div class="contact-panel reveal spot">
       <h2>Let's Work</h2>
       <div class="contact-actions">
@@ -1577,7 +1629,7 @@ main{overflow-x:clip}
 <a class="wa" href="https://wa.me/971527366719" target="_blank" rel="noopener" aria-label="WhatsApp">↗</a>
 
 <footer>
-  <div class="container">© 2026 Karim Atef — Creative Performance Marketer</div>
+  <div class="container">© 2026 Karim Atef — Creative Performance Marketer<br><button class="lite-btn" id="liteBtn" type="button">Lite mode</button><br><a class="foot-link" href="campaign-costs.html">Insights: what my Meta Ads campaigns really cost</a></div>
 </footer>
 
 <div class="lightbox" id="lightbox" aria-hidden="true">
@@ -1585,6 +1637,7 @@ main{overflow-x:clip}
   <button class="nv prev" id="prevBox" type="button" aria-label="Previous">←</button>
   <button class="nv next" id="nextBox" type="button" aria-label="Next">→</button>
   <img id="boxImg" alt="Full preview">
+  <div class="lb-info" id="boxInfo" data-dyn></div>
   <video id="boxVid" controls playsinline></video>
 </div>
 
@@ -1593,6 +1646,7 @@ main{overflow-x:clip}
 const $=(s,c=document)=>c.querySelector(s), $$=(s,c=document)=>[...c.querySelectorAll(s)];
 const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
 const root=document.documentElement;
+const lite=root.classList.contains('lite');
 
 /* split text into masked words / letters */
 function splitWords(el){
@@ -1605,9 +1659,9 @@ let n=0;
 $$('.big-name h1 > span').forEach(line=>{
   const t=line.textContent;
   line.classList.add('line');
-  line.setAttribute('aria-label',t);
   line.innerHTML=[...t].map(c=>`<span class="ch" aria-hidden="true" style="--i:${n++}">${c}</span>`).join('');
 });
+$('.big-name h1').setAttribute('aria-label','Karim Atef');
 
 /* ---------- language switch (EN / AR) ---------- */
 const AR={
@@ -1674,6 +1728,7 @@ const AR={
 'Posters, reels and hooks that stop the scroll.':'بوسترات وريلز وأفكار توقف التمرير.',
 'Every campaign tracked: results, cost per result and budget.':'كل حملة متتبعة: النتائج وتكلفة النتيجة والميزانية.',
 'Campaign overview':'نظرة على الحملات','Campaign':'الحملة','Results':'النتائج','Cost per result':'تكلفة النتيجة',
+'Based in the UAE':'مقيم في الإمارات','Testimonials':'آراء العملاء','What clients say':'ماذا يقول العملاء',
 '© 2026 Karim Atef — Creative Performance Marketer':'© 2026 كريم عاطف — مسوّق أداء إبداعي'
 };
 AR['Real Estate']=AR['Real Estate'];
@@ -1683,7 +1738,7 @@ const origText=new WeakMap();
 const splitEls=$$('.section-title,.contact-panel h2,.creative-card h2');
 splitEls.forEach(el=>el.dataset.en=el.getAttribute('aria-label'));
 const heroLines=$$('.big-name h1 .line');
-heroLines.forEach(l=>l.dataset.en=l.getAttribute('aria-label'));
+heroLines.forEach(l=>l.dataset.en=l.textContent);
 function setLang(lang,animate){
   const ar=lang==='ar';
   root.lang=ar?'ar':'en';root.dir=ar?'rtl':'ltr';
@@ -1705,11 +1760,11 @@ function setLang(lang,animate){
   let i=0;
   heroLines.forEach(l=>{
     const en=l.dataset.en,t=ar&&AR[en]?AR[en]:en;
-    l.setAttribute('aria-label',t);
     l.innerHTML=(ar?[t]:[...t]).map(c=>`<span class="ch" aria-hidden="true" style="--i:${i++}">${c}</span>`).join('');
   });
   $$('a[download]').forEach(a=>a.setAttribute('href',ar?'Karim-Atef-CV-ar.pdf':'Karim-Atef-CV.pdf'));
   $$('[data-ph-en]').forEach(el=>el.placeholder=ar?el.dataset.phAr:el.dataset.phEn);
+  $('.big-name h1').setAttribute('aria-label',ar?'كريم عاطف':'Karim Atef');
   const b=$('#lang');if(b){b.textContent=ar?'EN':'عربي';b.setAttribute('aria-label',ar?'Switch to English':'التبديل إلى العربية')}
   try{localStorage.setItem('lang',lang)}catch(e){}
 }
@@ -1719,17 +1774,18 @@ $('#lang')?.addEventListener('click',()=>setLang(root.lang==='ar'?'en':'ar'));
 
 /* ---------- creative layer: funnel canvas, estimator, process, video preview ---------- */
 (function funnel(){
-  const cv=$('#fx');if(!cv||reduce)return;
+  const cv=$('#fx');if(!cv||reduce||lite)return;
   const ctx=cv.getContext('2d');let W=0,H=0,FH=0,cx=0,topW=0,neck=0,dpr=1,P=[],run=false,mx=-999,my=-999;
-  const N=()=>innerWidth<700?46:120;
+  const N=()=>innerWidth<700?30:56;
   const mk=(init)=>({x:Math.random()*W,y:init?Math.random()*FH*.9:-10-Math.random()*60,vy:.35+Math.random()*.7,ph:Math.random()*6.28,r:1+Math.random()*1.8,c:0});
   function size(){
-    const r=cv.getBoundingClientRect();dpr=Math.min(devicePixelRatio||1,2);W=r.width;H=r.height;
+    const r=cv.getBoundingClientRect();dpr=Math.min(devicePixelRatio||1,1.5);W=r.width;H=r.height;
     cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);
     FH=Math.min(H,Math.max(innerHeight*.95,620));
     cx=innerWidth<900?W*.5:W*.72;topW=Math.min(W*.5,520);neck=34;
     P=Array.from({length:N()},()=>mk(true));
   }
+  const glow=document.createElement('canvas');glow.width=glow.height=26;{const g=glow.getContext('2d'),gr=g.createRadialGradient(13,13,0,13,13,13);gr.addColorStop(0,'rgba(215,255,95,1)');gr.addColorStop(.25,'rgba(215,255,95,.7)');gr.addColorStop(1,'rgba(215,255,95,0)');g.fillStyle=gr;g.fillRect(0,0,26,26)}
   const NY=()=>FH*.62;
   function edge(y,side){const t=Math.min(Math.max((y-FH*.04)/(NY()-FH*.04),0),1);const e=1-Math.pow(1-t,2.2);const half=(topW/2)*(1-e)+(neck/2)*e;return cx+side*half}
   function frame(){
@@ -1752,7 +1808,7 @@ $('#lang')?.addEventListener('click',()=>setLang(root.lang==='ar'?'en':'ar'));
       let a=.75;
       if(p.y<FH*.1)a=.75*(p.y/(FH*.1));
       if(p.y>FH*.7)a=Math.max(0,.9*(1-(p.y-FH*.7)/(FH*.2)));
-      if(p.c){ctx.fillStyle=`rgba(215,255,95,${a})`;ctx.shadowColor='rgba(215,255,95,.9)';ctx.shadowBlur=14;ctx.beginPath();ctx.arc(p.x,p.y,p.r+1.2,0,6.283);ctx.fill();ctx.shadowBlur=0}
+      if(p.c){ctx.globalAlpha=a;ctx.drawImage(glow,p.x-glow.width/2,p.y-glow.height/2);ctx.globalAlpha=1}
       else{ctx.fillStyle=`rgba(245,241,232,${a*.7})`;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,6.283);ctx.fill()}
       if(p.y>FH*.9)Object.assign(p,mk(false));
     }
@@ -1760,7 +1816,9 @@ $('#lang')?.addEventListener('click',()=>setLang(root.lang==='ar'?'en':'ar'));
   }
   size();addEventListener('resize',()=>{size()});
   addEventListener('pointermove',e=>{const r=cv.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top},{passive:true});
-  new IntersectionObserver(es=>es.forEach(e=>{const on=e.isIntersecting;if(on&&!run){run=true;requestAnimationFrame(frame)}else if(!on)run=false})).observe(cv);
+  function setOn(on){if(on===run)return;run=on;cv.style.display=on?'':'none';if(on)requestAnimationFrame(frame)}
+  addEventListener('scroll',()=>setOn(scrollY<FH+80),{passive:true});
+  setOn(scrollY<FH+80);
 })();
 
 (function estimator(){
@@ -1867,12 +1925,15 @@ $('#lang')?.addEventListener('click',()=>setLang(root.lang==='ar'?'en':'ar'));
   const cards=$$('.rc',r),step=360/cards.length;
   cards.forEach((c,i)=>c.style.setProperty('--i',i));
   let a=0,v=0,drag=false,lx=0,moved=0,hover=false,vis=false,raf=0;
-  const auto=reduce?0:.14;
+  const auto=reduce||lite?0:.14;
+  let Rr=300,lastOp=1e9;
+  const readR=()=>{Rr=parseFloat(getComputedStyle(stage).getPropertyValue('--R'))||300};readR();addEventListener('resize',readR);
   function paint(){
-    r.style.setProperty('--a',a+'deg');
+    r.style.transform='translateZ('+(-Rr)+'px) rotateX(-7deg) rotateY('+a.toFixed(2)+'deg)';
+    if(Math.abs(a-lastOp)<2)return;lastOp=a;
     cards.forEach((c,i)=>{
       const rel=((i*step+a)%360+360)%360,f=(Math.cos(rel*Math.PI/180)+1)/2;
-      c.style.opacity=(.18+.82*f).toFixed(3);c.style.filter='brightness('+(.45+.55*f).toFixed(2)+')'+(f<.35?' blur('+((.35-f)*7).toFixed(1)+'px)':'');c.style.zIndex=Math.round(f*10);
+      c.style.opacity=(.18+.82*f).toFixed(2);c.style.zIndex=Math.round(f*10);
     });
   }
   function tick(){
@@ -1880,20 +1941,23 @@ $('#lang')?.addEventListener('click',()=>setLang(root.lang==='ar'?'en':'ar'));
     if(!drag){if(Math.abs(v)>.03){a+=v;v*=.95}else{v=0;if(!hover&&auto)a+=auto}}
     paint();raf=requestAnimationFrame(tick);
   }
-  new IntersectionObserver(es=>es.forEach(e=>{vis=e.isIntersecting;if(vis&&!raf)raf=requestAnimationFrame(tick)})).observe(stage);
+  new IntersectionObserver(es=>es.forEach(e=>{vis=e.isIntersecting;r.style.display=vis?'':'none';if(vis&&!raf)raf=requestAnimationFrame(tick)}),{rootMargin:'250px'}).observe(stage);
   stage.addEventListener('pointerdown',e=>{drag=true;moved=0;v=0;lx=e.clientX;stage.classList.add('drag')});
   addEventListener('pointermove',e=>{if(!drag)return;const dx=e.clientX-lx;lx=e.clientX;moved+=Math.abs(dx);a+=dx*.4;v=dx*.4},{passive:true});
   const up=()=>{drag=false;stage.classList.remove('drag')};
   addEventListener('pointerup',up);addEventListener('pointercancel',up);
-  const fine=matchMedia('(hover:hover) and (pointer:fine)').matches&&!reduce;
+  const fine=matchMedia('(hover:hover) and (pointer:fine)').matches&&!reduce&&!lite;
   cards.forEach(c=>{
-    const vid=$('video',c);
     const open=()=>{if(moved>6)return;openVideo(c.dataset.src)};
     c.addEventListener('click',open);
     c.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();moved=0;open()}});
     if(fine){
-      c.addEventListener('pointerenter',()=>{hover=true;vid.muted=true;vid.play().then(()=>c.classList.add('live')).catch(()=>{})});
-      c.addEventListener('pointerleave',()=>{hover=false;c.classList.remove('live');vid.pause();vid.currentTime=0});
+      let vid=null;
+      c.addEventListener('pointerenter',()=>{
+        hover=true;vid=document.createElement('video');vid.muted=true;vid.loop=true;vid.playsInline=true;vid.src=c.dataset.src;c.appendChild(vid);
+        vid.play().then(()=>c.classList.add('live')).catch(()=>{});
+      });
+      c.addEventListener('pointerleave',()=>{hover=false;c.classList.remove('live');if(vid){vid.pause();vid.removeAttribute('src');vid.remove();vid=null}});
     }
   });
   paint();
@@ -1912,6 +1976,7 @@ $('#lang')?.addEventListener('click',()=>setLang(root.lang==='ar'?'en':'ar'));
   function upd(){
     ticking=false;
     const r=wrap.getBoundingClientRect(),span=r.height-innerHeight;
+    if(r.bottom<-200||r.top>innerHeight+200)return;
     const p=clamp(-r.top/span);
     nb.style.setProperty('--sp',p);
     let active=0;
@@ -1922,7 +1987,7 @@ $('#lang')?.addEventListener('click',()=>setLang(root.lang==='ar'?'en':'ar'));
       if(i===0&&t<0)o=1;
       sc.style.opacity=o;
       sc.style.transform='translateY('+((1-fin)*50-(1-fout)*50)+'px) scale('+(.96+.04*o)+')';
-      sc.classList.toggle('act',o>.5);
+      sc.classList.toggle('act',o>.5);sc.classList.toggle('on',o>.01);
       if(o>.5)active=i;
       if(i===0)fan.style.setProperty('--k',clamp(p*3*1.3));
       if(i===1&&t>-.2){rows.forEach((d,k)=>d.style.setProperty('--g',clamp((t-.08-k*.07)/.35)))}
@@ -1934,17 +1999,153 @@ $('#lang')?.addEventListener('click',()=>setLang(root.lang==='ar'?'en':'ar'));
   addEventListener('resize',upd);upd();
 })();
 
+/* ---------- analytics hooks, testimonials, case info, globe ---------- */
+const ANALYTICS={provider:'',domain:'',id:''}; /* provider: 'plausible' (set domain) or 'ga4' (set id). Empty = no tracking. */
+function track(name,props){
+  try{
+    if(!ANALYTICS.provider||navigator.doNotTrack==='1')return;
+    if(window.plausible)window.plausible(name,{props:props||{}});
+    else if(window.gtag)window.gtag('event',name,props||{});
+  }catch(e){}
+}
+(function analytics(){
+  const A=ANALYTICS;if(!A.provider)return;
+  if(A.provider==='plausible'&&A.domain){
+    window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};
+    const sc=document.createElement('script');sc.defer=true;sc.dataset.domain=A.domain;sc.src='https://plausible.io/js/script.js';document.head.appendChild(sc);
+  }else if(A.provider==='ga4'&&A.id){
+    window.dataLayer=window.dataLayer||[];window.gtag=function(){window.dataLayer.push(arguments)};
+    const sc=document.createElement('script');sc.async=true;sc.src='https://www.googletagmanager.com/gtag/js?id='+A.id;document.head.appendChild(sc);
+    window.gtag('js',new Date());window.gtag('config',A.id);
+  }
+  document.addEventListener('click',e=>{
+    const a=e.target.closest('a');if(!a)return;
+    const h=a.getAttribute('href')||'';
+    if(a.hasAttribute('download'))track('cv_download',{lang:root.lang});
+    else if(h.includes('wa.me'))track('whatsapp_click',{lang:root.lang});
+    else if(h.startsWith('mailto:'))track('email_click');
+    else if(h.includes('linkedin.com'))track('linkedin_click');
+  });
+  $('#lang')?.addEventListener('click',()=>track('language_switch',{to:root.lang}));
+  $$('.filters button').forEach(b=>b.addEventListener('click',()=>track('campaign_filter',{filter:b.dataset.f})));
+  $$('.seg button').forEach(b=>b.addEventListener('click',()=>track('estimator_goal',{goal:b.dataset.t})));
+  $('#cform')?.addEventListener('click',e=>{const b=e.target.closest('[data-via]');if(b)track('form_send',{via:b.dataset.via})});
+  $$('.rc').forEach(c=>c.addEventListener('click',()=>track('reel_open',{reel:c.dataset.src})));
+})();
+
+(function testimonials(){
+  /* Add real, approved testimonials here, for example:
+     {quote:'...',name:'Client name',role:'Company',quoteAr:'...'} */
+  const TESTIMONIALS=[];
+  const sec=$('#voices'),grid=$('#voicesGrid');if(!sec||!TESTIMONIALS.length)return;
+  const ar=()=>root.lang==='ar';
+  function render(){grid.innerHTML=TESTIMONIALS.map(t=>`<figure class="voice reveal show"><p>&ldquo;${(ar()&&t.quoteAr)||t.quote}&rdquo;</p><b>${t.name}</b><span>${t.role||''}</span></figure>`).join('')}
+  render();sec.hidden=false;
+  new MutationObserver(render).observe(root,{attributes:true,attributeFilter:['lang']});
+})();
+
+function caseInfo(card){
+  const ar=root.lang==='ar',num=t=>parseFloat(String(t).replace(/[^0-9.]/g,''));
+  const all=$$('.project-card[data-cat]');
+  const get=c=>{const m=$$('.metrics b',c);return{res:num(m[0].textContent),cpr:num(m[1].textContent),budget:num(m[2].textContent),kind:c.dataset.cat.includes('leads')?'leads':'messages'}};
+  const me=get(card),all2=all.map(get);
+  const same=all2.filter(x=>x.kind===me.kind).sort((a,b)=>a.cpr-b.cpr);
+  const rank=same.findIndex(x=>x.cpr===me.cpr)+1;
+  const total=all2.reduce((a,b)=>a+b.budget,0);
+  const f=n=>Math.round(n).toLocaleString('en-US');
+  const L=ar?{res:me.kind==='leads'?'عميل محتمل':'محادثة',cpr:'تكلفة النتيجة',bud:'الميزانية',rank:'ترتيب التكلفة بين حملات '+(me.kind==='leads'?'العملاء المحتملين':'الرسائل'),of:'من',share:'من ميزانية الحملات المعروضة'}:{res:me.kind==='leads'?'leads':'conversations',cpr:'Cost per result',bud:'Budget',rank:'Cost rank among '+(me.kind==='leads'?'lead':'message')+' campaigns',of:'of',share:'of the budget across the six campaigns shown'};
+  const story=card.dataset.story?`<p>${card.dataset.story}</p>`:'';
+  return `<div><b>${f(me.res)}</b><span>${L.res}</span></div><div><b>AED ${me.cpr.toFixed(2)}</b><span>${L.cpr}</span></div><div><b>AED ${f(me.budget)}</b><span>${L.bud} · ${Math.round(me.budget/total*100)}% ${L.share}</span></div><div><b>#${rank} ${L.of} ${same.length}</b><span>${L.rank} (1 = ${ar?'الأقل':'lowest'})</span></div>${story}`;
+}
+
+(function globe(){
+  const cv=$('#globe');if(!cv)return;
+  const MASK='AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP//7//wAAAAAAAAAAAAAAAAAAAAAAB//////4AA/gAAAADgAAAAAAAAAAAHP//////4AA/gAAAAD+AAAAAAAAAAD/v/8////4AA/gAA4ADf4AGAAAAAAAH///4A///4AAAAAG4Af/8AH4AAAAAAH///+Af//wAAAAAeD////+H4AAwH/gf////4P//wAAD8AeH///////wRw//////9/4P//AAAP/nP//////////+///////3+H/wuAAf//////////////////////+H/A+AB//////////////jf/////7/8D8A8AP//////////////A//////gf8B4AAAP/////////////8A/8f///wP+AAAAGP5///////////fQAHwB///8H/AAAAPD7/////////8B8AAGAB////v/wAAAfD//////////9B8AAAAB//////4AAAfv///////////B4AAAAAf/////4AAAX////////////AwAAAAAf/////8AAAH////////////AAAAAAAH/////8AAAH////////////AAAAAAAD/////gAAAB//7////////7gAAAAAAH////8AAAAf//7f///////3gAAAAAAH////wAAAAfy/////////+HAAAAAAAD///+AAAAAfi/////////+GAAAAAAAD///+AAAAAf/7////////+OAAAAAAAB///+AAAAAP/Bz///////n+AAAAAAAA///4AAAAAf/zB///////jwAAAAAAAAf//wAAAAAf//////////hAAAAAAAAAP/9wAAAAB///////////gAAAAAAAAAP/A8AAAAD///////////gAAAAAAAAAH/AcAAAAD///////////gAAAAACAAAD/BcAAAAH//////H///+gAAAAADgAAAfPeAAAAH//////B///wgAAAAABgAAAf+OsAAAH////v+A/j/wwAAAAAAAAAAP+EsAAAH/////+A/B/hwAAAAAAAAAABfgAAAAH/////4A+B/hwAAAAAAAAAAAPgwAAAH/////wAeAfg4AAAAAAAAAAADj/AAAH/////wAcAXh4AAAAAAAAAAAB//gAAD/////wAOAbDcAAAAAAAAAAAAf/4AAB/////gAOAcCcAAAAAAAAAAAAH/+AAAfv///gACA8HIAAAAAAAAAAAAP/+AAAAD///AAAA8/EAAAAAAAAAAAAf//AAAAD//+AAAAe/2AAAAAAAAAAAAf//wAAAD//8AAAAO/38AAAAAAAAAAAf//+AAAD//4AAAAPf3/mAAAAAAAAAAf///gAAB//wAAAAHHw/vAAAAAAAAAAf///gAAA//wAAAADcAX9QAAAAAAAAAP///gAAA//wAAAAAc4PcYAAAAAAAAAP///AAAA//4AAAAAA57cIAAAAAAAAAH///AAAA//5wAAAAAH7AAAAAAAAAAAH//+AAAB//7wAAAAAP7gBAgAAAAAAAB//+AAAB//7wAAAAAf/wBDgAAAAAAAA//+AAAB//jgAAAAB//4ADAAAAAAAAA//8AAAA//HgAAAAH//4BAAAAAAAAAA//8AAAAf/HAAAAAP//8BAAAAAAAAAA//gAAAAf/HAAAAAP//+AAAAAAAAAAA//AAAAAf+AAAAAAP//+AAAAAAAAAAA//AAAAAP+AAAAAAH//+AAAAAAAAAAA/+AAAAAP8AAAAAAH//+AAAAAAAAAAA/8AAAAAP4AAAAAAH8/+AAAAAAAAAAB/8AAAAAGAAAAAAAHQf8AMgAAAAAAAB/wAAAAAAAAAAAAAAAH8APgAAAAAAAB/wAAAAAAAAAAAAAAADwAPAAAAAAAAD+AAAAAAAAAAAAAAAAA4AeAAAAAAAAD+AAAAAAAAAAAAAAAAA4A4AAAAAAAAD8AAAAAAAAAAAAAAAAAABwAAAAAAAAD8AAAAAAAAAAAAAAAAAABgAAAAAAAAD8AAAAAAAAAAAAAAAAAAAAAAAAAAAADxgAAAAAAAAAAAAAAAAAAAAAAAAAAAD5gAAAAAAAAAAAAAAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA';
+  const by=Uint8Array.from(atob(MASK),c=>c.charCodeAt(0));
+  const land=(lon,lat)=>{const x=Math.floor(((lon+180)%360)/2),y=Math.floor((90-lat)/2);if(y<0||y>89)return 0;const i=y*180+x;return (by[i>>3]>>(7-(i&7)))&1};
+  const D=Math.PI/180,pts=[];
+  for(let lat=-58;lat<=84;lat+=3){const n=Math.max(1,Math.round(360*Math.cos(lat*D)/3));for(let i=0;i<n;i++){const lon=-180+i*360/n;if(land(lon,lat))pts.push([lon*D,lat*D])}}
+  const UAE=[54.4*D,24.4*D];
+  const CITIES=[[-0.13,51.5],[2.35,48.9],[28.98,41.0],[72.8,19.1],[36.8,-1.3],[103.8,1.35],[31.2,30.0],[46.7,24.7],[77.2,28.6],[18.4,-33.9]].map(c=>[c[0]*D,c[1]*D]);
+  const vec=(l,p)=>[Math.cos(p)*Math.sin(l),Math.sin(p),Math.cos(p)*Math.cos(l)];
+  const ctx=cv.getContext('2d');let W=0,H=0,R=0,dpr=1,vis=false,raf=0,off=0,drag=false,lx=0,t0=performance.now();
+  const tilt=26*D,ct=Math.cos(tilt),st=Math.sin(tilt);
+  function size(){const r=cv.getBoundingClientRect();dpr=Math.min(devicePixelRatio||1,2);W=r.width;H=r.height;cv.width=W*dpr;cv.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);R=Math.min(W*.5,H*.5)*.94}
+  function proj(l,p,lift,l0){
+    const dl=l-l0,cp=Math.cos(p),x=cp*Math.sin(dl),y0=Math.sin(p),z0=cp*Math.cos(dl);
+    const y=ct*y0-st*z0,z=st*y0+ct*z0,k=1+(lift||0);
+    return[x*k,y*k,z*k];
+  }
+  function slerp(a,b,t){
+    const dot=Math.min(1,a[0]*b[0]+a[1]*b[1]+a[2]*b[2]),om=Math.acos(dot),so=Math.sin(om)||1;
+    const s1=Math.sin((1-t)*om)/so,s2=Math.sin(t*om)/so;return[a[0]*s1+b[0]*s2,a[1]*s1+b[1]*s2,a[2]*s1+b[2]*s2];
+  }
+  function frame(now){
+    raf=0;if(!vis)return;
+    const tt=now-t0;
+    if(!drag)off*=.96;
+    const l0=UAE[0]-.35+Math.sin(tt*.00028)*.5+off;
+    ctx.clearRect(0,0,W,H);
+    const cx=W*.62,cy=H*.5;
+    const g=ctx.createRadialGradient(cx-R*.3,cy-R*.3,R*.1,cx,cy,R);g.addColorStop(0,'rgba(215,255,95,.035)');g.addColorStop(.6,'rgba(8,8,8,.96)');g.addColorStop(1,'rgba(3,3,3,1)');
+    ctx.fillStyle=g;ctx.beginPath();ctx.arc(cx,cy,R,0,6.283);ctx.fill();
+    ctx.strokeStyle='rgba(215,255,95,.28)';ctx.lineWidth=1;ctx.stroke();
+    for(const q of pts){const v=proj(q[0],q[1],0,l0);if(v[2]<=0)continue;ctx.fillStyle='rgba(245,241,232,'+(.18+v[2]*.62).toFixed(2)+')';ctx.fillRect(cx+v[0]*R-1,cy-v[1]*R-1,2,2)}
+    const u=vec(UAE[0],UAE[1]);
+    CITIES.forEach((c,i)=>{
+      const a=vec(c[0],c[1]);
+      ctx.beginPath();let started=false;
+      for(let k=0;k<=24;k++){
+        const tk=k/24,m=slerp(a,u,tk),lift=Math.sin(tk*Math.PI)*.3,L=Math.atan2(m[0],m[2]),P=Math.asin(m[1]);
+        const v=proj(L,P,lift,l0);
+        if(v[2]<-.02){started=false;continue}
+        const X=cx+v[0]*R,Y=cy-v[1]*R;
+        if(!started){ctx.moveTo(X,Y);started=true}else ctx.lineTo(X,Y);
+      }
+      ctx.strokeStyle='rgba(215,255,95,.35)';ctx.lineWidth=1;ctx.stroke();
+      const tp=((tt*.00035)+i*.19)%1,m=slerp(a,u,tp),L=Math.atan2(m[0],m[2]),P=Math.asin(m[1]),v=proj(L,P,Math.sin(tp*Math.PI)*.3,l0);
+      if(v[2]>0){ctx.fillStyle='#d7ff5f';ctx.beginPath();ctx.arc(cx+v[0]*R,cy-v[1]*R,2.2,0,6.283);ctx.fill()}
+      const sv=proj(c[0],c[1],0,l0);if(sv[2]>0){ctx.fillStyle='rgba(245,241,232,.9)';ctx.beginPath();ctx.arc(cx+sv[0]*R,cy-sv[1]*R,2,0,6.283);ctx.fill()}
+    });
+    const pv=proj(UAE[0],UAE[1],0,l0);
+    if(pv[2]>0){
+      const X=cx+pv[0]*R,Y=cy-pv[1]*R,pulse=(tt%1800)/1800;
+      ctx.strokeStyle='rgba(215,255,95,'+(1-pulse).toFixed(2)+')';ctx.lineWidth=2;ctx.beginPath();ctx.arc(X,Y,6+pulse*30,0,6.283);ctx.stroke();
+      ctx.fillStyle='#d7ff5f';ctx.shadowColor='#d7ff5f';ctx.shadowBlur=14;ctx.beginPath();ctx.arc(X,Y,5,0,6.283);ctx.fill();ctx.shadowBlur=0;
+    }
+    raf=requestAnimationFrame(frame);
+  }
+  size();addEventListener('resize',size);
+  const wrap=cv.parentElement;
+  wrap.addEventListener('pointerdown',e=>{drag=true;lx=e.clientX});
+  addEventListener('pointermove',e=>{if(!drag)return;off-=(e.clientX-lx)*.006;lx=e.clientX},{passive:true});
+  addEventListener('pointerup',()=>{drag=false});addEventListener('pointercancel',()=>{drag=false});
+  new IntersectionObserver(es=>es.forEach(e=>{vis=e.isIntersecting;if(vis&&!raf)raf=requestAnimationFrame(frame)})).observe(cv);
+  if(reduce){vis=true;frame(performance.now());vis=false}
+})();
+
+/* ---------- performance helpers ---------- */
+(function perf(){
+  const tk=$('.tickers');
+  if(tk)new IntersectionObserver(es=>es.forEach(e=>tk.classList.toggle('off',!e.isIntersecting)),{rootMargin:'100px'}).observe(tk);
+  const b=$('#liteBtn');if(!b)return;
+  const label=()=>{const ar=root.lang==='ar';b.textContent=lite?(ar?'وضع خفيف: يعمل':'Lite mode: on'):(ar?'وضع خفيف: متوقف':'Lite mode: off');b.setAttribute('aria-pressed',lite)};
+  label();
+  b.addEventListener('click',()=>{try{localStorage.setItem('lite',lite?'0':'1')}catch(e){}location.reload()});
+  new MutationObserver(label).observe(root,{attributes:true,attributeFilter:['lang']});
+})();
+
 /* loader counter, then start hero */
 const count=$('.loader-count b');
 const ready=()=>root.classList.add('ready');
 if(reduce){ready()}else{
-  const t0=performance.now(),D=2200;
+  const t0=performance.now(),D=1300;
   (function tick(t){
     const p=Math.min((t-t0)/D,1);
     count.textContent=Math.round(100*(1-Math.pow(1-p,3)));
     if(p<1)requestAnimationFrame(tick);
   })(t0);
-  setTimeout(ready,2250);
+  setTimeout(ready,1450);
 }
 
 /* reveal with stagger + variants */
@@ -1989,7 +2190,7 @@ $$('.reveal').forEach(el=>io.observe(el));
 $$('[data-count]').forEach(b=>{if(!reduce)b.textContent='0'});
 
 /* scroll: progress, header hide, parallax, active link */
-const prog=$('.progress'),header=$('header'),h1lines=$$('.big-name h1 .line'),imgs=$$('img.zoomin');
+const prog=$('.progress'),header=$('header'),h1lines=$$('.big-name h1 .line');
 let lastY=0,ticking=false;
 function onScroll(){
   const y=scrollY,max=document.body.scrollHeight-innerHeight;
@@ -2000,11 +2201,6 @@ function onScroll(){
     const hy=Math.min(y,innerHeight*.8);
     h1lines[0]&&(h1lines[0].style.translate=(-hy*.12)+'px 0');
     h1lines[1]&&(h1lines[1].style.translate=(hy*.12)+'px 0');
-    imgs.forEach(im=>{
-      const r=im.parentElement.getBoundingClientRect();
-      if(r.bottom<0||r.top>innerHeight)return;
-      im.style.translate='0 '+((r.top+r.height/2-innerHeight/2)*-.06)+'px';
-    });
   }
   ticking=false;
 }
@@ -2030,19 +2226,27 @@ burger.addEventListener('click',()=>toggleMenu(!menu.classList.contains('open'))
 $$('a',menu).forEach(a=>a.addEventListener('click',()=>toggleMenu(false)));
 
 /* pointer effects (fine pointers only) */
-if(matchMedia('(hover:hover) and (pointer:fine)').matches&&!reduce){
-  const cur=$('.cursor');let cx=0,cy=0,tx=0,ty=0;
-  addEventListener('pointermove',e=>{
-    tx=e.clientX;ty=e.clientY;cur.classList.add('on');
-    root.style.setProperty('--ox',(e.clientX/innerWidth-.5)*-60+'px');
-    root.style.setProperty('--oy',(e.clientY/innerHeight-.5)*-60+'px');
+if(matchMedia('(hover:hover) and (pointer:fine)').matches&&!reduce&&!lite){
+  const cur=$('.cursor');let cx=0,cy=0,tx=0,ty=0,run=0,pend=null;
+  function loop(){
+    cx+=(tx-cx)*.2;cy+=(ty-cy)*.2;cur.style.transform='translate('+cx+'px,'+cy+'px)';
+    run=(Math.abs(tx-cx)>.3||Math.abs(ty-cy)>.3)?requestAnimationFrame(loop):0;
+  }
+  function onMove(){
+    const e=pend;pend=null;if(!e)return;
+    const hit=e.target.closest('[data-img],[data-play]');
+    cur.classList.toggle('view',!!hit);
+    cur.classList.toggle('link',!hit&&!!e.target.closest('a,button,video'));
     const t=e.target.closest('.spot');
     if(t){const r=t.getBoundingClientRect();t.style.setProperty('--mx',e.clientX-r.left+'px');t.style.setProperty('--my',e.clientY-r.top+'px')}
-    cur.classList.toggle('view',!!e.target.closest('[data-img],[data-play]'));
-    cur.classList.toggle('link',!e.target.closest('[data-img],[data-play]')&&!!e.target.closest('a,button,video'));
+  }
+  addEventListener('pointermove',e=>{
+    tx=e.clientX;ty=e.clientY;cur.classList.add('on');
+    if(!run)run=requestAnimationFrame(loop);
+    if(!pend)requestAnimationFrame(onMove);
+    pend=e;
   },{passive:true});
   document.addEventListener('pointerleave',()=>cur.classList.remove('on'));
-  (function loop(){cx+=(tx-cx)*.18;cy+=(ty-cy)*.18;cur.style.transform=`translate(${cx}px,${cy}px)`;requestAnimationFrame(loop)})();
 
   $$('.tilt').forEach(c=>{
     c.addEventListener('pointermove',e=>{
@@ -2071,6 +2275,8 @@ let group=[],idx=0,lastFocus=null;
 function show(i,instant){
   idx=(i+group.length)%group.length;
   const c=group[idx],src=c.dataset.img,alt=$('img',c)?.alt||'Full preview';
+  const isCase=c.matches('.project-card');lb.classList.toggle('info',isCase);
+  $('#boxInfo').innerHTML=isCase?caseInfo(c):'';
   if(instant){boxImg.src=src;boxImg.alt=alt;return}
   boxImg.classList.add('swap');
   setTimeout(()=>{boxImg.src=src;boxImg.alt=alt;boxImg.classList.remove('swap')},180);
@@ -2095,7 +2301,7 @@ function closeBox(){
   lastFocus&&lastFocus.focus&&lastFocus.focus();
 }
 $$('[data-img]').forEach(c=>{
-  c.tabIndex=0;c.setAttribute('role','button');
+  c.tabIndex=0;c.setAttribute('aria-label',(c.querySelector('h3')||c).textContent.trim());
   c.addEventListener('click',()=>openBox(c));
   c.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openBox(c)}});
 });
