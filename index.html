@@ -1431,6 +1431,7 @@ function setLang(lang,animate){
     l.setAttribute('aria-label',t);
     l.innerHTML=(ar?[t]:[...t]).map(c=>`<span class="ch" aria-hidden="true" style="--i:${i++}">${c}</span>`).join('');
   });
+  $$('a[download]').forEach(a=>a.setAttribute('href',ar?'Karim-Atef-CV-ar.pdf':'Karim-Atef-CV.pdf'));
   const b=$('#lang');if(b){b.textContent=ar?'EN':'عربي';b.setAttribute('aria-label',ar?'Switch to English':'التبديل إلى العربية')}
   try{localStorage.setItem('lang',lang)}catch(e){}
 }
