@@ -20,6 +20,11 @@
 <meta name="twitter:title" content="Karim Atef | Creative Performance Marketer" />
 <meta name="twitter:description" content="Media Buyer, Content Creator, Graphic Designer and Video Editor in UAE." />
 <meta name="twitter:image" content="https://kx121999.github.io/Karim-atef-cv/og-image.png" />
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="apple-touch-icon" href="icon-192.png" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <link rel="canonical" href="https://kx121999.github.io/Karim-atef-cv/" />
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Karim Atef","jobTitle":"Creative Performance Marketer","url":"https://kx121999.github.io/Karim-atef-cv/","image":"https://kx121999.github.io/Karim-atef-cv/profile.jpg","email":"mailto:kx121999@gmail.com","telephone":"+971527366719","address":{"@type":"PostalAddress","addressCountry":"AE"},"sameAs":["https://www.linkedin.com/in/karim-atef-64ba80334"],"knowsAbout":["Media Buying","Meta Ads","TikTok Ads","LinkedIn Ads","Lead Generation","Video Editing","Graphic Design","Content Strategy","Real Estate Marketing"],"worksFor":{"@type":"Organization","name":"MIG FARM"}}</script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23050505'/%3E%3Ctext x='32' y='44' font-size='34' font-weight='900' text-anchor='middle' fill='%23d7ff5f' font-family='Arial'%3EK%3C/text%3E%3C/svg%3E" />
@@ -1223,6 +1228,71 @@ html.lite .ps.on>*{animation:none}
 .hk .acts button:hover{background:var(--accent);color:#000;border-color:var(--accent)}
 @media(max-width:900px){.hooks{grid-template-columns:1fr}}
 
+/* ---------- tools: audit, planner, booking, palette ---------- */
+#budget,.rng{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:99px;outline:none;margin-bottom:26px;background:linear-gradient(90deg,var(--accent) var(--v,25%),var(--line) var(--v,25%));direction:ltr}
+.cform input.rng{padding:0;border:0;height:6px;border-radius:99px;box-shadow:none;margin-bottom:26px;background:linear-gradient(90deg,var(--accent) var(--v,25%),var(--line) var(--v,25%))}
+.cform input.rng:focus{box-shadow:none}
+.rng::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:var(--accent);border:4px solid #050505;box-shadow:0 0 0 2px var(--accent),0 0 24px rgba(215,255,95,.6);cursor:grab}
+.rng::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--accent);border:4px solid #050505;box-shadow:0 0 0 2px var(--accent);cursor:grab}
+.audit,.planner .pl-out{border:1px solid var(--line);border-radius:34px;background:var(--soft);padding:clamp(22px,4vw,44px)}
+.au-progress{height:4px;background:var(--line);border-radius:99px;overflow:hidden;margin-bottom:28px}
+.au-progress i{display:block;height:100%;background:var(--accent);width:var(--w,0%);transition:width .5s var(--ease);box-shadow:0 0 14px var(--accent)}
+.au-step{color:var(--accent);letter-spacing:.14em;font-size:.72rem;font-weight:900;text-transform:uppercase;margin-bottom:12px}
+.au-q{font-size:clamp(1.4rem,3vw,2.4rem);letter-spacing:-.05em;line-height:1.08;margin-bottom:22px;max-width:820px}
+.au-opts{display:grid;gap:12px;max-width:820px}
+.au-opts button{text-align:start;border:1px solid var(--line);border-radius:20px;padding:16px 20px;background:transparent;color:var(--text);font:inherit;font-size:1rem;cursor:pointer;transition:border-color .25s,background .25s,transform .25s var(--ease)}
+.au-opts button:hover,.au-opts button:focus-visible{border-color:var(--accent);background:rgba(215,255,95,.06);transform:translateX(4px)}
+[dir=rtl] .au-opts button:hover{transform:translateX(-4px)}
+.au-back{margin-top:18px;background:none;border:0;color:var(--muted);cursor:pointer;font:inherit;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase}
+.au-back:hover{color:var(--accent)}
+.au-res{display:grid;grid-template-columns:200px 1fr;gap:clamp(20px,4vw,44px);align-items:center}
+.au-ring{position:relative;width:200px;aspect-ratio:1;border-radius:50%;background:conic-gradient(var(--accent) calc(var(--p,0)*1%),rgba(245,241,232,.12) 0);display:grid;place-items:center}
+.au-ring:after{content:"";position:absolute;inset:14px;border-radius:50%;background:#0b0b0b}
+.au-ring b{position:relative;z-index:1;font-size:3.4rem;letter-spacing:-.07em;line-height:1;direction:ltr}
+.au-ring b small{font-size:1rem;color:var(--muted);letter-spacing:0}
+.au-level{font-size:clamp(1.5rem,3vw,2.4rem);letter-spacing:-.05em;line-height:1;margin-bottom:14px}
+.au-tips{list-style:none;display:grid;gap:10px;margin:14px 0 20px}
+.au-tips li{border-top:1px solid var(--line);padding-top:10px;color:var(--text);font-size:.98rem}
+.au-tips li b{color:var(--accent);display:block;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:3px}
+.au-note{color:var(--muted);font-size:.8rem;margin-top:14px}
+@media(max-width:700px){.au-res{grid-template-columns:1fr;justify-items:center;text-align:center}.au-tips li{text-align:start}}
+.planner{display:grid;grid-template-columns:minmax(260px,380px) 1fr;gap:26px;align-items:start}
+.pl-controls{margin-top:0}
+.plan-sheet h3{font-size:clamp(1.6rem,3vw,2.6rem);letter-spacing:-.05em;line-height:1;margin:6px 0 8px}
+.plan-sheet small{color:var(--accent);letter-spacing:.16em;text-transform:uppercase;font-weight:900;font-size:.7rem}
+.plan-sheet .sum{color:var(--muted);margin-bottom:22px}
+.plan-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.pb{border:1px solid var(--line);border-radius:20px;padding:18px;background:rgba(0,0,0,.25)}
+.pb h4{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;font-weight:900}
+.pb .row{display:grid;grid-template-columns:1fr auto;gap:4px 10px;margin-bottom:10px;font-size:.9rem}
+.pb .row i{grid-column:1/-1;display:block;height:6px;border-radius:99px;background:var(--accent);width:var(--w);box-shadow:0 0 10px rgba(215,255,95,.3)}
+.pb .row b{font-variant-numeric:tabular-nums;direction:ltr}
+.pb ul{list-style:none;display:grid;gap:8px;font-size:.9rem}
+.pb li{border-top:1px solid var(--line);padding-top:8px}
+.pb .big{display:block;color:var(--accent);font-size:1.7rem;letter-spacing:-.05em;line-height:1;margin:2px 0 6px;direction:ltr}
+.pb p{color:var(--muted);font-size:.85rem}
+.plan-note{color:var(--muted);font-size:.78rem;margin-top:14px}
+@media(max-width:900px){.planner{grid-template-columns:1fr}.plan-grid{grid-template-columns:1fr}}
+.bookbox .chips button{min-width:0}
+.cmdk{position:fixed;inset:0;z-index:600;background:rgba(0,0,0,.72);backdrop-filter:blur(6px);display:flex;justify-content:center;align-items:flex-start;padding:12vh 16px 0}
+.cmdk[hidden]{display:none}
+.ck-box{width:min(620px,100%);background:#0c0c0c;border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:0 40px 120px rgba(0,0,0,.7)}
+.ck-box input{width:100%;background:transparent;border:0;border-bottom:1px solid var(--line);color:var(--text);font:inherit;font-size:1.1rem;padding:20px 22px;outline:none}
+#ckList{list-style:none;max-height:52vh;overflow-y:auto;padding:8px}
+#ckList li{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 16px;border-radius:14px;cursor:pointer;font-size:.98rem}
+#ckList li small{color:var(--muted);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase}
+#ckList li.on{background:rgba(215,255,95,.12);color:var(--accent)}
+.ck-foot{border-top:1px solid var(--line);padding:10px 18px;color:var(--muted);font-size:.7rem;letter-spacing:.06em}
+@media print{
+  html.printing body>*:not(#planPrint){display:none!important}
+  html.printing,html.printing body{background:#fff!important}
+  #planPrint{display:block!important;color:#111;background:#fff;padding:0;font-family:Inter,Arial,sans-serif}
+  #planPrint *{color:#111!important;border-color:#ccc!important;background:transparent!important;box-shadow:none!important}
+  #planPrint .pb i{background:#111!important}
+  #planPrint small{color:#555!important}
+}
+#planPrint{display:none}
+
 /* language switch + RTL */
 main{overflow-x:clip}
 .lang{border:1px solid rgba(255,255,255,.5);background:transparent;color:#fff;border-radius:999px;padding:8px 16px;font-size:.78rem;font-weight:800;letter-spacing:.06em;cursor:pointer;transition:background .25s,color .25s;font-family:Cairo,Inter,sans-serif}
@@ -1620,8 +1690,46 @@ main{overflow-x:clip}
         <div class="est-unit" data-dyn id="estUnit">conversations</div>
         <div class="est-rows"><div><em>Typical cost per result</em><b data-dyn id="estCpr">AED 0</b></div><div><em>Range</em><b data-dyn id="estRange">0</b></div></div>
         <p class="est-note">Estimate based on my past campaigns. Results vary with the industry, offer and creative.</p>
-        <a class="btn" id="estCta" href="https://wa.me/971527366719" target="_blank" rel="noopener">Get a plan on WhatsApp</a>
+        <div class="cf-actions"><a class="btn" id="estCta" href="https://wa.me/971527366719" target="_blank" rel="noopener">Get a plan on WhatsApp</a><button class="btn dark" type="button" id="estShare">Share my estimate</button></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="audit">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><div class="eyebrow">Ad Audit</div></div>
+      <div>
+        <h2 class="section-title">Is your ad working?</h2>
+        <p class="section-copy">Answer six quick questions about your current campaign and get a score with the three fixes that matter most. A rule-of-thumb checklist, not a full audit.</p>
+      </div>
+    </div>
+    <div class="audit reveal spot">
+      <div class="au-progress" aria-hidden="true"><i id="auBar"></i></div>
+      <div id="auBody" data-dyn aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="planner">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><div class="eyebrow">Campaign Plan</div></div>
+      <div>
+        <h2 class="section-title">Build your campaign plan</h2>
+        <p class="section-copy">Four choices, one page. A suggested starting plan based on my own campaign results. Print it or save it as a PDF.</p>
+      </div>
+    </div>
+    <div class="planner reveal">
+      <div class="cform pl-controls">
+        <div><label>Business type</label><div class="chips" id="plType"><button type="button" class="on" data-v="real">Real estate</button><button type="button" data-v="food">Restaurant</button><button type="button" data-v="clinic">Clinic</button><button type="button" data-v="finance">Finance</button><button type="button" data-v="edu">Education</button><button type="button" data-v="beauty">Beauty</button><button type="button" data-v="shop">Shop</button><button type="button" data-v="fit">Fitness</button></div></div>
+        <div><label>Goal</label><div class="chips" id="plGoal"><button type="button" class="on" data-v="msg">Messages</button><button type="button" data-v="lead">Leads</button><button type="button" data-v="sale">Sales</button></div></div>
+        <div><label>Monthly budget</label><div class="est-budget"><b data-dyn id="plBudgetVal">8,000</b><span>AED</span></div><input class="rng" id="plBudget" type="range" min="2000" max="50000" step="500" value="8000" aria-label="Monthly budget in AED"></div>
+        <div><label>Duration</label><div class="chips" id="plDur"><button type="button" class="on" data-v="1">1 month</button><button type="button" data-v="3">3 months</button><button type="button" data-v="6">6 months</button></div></div>
+        <div class="cf-actions"><button class="btn" type="button" id="plWa">Send this plan on WhatsApp</button><button class="btn dark" type="button" id="plPrint">Save as PDF</button></div>
+      </div>
+      <div class="pl-out" id="planOut" data-dyn></div>
     </div>
   </div>
 </section>
@@ -1745,6 +1853,28 @@ main{overflow-x:clip}
   </div>
 </section>
 
+<section class="section" id="book">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><div class="eyebrow">Request a Call</div></div>
+      <div>
+        <h2 class="section-title">Pick a time that suits you</h2>
+        <p class="section-copy">Choose a day and a time, then send the request on WhatsApp. Times are UAE time (GST). The request is confirmed on WhatsApp.</p>
+      </div>
+    </div>
+    <div class="cform bookbox reveal">
+      <div><label>Day</label><div class="chips" id="bkDays" data-dyn></div></div>
+      <div><label>Time (UAE)</label><div class="chips" id="bkSlots" data-dyn></div></div>
+      <div class="cf-row">
+        <label>Your name<input id="bkName" type="text" autocomplete="name" maxlength="40" dir="auto" placeholder="Your name" data-ph-en="Your name" data-ph-ar="اسمك"></label>
+        <label>Topic<select id="bkTopic"><option value="Media buying">Media buying</option><option value="Reels and video editing">Reels and video editing</option><option value="Commercial design">Commercial design</option><option value="Full campaign">Full campaign</option></select></label>
+      </div>
+      <div class="cf-actions"><button class="btn" type="button" id="bkSend">Request this time on WhatsApp</button></div>
+      <p class="cf-err" id="bkErr" data-dyn role="alert"></p>
+    </div>
+  </div>
+</section>
+
 <section class="section" id="voices" hidden>
   <div class="container">
     <div class="section-head reveal">
@@ -1788,8 +1918,16 @@ main{overflow-x:clip}
 <a class="wa" href="https://wa.me/971527366719" target="_blank" rel="noopener" aria-label="WhatsApp">↗</a>
 
 <footer>
-  <div class="container">© 2026 Karim Atef — Creative Performance Marketer<br><button class="lite-btn" id="liteBtn" type="button">Lite mode</button><br><a class="foot-link" href="campaign-costs.html">Insights: what my Meta Ads campaigns really cost</a></div>
+  <div class="container">© 2026 Karim Atef — Creative Performance Marketer<br><button class="lite-btn" id="liteBtn" type="button">Lite mode</button> <button class="lite-btn" id="ckBtn" type="button">Search · Ctrl K</button><br><a class="foot-link" href="campaign-costs.html">Insights: what my Meta Ads campaigns really cost</a></div>
 </footer>
+
+<div class="cmdk" id="cmdk" role="dialog" aria-modal="true" aria-label="Search" hidden>
+  <div class="ck-box">
+    <input id="ckIn" type="text" placeholder="Search sections and actions" data-ph-en="Search sections and actions" data-ph-ar="ابحث في الأقسام والإجراءات" autocomplete="off" aria-label="Search" role="combobox" aria-expanded="true" aria-controls="ckList">
+    <ul id="ckList" role="listbox" data-dyn></ul>
+    <div class="ck-foot">Arrow keys to move, Enter to open, Esc to close</div>
+  </div>
+</div>
 
 <div class="present" id="present" role="dialog" aria-modal="true" aria-label="Presentation" hidden>
   <div class="ps-stage" id="psStage"></div>
@@ -1811,6 +1949,7 @@ const $=(s,c=document)=>c.querySelector(s), $$=(s,c=document)=>[...c.querySelect
 const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
 const root=document.documentElement;
 const lite=root.classList.contains('lite');
+const NF=new Intl.NumberFormat('en-US',{maximumFractionDigits:0});
 
 /* split text into masked words / letters */
 function splitWords(el){
@@ -1904,6 +2043,17 @@ const AR={
 'Starter formulas for the first three seconds. Pick your business and goal, then copy a line or send it to the poster.':'صيغ جاهزة لأول ثلاث ثوانٍ. اختر نشاطك وهدفك، ثم انسخ الجملة أو أرسلها للبوستر.',
 'Goal':'الهدف','Sales':'مبيعات',
 'Starter formulas, not guaranteed results. Test them and adapt them to your offer.':'صيغ تمهيدية وليست نتائج مضمونة. جرّبها وعدّلها حسب عرضك.',
+'Ad Audit':'فحص الإعلان','Is your ad working?':'هل إعلانك يعمل؟',
+'Answer six quick questions about your current campaign and get a score with the three fixes that matter most. A rule-of-thumb checklist, not a full audit.':'أجب عن ستة أسئلة سريعة حول حملتك الحالية لتحصل على تقييم وأهم ثلاثة إصلاحات. قائمة تقدير سريعة وليست فحصًا كاملًا.',
+'Campaign Plan':'خطة الحملة','Build your campaign plan':'ابنِ خطة حملتك',
+'Four choices, one page. A suggested starting plan based on my own campaign results. Print it or save it as a PDF.':'أربعة اختيارات وصفحة واحدة. خطة بداية مقترحة مبنية على نتائج حملاتي. اطبعها أو احفظها PDF.',
+'Monthly budget':'الميزانية الشهرية','Duration':'المدة','1 month':'شهر','3 months':'3 أشهر','6 months':'6 أشهر',
+'Send this plan on WhatsApp':'أرسل الخطة عبر واتساب','Save as PDF':'حفظ PDF',
+'Request a Call':'طلب مكالمة','Pick a time that suits you':'اختر الوقت المناسب لك',
+'Choose a day and a time, then send the request on WhatsApp. Times are UAE time (GST). The request is confirmed on WhatsApp.':'اختر يومًا ووقتًا ثم أرسل الطلب عبر واتساب. الأوقات بتوقيت الإمارات. يتم تأكيد الطلب على واتساب.',
+'Day':'اليوم','Time (UAE)':'الوقت (الإمارات)','Topic':'الموضوع','Request this time on WhatsApp':'اطلب هذا الموعد عبر واتساب',
+'Arrow keys to move, Enter to open, Esc to close':'الأسهم للتحرك، Enter للفتح، Esc للإغلاق','Search · Ctrl K':'بحث · Ctrl K',
+'Share my estimate':'شارك تقديري',
 '© 2026 Karim Atef — Creative Performance Marketer':'© 2026 كريم عاطف — مسوّق أداء إبداعي'
 };
 AR['Real Estate']=AR['Real Estate'];
@@ -2002,7 +2152,7 @@ $('#lang')?.addEventListener('click',()=>setLang(root.lang==='ar'?'en':'ar'));
   /* cost per result (AED) from the campaigns listed above; the AED 4.17 sustainability campaign is left out of the lead average on purpose so the estimate stays conservative */
   const DATA={msg:{costs:[38.10,14.60,35.52]},lead:{costs:[59.41,42.78]}};
   let type='msg',shown=0,target=0,raf=0;
-  const fmt=n=>Math.round(n).toLocaleString('en-US');
+  const fmt=n=>NF.format(Math.round(n));
   const ar=()=>root.lang==='ar';
   function calc(){
     const b=+rng.value,c=DATA[type].costs,lo=Math.min(...c),hi=Math.max(...c),av=avg(c);
@@ -2026,6 +2176,30 @@ $('#lang')?.addEventListener('click',()=>setLang(root.lang==='ar'?'en':'ar'));
     if(Math.abs(target-shown)<.5){shown=target;raf=0}else raf=requestAnimationFrame(tween);
     $('#estBig').textContent='≈ '+fmt(shown);
   }
+  $('#estShare')?.addEventListener('click',async()=>{
+    const r=calc(),a=ar(),W=1080,H=1080,c=document.createElement('canvas');c.width=W;c.height=H;const x=c.getContext('2d');
+    try{await Promise.all([document.fonts.load('900 100px Inter'),document.fonts.load('800 40px Cairo')])}catch(e){}
+    const g=x.createLinearGradient(0,0,W,H);g.addColorStop(0,'#050505');g.addColorStop(1,'#12170a');x.fillStyle=g;x.fillRect(0,0,W,H);
+    x.fillStyle='rgba(215,255,95,.10)';x.beginPath();x.arc(W*.85,H*.12,360,0,6.283);x.fill();
+    const fam=a?'Cairo, Inter, sans-serif':'Inter, Cairo, sans-serif',X=a?W-90:90;
+    x.textAlign=a?'right':'left';x.direction=a?'rtl':'ltr';
+    x.fillStyle='#d7ff5f';x.font='800 36px '+fam;x.fillText(a?'تقدير الحملة':'CAMPAIGN ESTIMATE',X,130);
+    x.direction='ltr';x.fillStyle='#f5f1e8';x.font='900 250px Inter, sans-serif';x.fillText('≈ '+fmt(r.typ),X,430);
+    x.direction=a?'rtl':'ltr';x.font='800 58px '+fam;x.fillText(type==='msg'?(a?'محادثة':'conversations'):(a?'عميل محتمل':'leads'),X,520);
+    const rows=[[a?'الميزانية':'Budget','AED '+fmt(r.b)],[a?'التكلفة المعتادة للنتيجة':'Typical cost per result','AED '+fmt(r.cpr)],[a?'النطاق':'Range',fmt(r.min)+' – '+fmt(r.max)]];
+    rows.forEach((row,i)=>{const y=640+i*92;x.fillStyle='rgba(245,241,232,.14)';x.fillRect(90,y-58,W-180,2);x.fillStyle='#9d9a92';x.font='700 34px '+fam;x.direction=a?'rtl':'ltr';x.textAlign=a?'right':'left';x.fillText(row[0],X,y);x.fillStyle='#f5f1e8';x.font='900 44px Inter, sans-serif';x.direction='ltr';x.textAlign=a?'left':'right';x.fillText(row[1],a?90:W-90,y)});
+    x.textAlign=a?'right':'left';x.direction=a?'rtl':'ltr';x.fillStyle='#9d9a92';x.font='600 28px '+fam;
+    x.fillText(a?'تقدير مبني على حملات سابقة وليس ضمانًا':'Estimate based on past campaigns, not a guarantee',X,990);
+    x.fillStyle='#d7ff5f';x.font='800 30px Inter, sans-serif';x.direction='ltr';x.fillText('Karim Atef · kx121999.github.io/Karim-atef-cv',X,1036);
+    c.toBlob(async b=>{
+      const file=new File([b],'campaign-estimate.png',{type:'image/png'});
+      try{
+        if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:'Karim Atef',text:a?'تقدير حملتي':'My campaign estimate'});}
+        else{const l=document.createElement('a');l.href=URL.createObjectURL(b);l.download='campaign-estimate.png';document.body.appendChild(l);l.click();l.remove();setTimeout(()=>URL.revokeObjectURL(l.href),2000)}
+      }catch(err){}
+      track('estimate_share',{type});
+    },'image/png');
+  });
   rng.addEventListener('input',render);
   $$('.seg button').forEach(b=>b.addEventListener('click',()=>{type=b.dataset.t;$$('.seg button').forEach(x=>x.classList.toggle('on',x===b));render()}));
   new MutationObserver(render).observe(root,{attributes:true,attributeFilter:['lang']});
@@ -2041,7 +2215,9 @@ $('#lang')?.addEventListener('click',()=>setLang(root.lang==='ar'?'en':'ar'));
     line.style.setProperty('--p',p);
     steps.forEach((s,i)=>s.classList.toggle('on',p>=(i+.4)/steps.length*.9));
   }
-  addEventListener('scroll',()=>requestAnimationFrame(upd),{passive:true});addEventListener('resize',upd);upd();
+  let near=false,tk=false;
+  new IntersectionObserver(es=>{near=es[0].isIntersecting;if(near)requestAnimationFrame(upd)},{rootMargin:'60% 0px'}).observe(line);
+  addEventListener('scroll',()=>{if(near&&!tk){tk=true;requestAnimationFrame(()=>{tk=false;upd()})}},{passive:true});
 })();
 
 (function videoPreview(){
@@ -2101,8 +2277,8 @@ $('#lang')?.addEventListener('click',()=>setLang(root.lang==='ar'?'en':'ar'));
   cards.forEach((c,i)=>c.style.setProperty('--i',i));
   let a=0,v=0,drag=false,lx=0,moved=0,hover=false,vis=false,raf=0;
   const auto=reduce||lite?0:.14;
-  let Rr=300,lastOp=1e9;
-  const readR=()=>{Rr=parseFloat(getComputedStyle(stage).getPropertyValue('--R'))||300};readR();addEventListener('resize',readR);
+  let Rr=300,lastOp=1e9,rd=false;
+  const readR=()=>{Rr=parseFloat(getComputedStyle(stage).getPropertyValue('--R'))||300};addEventListener('resize',readR);
   function paint(){
     r.style.transform='translateZ('+(-Rr)+'px) rotateX(-7deg) rotateY('+a.toFixed(2)+'deg)';
     if(Math.abs(a-lastOp)<2)return;lastOp=a;
@@ -2116,7 +2292,7 @@ $('#lang')?.addEventListener('click',()=>setLang(root.lang==='ar'?'en':'ar'));
     if(!drag){if(Math.abs(v)>.03){a+=v;v*=.95}else{v=0;if(!hover&&auto)a+=auto}}
     paint();raf=requestAnimationFrame(tick);
   }
-  new IntersectionObserver(es=>es.forEach(e=>{vis=e.isIntersecting;r.style.display=vis?'':'none';if(vis&&!raf)raf=requestAnimationFrame(tick)}),{rootMargin:'250px'}).observe(stage);
+  new IntersectionObserver(es=>es.forEach(e=>{vis=e.isIntersecting;r.style.display=vis?'':'none';if(vis&&!rd){rd=true;readR()}if(vis&&!raf)raf=requestAnimationFrame(tick)}),{rootMargin:'250px'}).observe(stage);
   stage.addEventListener('pointerdown',e=>{drag=true;moved=0;v=0;lx=e.clientX;stage.classList.add('drag')});
   addEventListener('pointermove',e=>{if(!drag)return;const dx=e.clientX-lx;lx=e.clientX;moved+=Math.abs(dx);a+=dx*.4;v=dx*.4},{passive:true});
   const up=()=>{drag=false;stage.classList.remove('drag')};
@@ -2170,8 +2346,10 @@ $('#lang')?.addEventListener('click',()=>setLang(root.lang==='ar'?'en':'ar'));
     });
     nav.forEach((n,i)=>n.classList.toggle('on',i===active));
   }
-  addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(upd)}},{passive:true});
-  addEventListener('resize',upd);upd();
+  let near=false;
+  new IntersectionObserver(es=>{near=es[0].isIntersecting;if(near)requestAnimationFrame(upd)},{rootMargin:'100% 0px'}).observe(wrap);
+  addEventListener('scroll',()=>{if(near&&!ticking){ticking=true;requestAnimationFrame(upd)}},{passive:true});
+  addEventListener('resize',()=>{if(near)upd()});
 })();
 
 /* ---------- analytics hooks, testimonials, case info, globe ---------- */
@@ -2290,13 +2468,13 @@ function caseInfo(card){
     }
     raf=requestAnimationFrame(frame);
   }
-  size();addEventListener('resize',size);
+  let sized=false;addEventListener('resize',()=>{if(sized)size()});
   const wrap=cv.parentElement;
   wrap.addEventListener('pointerdown',e=>{drag=true;lx=e.clientX});
   addEventListener('pointermove',e=>{if(!drag)return;off-=(e.clientX-lx)*.006;lx=e.clientX},{passive:true});
   addEventListener('pointerup',()=>{drag=false});addEventListener('pointercancel',()=>{drag=false});
-  new IntersectionObserver(es=>es.forEach(e=>{vis=e.isIntersecting;if(vis&&!raf)raf=requestAnimationFrame(frame)})).observe(cv);
-  if(reduce){vis=true;frame(performance.now());vis=false}
+  new IntersectionObserver(es=>es.forEach(e=>{vis=e.isIntersecting;if(vis&&!sized){sized=true;size()}if(vis&&!raf)raf=requestAnimationFrame(frame)}),{rootMargin:'200px'}).observe(cv);
+  if(reduce){sized=true;size();vis=true;frame(performance.now());vis=false}
 })();
 
 /* ---------- performance helpers ---------- */
@@ -2533,7 +2711,8 @@ function caseInfo(card){
     $('#studio').scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});
   });
   new MutationObserver(()=>{fillDefaults(false);redraw()}).observe(root,{attributes:true,attributeFilter:['lang']});
-  fillDefaults(true);draw();
+  fillDefaults(true);
+  new IntersectionObserver((es,o)=>{if(es.some(e=>e.isIntersecting)){o.disconnect();draw()}},{rootMargin:'300px'}).observe(cv);
   (document.fonts&&document.fonts.load?Promise.all([document.fonts.load('900 60px Inter'),document.fonts.load('900 60px Cairo'),document.fonts.load('800 40px Inter')]):Promise.resolve()).then(redraw).catch(()=>{});
   if(document.fonts&&document.fonts.addEventListener)document.fonts.addEventListener('loadingdone',redraw);
 })();
@@ -2584,6 +2763,176 @@ function caseInfo(card){
   new MutationObserver(render).observe(root,{attributes:true,attributeFilter:['lang']});
   render();
 })();
+
+/* ---------- tools: audit, plan, call request, command palette ---------- */
+const fmtN=n=>NF.format(Math.round(n));
+const WA='https://wa.me/971527366719?text=';
+
+(function audit(){
+  const body=$('#auBody'),bar=$('#auBar');if(!body)return;
+  const Q=[
+    {n:['Goal clarity','وضوح الهدف'],q:['Do you have one clear goal for the campaign?','هل لحملتك هدف واحد واضح؟'],o:[['Yes, one goal: messages, leads or sales','نعم، هدف واحد: رسائل أو عملاء أو مبيعات'],['More than one goal in the same campaign','أكثر من هدف في نفس الحملة'],['Not sure','لست متأكدًا']],t:['Pick one goal per campaign: messages, leads or sales. Mixed goals split the budget and blur the results.','اختر هدفًا واحدًا لكل حملة: رسائل أو عملاء أو مبيعات. تعدد الأهداف يوزّع الميزانية ويشوّش النتائج.']},
+    {n:['Tracking','المتابعة'],q:['Can you see your cost per result?','هل ترى تكلفة النتيجة؟'],o:[['Yes, and I check it weekly','نعم، وأراجعها أسبوعيًا'],['I see it but rarely check it','أراها لكن نادرًا ما أراجعها'],['No','لا']],t:['Track cost per result at least weekly. Without it you cannot tell which ad to scale and which to stop.','تابع تكلفة النتيجة أسبوعيًا على الأقل. بدونها لن تعرف أي إعلان توسّع وأي إعلان توقفه.']},
+    {n:['Creative','التصميم'],q:['What does your ad creative look like?','كيف يبدو تصميم إعلانك؟'],o:[['A video or reel made for the ad','فيديو أو ريل مصنوع للإعلان'],['A static image or poster','صورة أو بوستر ثابت'],['Reused from my regular posts','محتوى معاد استخدامه من منشوراتي العادية']],t:['Build creatives for ads, not reused organic posts: one clear message, a format made for the placement, readable in the first second.','اصنع تصاميم للإعلان نفسه لا محتوى معاد استخدامه: رسالة واحدة واضحة بصيغة مناسبة للمنصة، ومقروءة من أول ثانية.']},
+    {n:['Hook','الجملة الافتتاحية'],q:['Do the first three seconds or the headline state the benefit clearly?','هل تذكر أول ثلاث ثوانٍ أو العنوان الفائدة بوضوح؟'],o:[['Yes','نعم'],['Sometimes','أحيانًا'],['No, or not sure','لا، أو لست متأكدًا']],t:['Open with the benefit in the first three seconds or in the headline, before the brand name.','ابدأ بالفائدة في أول ثلاث ثوانٍ أو في العنوان، قبل اسم العلامة.']},
+    {n:['Click destination','وجهة النقرة'],q:['Where does the click go?','إلى أين يذهب النقر؟'],o:[['WhatsApp or a lead form with one clear step','واتساب أو نموذج عملاء بخطوة واحدة واضحة'],['A website with many options','موقع فيه خيارات كثيرة'],['My profile or a post','الصفحة الشخصية أو منشور']],t:['Send the click to one clear next step, such as a WhatsApp chat or a short lead form, not a page with many choices.','وجّه النقرة إلى خطوة واحدة واضحة، مثل محادثة واتساب أو نموذج قصير، لا صفحة فيها خيارات كثيرة.']},
+    {n:['Testing','الاختبار'],q:['How often do you test new creatives?','كل كم تختبر تصاميم جديدة؟'],o:[['Every week or two','كل أسبوع أو أسبوعين'],['Monthly','شهريًا'],['Rarely or never','نادرًا أو أبدًا']],t:['Plan new creative tests on a regular rhythm, every week or two, so you learn what works before the budget runs out.','خطّط لاختبار تصاميم جديدة بإيقاع منتظم، كل أسبوع أو أسبوعين، لتعرف ما ينجح قبل أن تنفد الميزانية.']}
+  ];
+  const LV=[['Needs a reset','يحتاج إلى إعادة ضبط'],['Good base, clear gaps','أساس جيد وثغرات واضحة'],['Strong foundation','أساس قوي']];
+  let step=0,ans=[],raf=0;
+  const ar=()=>root.lang==='ar',L=()=>ar()?1:0;
+  function render(){
+    const l=L();bar.style.setProperty('--w',(step/Q.length*100)+'%');
+    if(step<Q.length){
+      const q=Q[step];
+      body.innerHTML=`<div class="au-step">${ar()?'السؤال':'Question'} ${step+1} / ${Q.length}</div><h3 class="au-q">${q.q[l]}</h3><div class="au-opts">${q.o.map((o,i)=>`<button type="button" data-i="${i}">${o[l]}</button>`).join('')}</div>${step?`<button type="button" class="au-back" data-back>${ar()?'رجوع':'Back'}</button>`:''}`;
+      return;
+    }
+    const score=ans.reduce((a,v)=>a+(2-v),0),pct=Math.round(score/(Q.length*2)*100),lv=pct<40?0:pct<=70?1:2;
+    const gaps=ans.map((v,i)=>({v,i})).filter(x=>x.v>0).sort((a,b)=>b.v-a.v||a.i-b.i).slice(0,3);
+    body.innerHTML=`<div class="au-res"><div class="au-ring" id="auRing"><b><span id="auNum">0</span><small>/100</small></b></div><div><div class="au-step">${ar()?'نتيجتك':'Your result'}</div><div class="au-level">${LV[lv][l]}</div>${gaps.length?`<ul class="au-tips">${gaps.map(g=>`<li><b>${Q[g.i].n[l]}</b>${Q[g.i].t[l]}</li>`).join('')}</ul>`:`<p>${ar()?'لا توجد ثغرات واضحة في هذه المجالات الستة. الخطوة التالية: وسّع ما ينجح واستمر في الاختبار.':'No clear gaps in these six areas. Next step: scale what works and keep testing.'}</p>`}<div class="cf-actions"><button class="btn" type="button" data-act="wa">${ar()?'أرسل التقييم عبر واتساب':'Send my audit on WhatsApp'}</button><button class="btn dark" type="button" data-act="plan">${ar()?'ابنِ خطة':'Build a plan'}</button><button class="btn dark" type="button" data-act="again">${ar()?'ابدأ من جديد':'Start over'}</button></div><p class="au-note">${ar()?'قائمة تقدير سريعة وليست فحصًا كاملًا للحساب.':'A rule-of-thumb checklist, not a full account audit.'}</p></div></div>`;
+    const ring=$('#auRing'),num=$('#auNum'),t0=performance.now();cancelAnimationFrame(raf);
+    const tick=t=>{const k=Math.min((t-t0)/900,1),v=pct*(1-Math.pow(1-k,3));ring.style.setProperty('--p',v);num.textContent=Math.round(v);if(k<1)raf=requestAnimationFrame(tick)};
+    if(reduce){ring.style.setProperty('--p',pct);num.textContent=pct}else raf=requestAnimationFrame(tick);
+    body.dataset.pct=pct;body.dataset.lv=lv;
+  }
+  body.addEventListener('click',e=>{
+    const b=e.target.closest('button');if(!b)return;
+    if(b.dataset.i!==undefined){if(step===0)track('audit_start');ans[step]=+b.dataset.i;step++;render();if(step===Q.length)track('audit_complete',{score:body.dataset.pct})}
+    else if(b.hasAttribute('data-back')){step=Math.max(0,step-1);render()}
+    else if(b.dataset.act==='again'){step=0;ans=[];render()}
+    else if(b.dataset.act==='plan'){$('#planner').scrollIntoView({behavior:reduce?'auto':'smooth'})}
+    else if(b.dataset.act==='wa'){
+      const l=L(),pct=body.dataset.pct,lv=LV[+body.dataset.lv][l],gaps=ans.map((v,i)=>({v,i})).filter(x=>x.v>0).sort((a,b)=>b.v-a.v||a.i-b.i).slice(0,3).map(g=>Q[g.i].n[l]);
+      const t=ar()?`أهلًا كريم، أجريت فحص الإعلان وحصلت على ${pct}/100 (${lv}).\nأهم الثغرات: ${gaps.join('، ')||'لا توجد'}.\nأريد مساعدتك في تحسين حملتي.`:`Hi Karim, I ran your ad audit and scored ${pct}/100 (${lv}).\nTop gaps: ${gaps.join(', ')||'none'}.\nI would like help improving my campaign.`;
+      window.open(WA+encodeURIComponent(t),'_blank','noopener');track('audit_whatsapp',{score:pct});
+    }
+  });
+  new MutationObserver(render).observe(root,{attributes:true,attributeFilter:['lang']});
+  render();
+})();
+
+(function planner(){
+  const out=$('#planOut');if(!out)return;
+  const TL={real:['Real estate','عقارات'],food:['Restaurant','مطعم'],clinic:['Clinic','عيادة'],finance:['Finance','تمويل'],edu:['Education','تعليم'],beauty:['Beauty','تجميل'],shop:['Shop','متجر'],fit:['Fitness','لياقة']};
+  const GL={msg:['Messages','رسائل'],lead:['Leads','عملاء محتملون'],sale:['Sales','مبيعات']};
+  const st={type:'real',goal:'msg',budget:8000,dur:1};
+  const ar=()=>root.lang==='ar',t=(a,b)=>ar()?b:a;
+  const split=()=>{
+    if(st.goal==='sale')return[['Meta','ميتا',55],['TikTok','تيك توك',25],['Retargeting','إعادة الاستهداف',20]];
+    if(st.goal==='lead'&&(st.type==='finance'||st.type==='edu'))return[['Meta','ميتا',55],['LinkedIn','لينكدإن',25],['Test reserve','احتياطي اختبار',20]];
+    if(st.goal==='lead')return[['Meta','ميتا',65],['TikTok','تيك توك',20],['Test reserve','احتياطي اختبار',15]];
+    return[['Meta','ميتا',65],['TikTok','تيك توك',20],['Test reserve','احتياطي اختبار',15]];
+  };
+  const creatives=b=>b<5000?{r:2,p:2,h:0}:b<15000?{r:4,p:4,h:0}:{r:6,p:4,h:2};
+  function build(){
+    const b=st.budget,tot=b*st.dur,sp=split(),cr=creatives(b);
+    const goalKey=st.goal;let kpi;
+    if(goalKey==='msg'){const lo=b/38.10,hi=b/14.60;kpi=`<span class="big">${fmtN(lo)} – ${fmtN(hi)}</span><p>${t('conversations per month, from AED 14.60 to 38.10 per conversation in my message campaigns.','محادثة شهريًا، بتكلفة من 14.60 إلى 38.10 درهم للمحادثة في حملات الرسائل لديّ.')}</p>${st.dur>1?`<p>${t('Over '+st.dur+' months:','خلال '+st.dur+' أشهر:')} ${fmtN(lo*st.dur)} – ${fmtN(hi*st.dur)}</p>`:''}`}
+    else if(goalKey==='lead'){const lo=b/59.41,hi=b/42.78;kpi=`<span class="big">${fmtN(lo)} – ${fmtN(hi)}</span><p>${t('leads per month, from AED 42.78 to 59.41 per lead in my lead campaigns (the small AED 483 campaign is left out).','عميل محتمل شهريًا، بتكلفة من 42.78 إلى 59.41 درهم للعميل في حملات العملاء لديّ (دون الحملة الصغيرة بميزانية 483 درهمًا).')}</p>${st.dur>1?`<p>${t('Over '+st.dur+' months:','خلال '+st.dur+' أشهر:')} ${fmtN(lo*st.dur)} – ${fmtN(hi*st.dur)}</p>`:''}`}
+    else kpi=`<p>${t('No sales-campaign numbers are published here, so this plan gives no result range. Track cost per order and return on ad spend, and set targets after the first two weeks of data.','لا توجد أرقام حملات مبيعات منشورة هنا، لذلك لا تعطي الخطة نطاقًا للنتائج. تابع تكلفة الطلب والعائد على الإنفاق الإعلاني وحدّد أهدافك بعد أول أسبوعين من البيانات.')}</p>`;
+    const crl=[`${cr.r} ${t('short vertical videos (reels)','فيديوهات قصيرة عمودية (ريلز)')}`,`${cr.p} ${t('posters or static ads','بوسترات أو إعلانات ثابتة')}`];
+    if(cr.h)crl.push(`${cr.h} ${t('hook variations of the best performer','نسخ افتتاحية جديدة لأفضل إعلان')}`);
+    const tl=[[t('Week 1','الأسبوع 1'),t('Set up tracking and the click destination, then ship the first creatives.','جهّز المتابعة ووجهة النقرة وأطلق أول التصاميم.')],[t('Week 2','الأسبوع 2'),t('Run 3 to 4 creative variations against one clear audience.','شغّل 3 إلى 4 نسخ من التصاميم لجمهور واحد واضح.')],[t('Week 3','الأسبوع 3'),t('Stop the weak ads and move budget to the winners.','أوقف الإعلانات الضعيفة وانقل الميزانية إلى الفائزة.')],[t('Week 4','الأسبوع 4'),t('Review cost per result and plan next month\'s creatives.','راجع تكلفة النتيجة وخطّط لتصاميم الشهر القادم.')]];
+    return `<div class="plan-sheet"><small>${t('Campaign plan','خطة الحملة')}</small><h3>${TL[st.type][ar()?1:0]} · ${GL[st.goal][ar()?1:0]}</h3><p class="sum">AED ${fmtN(b)} ${t('per month for','شهريًا لمدة')} ${st.dur} ${t(st.dur>1?'months':'month',st.dur>1?'أشهر':'شهر')} (AED ${fmtN(tot)} ${t('in total','إجمالًا')})</p><div class="plan-grid"><div class="pb"><h4>${t('Suggested budget split, per month','توزيع الميزانية المقترح شهريًا')}</h4>${sp.map(r=>`<div class="row"><span>${r[ar()?1:0]}</span><b>AED ${fmtN(b*r[2]/100)}</b><i style="--w:${r[2]}%"></i></div>`).join('')}</div><div class="pb"><h4>${t('Creatives per month','التصاميم شهريًا')}</h4><ul>${crl.map(x=>`<li>${x}</li>`).join('')}</ul></div><div class="pb"><h4>${t('What to expect','ما يمكن توقعه')}</h4>${kpi}</div><div class="pb"><h4>${t('First 30 days','أول 30 يومًا')}</h4><ul>${tl.map(x=>`<li><b>${x[0]}</b> ${x[1]}</li>`).join('')}</ul></div></div><p class="plan-note">${t('A suggested starting plan, not a guarantee. Results depend on the offer, the audience and the creative.','خطة بداية مقترحة وليست ضمانًا. تعتمد النتائج على العرض والجمهور والتصميم.')}</p></div>`;
+  }
+  const rng=$('#plBudget');
+  function render(){
+    $('#plBudgetVal').textContent=fmtN(st.budget);rng.style.setProperty('--v',((st.budget-rng.min)/(rng.max-rng.min)*100)+'%');
+    out.innerHTML=build();
+  }
+  const group=(id,key,num)=>$$('#'+id+' button').forEach(b=>b.addEventListener('click',()=>{$$('#'+id+' button').forEach(x=>x.classList.toggle('on',x===b));st[key]=num?+b.dataset.v:b.dataset.v;render()}));
+  group('plType','type');group('plGoal','goal');group('plDur','dur',true);
+  rng.addEventListener('input',()=>{st.budget=+rng.value;render()});
+  let first=true;rng.addEventListener('change',()=>{if(first){first=false;track('plan_build',{type:st.type,goal:st.goal})}});
+  $('#plWa').addEventListener('click',()=>{
+    const a=ar(),tx=a?`أهلًا كريم، صممت خطة حملة (${TL[st.type][1]}، ${GL[st.goal][1]}) بميزانية ${fmtN(st.budget)} درهم شهريًا لمدة ${st.dur} من الأشهر.\nأريد مناقشتها معك.`:`Hi Karim, I built a campaign plan (${TL[st.type][0]}, ${GL[st.goal][0]}) with AED ${fmtN(st.budget)} per month for ${st.dur} month(s).\nI would like to discuss it with you.`;
+    window.open(WA+encodeURIComponent(tx),'_blank','noopener');track('plan_whatsapp');
+  });
+  $('#plPrint').addEventListener('click',()=>{
+    const holder=document.createElement('div');holder.id='planPrint';holder.dir=root.dir;holder.innerHTML=out.innerHTML;document.body.appendChild(holder);root.classList.add('printing');
+    const done=()=>{root.classList.remove('printing');holder.remove();removeEventListener('afterprint',done)};
+    addEventListener('afterprint',done);track('plan_print');
+    setTimeout(()=>window.print(),60);
+  });
+  new MutationObserver(render).observe(root,{attributes:true,attributeFilter:['lang']});
+  render();
+})();
+
+(function book(){
+  const daysEl=$('#bkDays'),slotsEl=$('#bkSlots');if(!daysEl)return;
+  /* Change these to your real availability. Times are UAE time (GST). */
+  const AVAIL={slots:['10:00','12:00','14:00','16:00','18:00'],weekdays:[1,2,3,4,5],count:5};
+  const days=[];{const d=new Date();d.setHours(12,0,0,0);while(days.length<AVAIL.count){d.setDate(d.getDate()+1);if(AVAIL.weekdays.includes(d.getDay()))days.push(new Date(d))}}
+  const st={day:0,slot:null},ar=()=>root.lang==='ar';
+  const dl=d=>d.toLocaleDateString(ar()?'ar-AE-u-nu-latn':'en-GB',{weekday:'short',day:'numeric',month:'short'});
+  const dlong=d=>d.toLocaleDateString(ar()?'ar-AE-u-nu-latn':'en-GB',{weekday:'long',day:'numeric',month:'long'});
+  const err=$('#bkErr');
+  function render(){
+    daysEl.innerHTML=days.map((d,i)=>`<button type="button" data-d="${i}"${i===st.day?' class="on"':''}>${dl(d)}</button>`).join('');
+    slotsEl.innerHTML=AVAIL.slots.map(x=>`<button type="button" data-s="${x}"${x===st.slot?' class="on"':''}>${x}</button>`).join('');
+  }
+  daysEl.addEventListener('click',e=>{const b=e.target.closest('[data-d]');if(!b)return;st.day=+b.dataset.d;render()});
+  slotsEl.addEventListener('click',e=>{const b=e.target.closest('[data-s]');if(!b)return;st.slot=b.dataset.s;err.textContent='';render()});
+  $('#bkSend').addEventListener('click',()=>{
+    const name=$('#bkName').value.trim(),topic=$('#bkTopic').value;
+    if(!name||!st.slot){err.textContent=ar()?'من فضلك اكتب اسمك واختر وقتًا.':'Please add your name and pick a time.';return}
+    err.textContent='';
+    const day=dlong(days[st.day]);
+    const t=ar()?`أهلًا كريم، أود طلب مكالمة يوم ${day} الساعة ${st.slot} (بتوقيت الإمارات).\nالموضوع: ${topic}.\nالاسم: ${name}.\nهل هذا الموعد مناسب؟`:`Hi Karim, I would like to request a call on ${day} at ${st.slot} (UAE time).\nTopic: ${topic}.\nName: ${name}.\nIs this time OK for you?`;
+    window.open(WA+encodeURIComponent(t),'_blank','noopener');track('call_request');
+  });
+  new MutationObserver(()=>{err.textContent='';render()}).observe(root,{attributes:true,attributeFilter:['lang']});
+  render();
+})();
+
+(function palette(){
+  const ov=$('#cmdk'),inp=$('#ckIn'),list=$('#ckList');if(!ov)return;
+  const S=[['services','Services','الخدمات'],['experience','Experience','الخبرات'],['campaigns','Projects','المشاريع'],['estimator','Campaign Estimator','حاسبة الحملات'],['audit','Ad Audit','فحص الإعلان'],['planner','Campaign Plan','خطة الحملة'],['designs','Designs','التصاميم'],['studio','Poster Lab','مختبر البوسترات'],['hooks','Reel Hooks','هوكس الريلز'],['videos','Videos','الفيديوهات'],['about','About','نبذة'],['book','Request a Call','طلب مكالمة'],['contact','Contact','تواصل']];
+  const items=S.map(x=>({g:0,en:x[1],ar:x[2],run:()=>{const el=document.getElementById(x[0]);if(el)el.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'})}}))
+    .concat([
+      {g:1,en:'Switch language',ar:'تبديل اللغة',run:()=>$('#lang').click()},
+      {g:1,en:'Present mode',ar:'وضع العرض',run:()=>$('#presentBtn').click()},
+      {g:1,en:'Toggle lite mode',ar:'تبديل الوضع الخفيف',run:()=>$('#liteBtn').click()},
+      {g:1,en:'Download CV (PDF)',ar:'تحميل السيرة الذاتية (PDF)',run:()=>{const a=document.createElement('a');a.href=root.lang==='ar'?'Karim-Atef-CV-ar.pdf':'Karim-Atef-CV.pdf';a.download='';document.body.appendChild(a);a.click();a.remove()}},
+      {g:1,en:'Open WhatsApp',ar:'فتح واتساب',run:()=>window.open('https://wa.me/971527366719','_blank','noopener')},
+      {g:1,en:'Send an email',ar:'إرسال إيميل',run:()=>{location.href='mailto:kx121999@gmail.com'}}
+    ]);
+  let sel=0,shown=[];
+  const ar=()=>root.lang==='ar';
+  function filter(){
+    const q=inp.value.trim().toLowerCase();
+    shown=items.filter(i=>!q||(i.en+' '+i.ar).toLowerCase().includes(q));
+    shown.sort((a,b)=>{const sa=!q?0:(a.en.toLowerCase().startsWith(q)||a.ar.startsWith(q)?0:1),sb=!q?0:(b.en.toLowerCase().startsWith(q)||b.ar.startsWith(q)?0:1);return sa-sb});
+    if(sel>=shown.length)sel=0;
+    list.innerHTML=shown.length?shown.map((i,k)=>`<li role="option" data-k="${k}"${k===sel?' class="on" aria-selected="true"':''}><span>${ar()?i.ar:i.en}</span><small>${i.g?(ar()?'إجراء':'Action'):(ar()?'قسم':'Section')}</small></li>`).join(''):`<li>${ar()?'لا نتائج':'No results'}</li>`;
+    const on=$('li.on',list);if(on)on.scrollIntoView({block:'nearest'});
+  }
+  let last=null;
+  function open(){last=document.activeElement;ov.hidden=false;inp.value='';sel=0;filter();inp.focus();track('cmdk_open')}
+  function close(){ov.hidden=true;last&&last.focus&&last.focus()}
+  function run(k){const i=shown[k];if(!i)return;close();setTimeout(i.run,30)}
+  inp.addEventListener('input',()=>{sel=0;filter()});
+  list.addEventListener('click',e=>{const li=e.target.closest('[data-k]');if(li)run(+li.dataset.k)});
+  ov.addEventListener('click',e=>{if(e.target===ov)close()});
+  $('#ckBtn')?.addEventListener('click',open);
+  addEventListener('keydown',e=>{
+    const k=e.key;
+    if((e.ctrlKey||e.metaKey)&&k.toLowerCase()==='k'){e.preventDefault();ov.hidden?open():close();return}
+    if(ov.hidden){
+      const tag=(e.target.tagName||'').toLowerCase();
+      if(k==='/'&&!['input','textarea','select'].includes(tag)&&!e.ctrlKey&&!e.metaKey){e.preventDefault();open()}
+      return;
+    }
+    if(k==='Escape'){close()}
+    else if(k==='ArrowDown'){e.preventDefault();sel=Math.min(shown.length-1,sel+1);filter()}
+    else if(k==='ArrowUp'){e.preventDefault();sel=Math.max(0,sel-1);filter()}
+    else if(k==='Enter'){e.preventDefault();run(sel)}
+  });
+  new MutationObserver(()=>{if(!ov.hidden)filter()}).observe(root,{attributes:true,attributeFilter:['lang']});
+})();
+
+if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol)){addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(()=>{})})}
 
 /* loader counter, then start hero */
 const count=$('.loader-count b');
@@ -2655,7 +3004,7 @@ function onScroll(){
   ticking=false;
 }
 addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(onScroll)}},{passive:true});
-onScroll();
+requestAnimationFrame(()=>requestAnimationFrame(onScroll));
 
 const links=$$('.nav-links a');
 const sio=new IntersectionObserver(es=>es.forEach(e=>{
