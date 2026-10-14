@@ -939,6 +939,37 @@ body.menu-open .burger span{background:#000}
 .video-card:hover{border-color:rgba(215,255,95,.5)}
 .contact-panel h2{display:block}
 
+
+/* language switch + RTL */
+main{overflow-x:clip}
+.lang{border:1px solid rgba(255,255,255,.5);background:transparent;color:#fff;border-radius:999px;padding:8px 16px;font-size:.78rem;font-weight:800;letter-spacing:.06em;cursor:pointer;transition:background .25s,color .25s;font-family:Cairo,Inter,sans-serif}
+.lang:hover{background:#fff;color:#000}
+[dir=rtl] body{font-family:Cairo,Inter,sans-serif}
+[dir=rtl] *,[dir=rtl] *:before,[dir=rtl] *:after{letter-spacing:0!important;text-transform:none!important}
+[dir=rtl] .big-name h1{line-height:1.1}
+[dir=rtl] .big-name h1 .line{padding:.04em .02em .08em 0}
+[dir=rtl] .section-title,[dir=rtl] .contact-panel h2,[dir=rtl] .creative-card h2{line-height:1.25}
+[dir=rtl] .loader-title b{line-height:1.1}
+[dir=rtl] .service h3,[dir=rtl] .exp-row h3,[dir=rtl] .project-body h3,[dir=rtl] .role-title{line-height:1.25}
+[dir=rtl] .about-text p{line-height:1.5}
+[dir=rtl] .stat b,[dir=rtl] .exp-metrics b,[dir=rtl] .loader-count{direction:ltr;text-align:right}
+[dir=rtl] .ticker,[dir=rtl] .ticker-track{direction:ltr}
+[dir=rtl] .creative-photo-wrap:after{content:"كريم";left:auto;right:-12px}
+[dir=rtl] .service{border-right:0;border-left:1px solid var(--line)}
+[dir=rtl] .service:last-child{border-left:0}
+[dir=rtl] .metrics div{border-right:0;border-left:1px solid var(--line)}
+[dir=rtl] .metrics div:last-child{border-left:0}
+[dir=rtl] .exp-row:hover{padding-left:0;padding-right:18px;background:linear-gradient(270deg,rgba(215,255,95,.06),transparent)}
+[dir=rtl] .exp-row:hover h3{translate:-8px 0}
+[dir=rtl] .exp-row:before{transform-origin:right}
+[dir=rtl] .service:hover .service-num{transform:translateX(-10px)}
+[dir=rtl] .service li:hover{padding-left:0;padding-right:10px}
+[dir=rtl] .project-media span{left:auto;right:18px}
+[dir=rtl] .hero-buttons{justify-content:flex-start}
+[dir=rtl] .wa{right:auto;left:20px}
+@media(max-width:1050px){[dir=rtl] .service{border-left:0;border-bottom:1px solid var(--line)}}
+@media(max-width:700px){[dir=rtl] .metrics div{border-left:0}}
+
 /* lightbox */
 .lightbox{display:flex;opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s}
 .lightbox.open{display:flex;opacity:1;visibility:visible}
@@ -1032,6 +1063,7 @@ body.menu-open .burger span{background:#000}
       <a href="#contact">Contact</a>
     </nav>
     <div class="status"><i></i> Available for Work</div>
+    <button class="lang" id="lang" type="button" aria-label="التبديل إلى العربية">عربي</button>
     <button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
   </div>
 </header>
@@ -1317,6 +1349,95 @@ $$('.big-name h1 > span').forEach(line=>{
   line.innerHTML=[...t].map(c=>`<span class="ch" aria-hidden="true" style="--i:${n++}">${c}</span>`).join('');
 });
 
+/* ---------- language switch (EN / AR) ---------- */
+const AR={
+'Karim Atef':'كريم عاطف','KARIM':'كريم','ATEF':'عاطف',
+'Services':'الخدمات','Experience':'الخبرات','Projects':'المشاريع','Designs':'التصاميم','Videos':'الفيديوهات','About':'نبذة','Contact':'تواصل',
+'Available for Work':'متاح للعمل',
+'Creative Performance Marketer':'مسوّق أداء إبداعي',
+'Media Buyer / Content Creator / Video Editor':'ميديا باير / صانع محتوى / مونتير فيديو',
+'Based in UAE. I build performance-driven campaigns, social media content, commercial videos and ad creatives that turn attention into leads.':'مقيم في الإمارات. أبني حملات تعتمد على الأداء، ومحتوى سوشيال ميديا، وفيديوهات تجارية، وتصاميم إعلانية تحوّل الاهتمام إلى عملاء محتملين.',
+'Creative Performance Marketer based in UAE':'مسوّق أداء إبداعي مقيم في الإمارات',
+'WhatsApp':'واتساب','View Work':'شاهد أعمالي','Download CV':'تحميل السيرة الذاتية','Download CV (PDF)':'تحميل السيرة الذاتية (PDF)',
+'Ads need creative that sells':'الإعلانات تحتاج إلى إبداع يبيع',
+'I do media buying, content ideas, video editing and commercial designs in one connected system — so the campaign looks premium and performs better.':'أقدّم الشراء الإعلاني وأفكار المحتوى ومونتاج الفيديو والتصاميم التجارية في منظومة واحدة متكاملة، لتظهر الحملة بشكل احترافي وتحقق أداءً أفضل.',
+'Meta Ads':'إعلانات ميتا','TikTok Ads':'إعلانات تيك توك','LinkedIn Ads':'إعلانات لينكدإن','UGC Ads':'إعلانات UGC',
+'Reels':'ريلز','Video Editing':'مونتاج الفيديو','Graphic Design':'التصميم الجرافيكي','Lead Generation':'توليد العملاء المحتملين',
+'Real Estate':'عقارات','Content Strategy':'استراتيجية المحتوى','Commercial Posters':'بوسترات تجارية','WhatsApp Funnels':'مسارات واتساب',
+'Social Media Results':'نتائج السوشيال ميديا','Content that reaches millions':'محتوى يصل إلى الملايين',
+'Facebook views / last 90 days':'مشاهدات فيسبوك / آخر 90 يومًا','TikTok video views / last 12 months':'مشاهدات فيديو تيك توك / آخر 12 شهرًا','TikTok likes / last 12 months':'إعجابات تيك توك / آخر 12 شهرًا','TikTok shares / last 12 months':'مشاركات تيك توك / آخر 12 شهرًا','Instagram followers':'متابعو إنستجرام',
+'What I Do':'ماذا أقدّم','One connected creative system':'منظومة إبداعية واحدة متكاملة',
+'Media Buying':'الشراء الإعلاني','Meta, TikTok and LinkedIn campaigns built for messages and qualified leads, with tracking and constant optimization.':'حملات على ميتا وتيك توك ولينكدإن مصممة لجلب الرسائل والعملاء المحتملين المؤهلين، مع التتبع والتحسين المستمر.',
+'Lead generation':'توليد العملاء المحتملين','WhatsApp funnels':'مسارات واتساب','Performance analysis':'تحليل الأداء',
+'Content & Video':'المحتوى والفيديو','Reels, UGC concepts and commercial videos edited to hold attention and sell.':'ريلز وأفكار UGC وفيديوهات تجارية بمونتاج يجذب الانتباه ويبيع.',
+'Content calendars':'جداول المحتوى','Reels and UGC ads':'ريلز وإعلانات UGC','Video editing':'مونتاج الفيديو',
+'Posters and ad creatives for restaurants, clinics, finance, agriculture and education.':'بوسترات وتصاميم إعلانية للمطاعم والعيادات والتمويل والزراعة والتعليم.',
+'Commercial posters':'بوسترات تجارية','Ad creatives':'تصاميم إعلانية','Campaign visuals':'تصاميم بصرية للحملات',
+'Career & Experience':'المسيرة والخبرات','Built across many markets':'خبرة عبر أسواق متعددة',
+'03/2026 – Present':'03/2026 – الآن','2026 / UAE':'2026 / الإمارات','7+ Years':'+7 سنوات',
+'Digital Marketing at MIG FARM':'التسويق الرقمي في MIG FARM',
+'Digital marketing for MIG FARM, an agricultural brand: social media content, commercial posters, video content and ad creatives across Instagram, TikTok and Facebook.':'التسويق الرقمي لعلامة MIG FARM الزراعية: محتوى سوشيال ميديا وبوسترات تجارية ومحتوى فيديو وتصاميم إعلانية على إنستجرام وتيك توك وفيسبوك.',
+'Facebook views / 90 days':'مشاهدات فيسبوك / 90 يومًا','TikTok video views / 12 months':'مشاهدات تيك توك / 12 شهرًا','TikTok likes / 12 months':'إعجابات تيك توك / 12 شهرًا',
+'Real Estate Marketing':'التسويق العقاري','Worked on real estate lead generation and messages campaigns for projects in UAE with campaign creatives, targeting, lead forms and WhatsApp funnels.':'عملت على حملات توليد العملاء المحتملين وحملات الرسائل لمشاريع عقارية في الإمارات، شاملة تصاميم الحملات والاستهداف ونماذج العملاء ومسارات واتساب.',
+'Social Media & Ads':'السوشيال ميديا والإعلانات','Managed content calendars, captions, reels ideas, paid campaigns, campaign analysis and performance optimization for multiple local businesses.':'أدرت جداول المحتوى والكابشنز وأفكار الريلز والحملات المدفوعة وتحليل الحملات وتحسين الأداء لعدة أعمال محلية.',
+'Creative Production':'الإنتاج الإبداعي','Produced posters, reels, videos, UGC concepts and commercial creatives for restaurants, clinics, finance, agriculture and educational campaigns.':'أنتجت بوسترات وريلز وفيديوهات وأفكار UGC وتصاميم تجارية لحملات المطاعم والعيادات والتمويل والزراعة والتعليم.',
+'Selected Projects / Campaigns':'مشاريع وحملات مختارة','Real campaign results':'نتائج حملات حقيقية',
+'Screenshots and numbers from real Meta Ads campaigns: messages, leads, cost per result and managed budget.':'لقطات وأرقام من حملات Meta Ads حقيقية: الرسائل والعملاء المحتملون وتكلفة النتيجة والميزانية المُدارة.',
+'Conversations':'المحادثات','Leads':'العملاء المحتملون','AED Budget':'ميزانية بالدرهم','Creatives':'التصاميم الإبداعية','Years':'سنوات',
+'Messages':'رسائل','Lead Gen':'توليد عملاء','Sustainability':'الاستدامة',
+'Messages Campaign':'حملة رسائل','Real Estate Messages':'رسائل عقارية',
+'Zaora Campaign':'حملة زاورا','Mosque Campaign':'حملة المسجد','Meta Lead Campaign':'حملة عملاء محتملين على ميتا','April Leads Campaign':'حملة عملاء أبريل','Carbon Footprint':'البصمة الكربونية',
+'Qualified Leads':'عملاء مؤهلون','CPR':'تكلفة النتيجة','CPL':'تكلفة العميل','AVG CPR':'متوسط تكلفة النتيجة','Budget':'الميزانية',
+'Creative Design Portfolio':'معرض التصاميم',
+'Agriculture':'الزراعة','Education':'التعليم','Food':'الطعام','Finance':'التمويل',
+'MIG FARM Agricultural Poster':'بوستر MIG FARM الزراعي','DR/Rahaf shkeir Course Poster':'بوستر دورة د/رهف شكير','WhatsApp Lelhlo Offer':'عرض واتساب Lelhlo','Thiqah Finance Campaign':'حملة ثقة للتمويل',
+'Video Production & Editing':'إنتاج ومونتاج الفيديو','Reels made for attention':'ريلز صُنعت لجذب الانتباه','Short-form videos for ads, social media campaigns, UGC and commercial content.':'فيديوهات قصيرة للإعلانات وحملات السوشيال ميديا وUGC والمحتوى التجاري.',
+'Video 01':'فيديو 01','Video 02':'فيديو 02','Video 03':'فيديو 03','Video 04':'فيديو 04','Video 05':'فيديو 05','Video 06':'فيديو 06',
+'Real Estate Reel':'ريل عقاري','Promo Video':'فيديو ترويجي','Social Media Reel':'ريل سوشيال ميديا','Campaign Video':'فيديو حملة','UGC Style Video':'فيديو بأسلوب UGC','Creative Reel':'ريل إبداعي',
+'About Me':'نبذة عني',
+'I combine media buying with creative production. That means I do not just run ads; I create the hooks, visuals, videos and funnels that make the campaign convert.':'أجمع بين الشراء الإعلاني والإنتاج الإبداعي. أي أنني لا أدير الإعلانات فقط، بل أصنع الأفكار الجاذبة والتصاميم والفيديوهات والمسارات التي تجعل الحملة تحقق نتائج.',
+"Let's Work":'لنعمل معًا','WhatsApp: +971 52 736 6719':'واتساب: ‎+971 52 736 6719','LinkedIn Profile':'الملف الشخصي على لينكدإن',
+'© 2026 Karim Atef — Creative Performance Marketer':'© 2026 كريم عاطف — مسوّق أداء إبداعي'
+};
+AR['Real Estate']=AR['Real Estate'];
+const TITLE_EN=document.title,TITLE_AR='كريم عاطف | مسوّق أداء إبداعي';
+const norm=t=>t.replace(/\s+/g,' ').trim();
+const origText=new WeakMap();
+const splitEls=$$('.section-title,.contact-panel h2,.creative-card h2');
+splitEls.forEach(el=>el.dataset.en=el.getAttribute('aria-label'));
+const heroLines=$$('.big-name h1 .line');
+heroLines.forEach(l=>l.dataset.en=l.getAttribute('aria-label'));
+function setLang(lang,animate){
+  const ar=lang==='ar';
+  root.lang=ar?'ar':'en';root.dir=ar?'rtl':'ltr';
+  document.title=ar?TITLE_AR:TITLE_EN;
+  const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode(n){
+    const p=n.parentElement;
+    if(!p||p.closest('script,style,.w,.ch,.line'))return NodeFilter.FILTER_REJECT;
+    return n.nodeValue.trim()?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_REJECT;
+  }});
+  const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);
+  nodes.forEach(n=>{
+    if(!origText.has(n))origText.set(n,n.nodeValue);
+    const o=origText.get(n),k=norm(o);
+    n.nodeValue=ar&&AR[k]?o.replace(o.trim(),AR[k]):o;
+  });
+  splitEls.forEach(el=>{
+    const en=el.dataset.en;el.textContent=ar&&AR[en]?AR[en]:en;splitWords(el);
+  });
+  let i=0;
+  heroLines.forEach(l=>{
+    const en=l.dataset.en,t=ar&&AR[en]?AR[en]:en;
+    l.setAttribute('aria-label',t);
+    l.innerHTML=(ar?[t]:[...t]).map(c=>`<span class="ch" aria-hidden="true" style="--i:${i++}">${c}</span>`).join('');
+  });
+  const b=$('#lang');if(b){b.textContent=ar?'EN':'عربي';b.setAttribute('aria-label',ar?'Switch to English':'التبديل إلى العربية')}
+  try{localStorage.setItem('lang',lang)}catch(e){}
+}
+let saved=null;try{saved=localStorage.getItem('lang')}catch(e){}
+if(saved==='ar')setLang('ar');
+$('#lang')?.addEventListener('click',()=>setLang(root.lang==='ar'?'en':'ar'));
+
 /* loader counter, then start hero */
 const count=$('.loader-count b');
 const ready=()=>root.classList.add('ready');
@@ -1380,10 +1501,9 @@ function onScroll(){
   header.classList.toggle('hide',y>lastY&&y>200&&!$('#menu').classList.contains('open'));
   lastY=y;
   if(!reduce){
-    if(y<innerHeight*1.2){
-      h1lines[0]&&(h1lines[0].style.translate=(-y*.18)+'px 0');
-      h1lines[1]&&(h1lines[1].style.translate=(y*.18)+'px 0');
-    }
+    const hy=Math.min(y,innerHeight*.8);
+    h1lines[0]&&(h1lines[0].style.translate=(-hy*.12)+'px 0');
+    h1lines[1]&&(h1lines[1].style.translate=(hy*.12)+'px 0');
     imgs.forEach(im=>{
       const r=im.parentElement.getBoundingClientRect();
       if(r.bottom<0||r.top>innerHeight)return;
