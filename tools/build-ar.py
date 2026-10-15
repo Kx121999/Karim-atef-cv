@@ -155,6 +155,8 @@ def build():
     res = meta(res, 'property', 'og:locale:alternate', 'en_US')
     res = meta(res, 'name', 'twitter:title', TITLE)
     res = meta(res, 'name', 'twitter:description', TW_DESC)
+    res = meta(res, 'property', 'og:image', SITE + 'og/home-ar.jpg')
+    res = meta(res, 'name', 'twitter:image', SITE + 'og/home-ar.jpg')
     res = res.replace('<link rel="canonical" href="%s" />' % SITE,
                       '<base href="../" />\n<link rel="canonical" href="%sar/" />' % SITE, 1)
     assert '<base href' in res
@@ -178,6 +180,9 @@ def build_article(slug):
     res = meta(res, 'property', 'og:title', M['og_title'])
     res = meta(res, 'property', 'og:description', M['og_description'])
     res = meta(res, 'property', 'og:url', SITE + 'ar/' + slug)
+    og = SITE + 'og/' + slug.replace('.html', '') + '-ar.jpg'
+    res = meta(res, 'property', 'og:image', og)
+    res = meta(res, 'name', 'twitter:image', og)
     res = res.replace('<link rel="canonical" href="%s%s" />' % (SITE, slug),
                       '<base href="../" />\n<link rel="canonical" href="%sar/%s" />' % (SITE, slug), 1)
     assert '<base href' in res, slug
@@ -185,7 +190,7 @@ def build_article(slug):
         res = re.sub(r'(https://wa\.me/971527366719\?text=)[^"]*', lambda m: m.group(1) + urllib.parse.quote(M['wa']), res, count=1)
     m = re.search(r'(<script type="application/ld\+json">)(.*?)(</script>)', res, flags=re.S)
     ld = json.loads(m.group(2))
-    ld.update({'headline': M['og_title'], 'inLanguage': 'ar', 'mainEntityOfPage': SITE + 'ar/' + slug, 'description': M['description']})
+    ld.update({'headline': M['og_title'], 'inLanguage': 'ar', 'image': og, 'mainEntityOfPage': SITE + 'ar/' + slug, 'description': M['description']})
     res = res[:m.start(2)] + json.dumps(ld, ensure_ascii=False, separators=(',', ':')) + res[m.end(2):]
     return res, missing
 

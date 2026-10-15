@@ -45,6 +45,15 @@ async function jump(page, id) {
   await page.waitForTimeout(300);
 }
 
+/** Wait for every finite animation and transition (reveals, fades) to finish, so axe measures final colours. */
+async function settle(page) {
+  await page.evaluate(() => {
+    // only time-based animations: scroll-driven ones never "finish" while the page stands still
+    const timed = document.getAnimations().filter((a) => a.timeline instanceof DocumentTimeline && a.effect && a.effect.getComputedTiming().iterations !== Infinity);
+    return Promise.race([Promise.all(timed.map((a) => a.finished.catch(() => {}))), new Promise((r) => setTimeout(r, 5000))]);
+  });
+}
+
 const axeSource = () => fs.readFileSync(path.join(__dirname, '..', 'node_modules', 'axe-core', 'axe.min.js'), 'utf8');
 
-module.exports = { test, expect: base.expect, open, scrollThrough, jump, axeSource };
+module.exports = { test, expect: base.expect, open, scrollThrough, jump, settle, axeSource };

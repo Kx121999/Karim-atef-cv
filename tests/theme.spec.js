@@ -1,4 +1,4 @@
-const { test, expect, open, scrollThrough, axeSource } = require('./helpers');
+const { test, expect, open, scrollThrough, settle, axeSource } = require('./helpers');
 
 const bg = (page) => page.evaluate(() => getComputedStyle(document.body).backgroundColor);
 
@@ -27,6 +27,7 @@ for (const [name, url] of [['English', '/index.html'], ['Arabic page', '/ar/']])
     await page.evaluate(() => window.KC.load());
     await scrollThrough(page);
     await page.waitForTimeout(500);
+    await settle(page);
     await page.evaluate(axeSource());
     const violations = await page.evaluate(async () => {
       const r = await axe.run(document, { runOnly: ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'best-practice'] });

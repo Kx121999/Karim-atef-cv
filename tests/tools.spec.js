@@ -104,3 +104,23 @@ test('tools render in Arabic', async ({ page }) => {
   await page.keyboard.press('Control+k');
   await expect(page.locator('#ckList li').first()).toContainText('الخدمات');
 });
+
+test('Ad Preview: four placements, own image, download and WhatsApp', async ({ page }) => {
+  await jump(page, 'adlab');
+  const size = () => page.evaluate(() => { const c = document.getElementById('apCv'); return [c.width, c.height]; });
+  await expect.poll(size).toEqual([1080, expect.any(Number)]);
+  for (const [v, tall] of [['fb', false], ['ig', false], ['story', true], ['tt', true]]) {
+    await page.locator(`#apPlace button[data-v=${v}]`).click();
+    await expect.poll(async () => (await size())[1] === 1920, { message: v }).toBe(tall);
+  }
+  await page.fill('#apHead', 'Spring offer');
+  await page.locator('#apPlace button[data-v=fb]').click();
+  await expect(page.locator('#apCv')).toHaveAttribute('aria-label', /Spring offer/);
+  // a file the visitor picks is drawn without leaving the page
+  await page.setInputFiles('#apFile', require('path').join(__dirname, '..', 'profile.jpg'));
+  await expect(page.locator('.ap-up')).toHaveClass(/on/);
+  const [dl] = await Promise.all([page.waitForEvent('download'), page.locator('#apDl').click()]);
+  expect(dl.suggestedFilename()).toBe('ad-preview-fb.png');
+  await page.locator('#apWa').click();
+  expect(await decodeWa(page)).toContain('Headline: Spring offer');
+});
