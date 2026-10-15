@@ -152,6 +152,175 @@ const {$,$$,reduce,root,lite,NF,fmtN,WA,track}=K;
   if(document.fonts&&document.fonts.addEventListener)document.fonts.addEventListener('loadingdone',redraw);
 })();
 
+/* ---------- ad preview: an approximate feed mock-up drawn on a canvas ---------- */
+(function adPreview(){
+  const cv=$('#apCv');if(!cv)return;
+  const ctx=cv.getContext('2d');
+  const ar=()=>root.lang==='ar';
+  const CTA={learn:['Learn more','اعرف المزيد'],msg:['Send message','إرسال رسالة'],shop:['Shop now','تسوّق الآن'],book:['Book now','احجز الآن'],contact:['Contact us','اتصل بنا']};
+  const PLACE={fb:['Facebook feed','موجز فيسبوك'],ig:['Instagram feed','موجز إنستجرام'],story:['Stories and Reels','الستوري والريلز'],tt:['TikTok','تيك توك']};
+  const DEF={en:['Your Brand','Your offer in one or two short lines. Tell people what to do next.','Your headline here'],ar:['اسم علامتك','عرضك في سطر أو سطرين. قل للناس ما الخطوة التالية.','عنوانك هنا']};
+  const el={name:$('#apName'),text:$('#apText'),head:$('#apHead'),cta:$('#apCta')};
+  const keys=['name','text','head'];
+  const st={place:'fb',src:'design-1-s.webp',upload:null,dirty:{}};
+  const cache={};
+  let img=null,token=0;
+  const fam=()=>ar()?'Cairo, Inter, sans-serif':'Inter, Cairo, sans-serif';
+  const rr=(x,y,w,h,r)=>{ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath()};
+  function wrap(text,font,max,limit){
+    ctx.font=font;const words=String(text).split(/\s+/).filter(Boolean),out=[];let cur='';
+    for(const w of words){const t=cur?cur+' '+w:w;if(ctx.measureText(t).width>max&&cur){out.push(cur);cur=w}else cur=t}
+    if(cur)out.push(cur);
+    if(limit&&out.length>limit){const keep=out.slice(0,limit);let last=keep[limit-1]+'…';while(ctx.measureText(last).width>max&&last.length>2)last=last.slice(0,-2)+'…';keep[limit-1]=last;return keep}
+    return out;
+  }
+  function cover(im,x,y,w,h){
+    if(!im){ctx.fillStyle='#ddd';ctx.fillRect(x,y,w,h);return}
+    const s=Math.max(w/im.naturalWidth,h/im.naturalHeight),sw=w/s,sh=h/s;
+    ctx.drawImage(im,(im.naturalWidth-sw)/2,(im.naturalHeight-sh)/2,sw,sh,x,y,w,h);
+  }
+  function load(src){
+    if(cache[src])return cache[src];
+    return cache[src]=new Promise(res=>{const i=new Image();i.decoding='async';i.onload=()=>res(i);i.onerror=()=>res(null);i.src=src});
+  }
+  const val=k=>el[k].value.trim();
+  const cta=()=>CTA[el.cta.value][ar()?1:0];
+  /* text helpers that respect the page direction */
+  function T(s,x,y,font,color,align){ctx.font=font;ctx.fillStyle=color;ctx.textAlign=align||(ar()?'right':'left');ctx.fillText(s,x,y)}
+  function avatar(x,y,r,ring){
+    if(ring){const g=ctx.createLinearGradient(x-r,y+r,x+r,y-r);g.addColorStop(0,'#f9a43a');g.addColorStop(.5,'#e1306c');g.addColorStop(1,'#8a3ab9');ctx.fillStyle=g;ctx.beginPath();ctx.arc(x,y,r+5,0,6.283);ctx.fill();ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(x,y,r+1.5,0,6.283);ctx.fill()}
+    ctx.fillStyle=getComputedStyle(root).getPropertyValue('--accent').trim()||'#d7ff5f';
+    ctx.beginPath();ctx.arc(x,y,r,0,6.283);ctx.fill();
+    ctx.font='900 '+Math.round(r*1.05)+'px '+fam();ctx.fillStyle='#000';ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText((val('name')||'K').slice(0,1).toUpperCase(),x,y+2);ctx.textBaseline='alphabetic';
+  }
+  function size(W,H){if(cv.width!==W||cv.height!==H){cv.width=W;cv.height=H}}
+
+  function drawFeed(ig){
+    const W=1080,rtl=ar(),f=fam(),pad=40,X=rtl?W-pad:pad;
+    const head=val('head'),text=val('text'),name=val('name')||'Your Brand';
+    const textLines=ig?[]:wrap(text,'400 34px '+f,W-pad*2,3);
+    const imgH=ig?1350:1080;
+    const top=ig?120:150, txtH=ig?0:textLines.length*48+(textLines.length?24:0);
+    const capLines=ig?wrap(name+'  '+text,'400 32px '+f,W-pad*2,2):[];
+    const H=top+txtH+imgH+(ig?110+90+capLines.length*46+40:150+96);
+    size(W,H);
+    ctx.direction=rtl?'rtl':'ltr';
+    ctx.fillStyle='#fff';ctx.fillRect(0,0,W,H);
+    const ax=rtl?W-pad-40:pad+40;avatar(ax,top/2,ig?34:44,ig);
+    const nx=rtl?ax-(ig?60:68):ax+(ig?60:68);
+    T(name,nx,top/2-(ig?2:6),'700 '+(ig?30:34)+'px '+f,'#050505');
+    T(rtl?'مُموَّل':'Sponsored',nx,top/2+(ig?32:36),'400 26px '+f,'#65676b');
+    ctx.fillStyle='#65676b';for(let i=0;i<3;i++){ctx.beginPath();ctx.arc((rtl?pad+10:W-pad-10)+(i-1)*14*(rtl?-1:1),top/2,5,0,6.283);ctx.fill()}
+    let y=top;
+    textLines.forEach((l,i)=>{T(l,X,y+40+i*48,'400 34px '+f,'#050505')});
+    y+=txtH;
+    cover(img,0,y,W,imgH);y+=imgH;
+    if(!ig){
+      ctx.fillStyle='#f0f2f5';ctx.fillRect(0,y,W,150);
+      T((name).toUpperCase(),X,y+50,'400 24px '+f,'#65676b');
+      const hl=wrap(head,'700 32px '+f,W-pad*2-300,1)[0]||'';
+      T(hl,X,y+96,'700 32px '+f,'#050505');
+      ctx.font='700 30px '+f;const bw=ctx.measureText(cta()).width+60,bx=rtl?pad:W-pad-bw;
+      ctx.fillStyle='#e4e6eb';rr(bx,y+44,bw,64,12);ctx.fill();
+      T(cta(),bx+bw/2,y+87,'700 30px '+f,'#050505','center');
+      y+=150;
+      const labs=rtl?['أعجبني','تعليق','مشاركة']:['Like','Comment','Share'];
+      ctx.fillStyle='#ced0d4';ctx.fillRect(pad,y,W-pad*2,2);
+      labs.forEach((l,i)=>T(l,(W/6)*(i*2+1),y+62,'600 28px '+f,'#65676b','center'));
+    }else{
+      ctx.fillStyle='#efefef';ctx.fillRect(0,y,W,110);
+      T(cta(),X,y+68,'700 32px '+f,'#0095f6');
+      T(rtl?'‹':'›',rtl?pad:W-pad,y+70,'400 48px '+f,'#0095f6',rtl?'left':'right');
+      y+=110;
+      /* outline icons: heart, comment, share, save */
+      ctx.strokeStyle='#050505';ctx.lineWidth=4;
+      const ix=i=>rtl?W-pad-28-i*78:pad+28+i*78,iy=y+48;
+      ctx.beginPath();const hx=ix(0);ctx.moveTo(hx,iy+16);ctx.bezierCurveTo(hx-34,iy-6,hx-18,iy-30,hx,iy-14);ctx.bezierCurveTo(hx+18,iy-30,hx+34,iy-6,hx,iy+16);ctx.stroke();
+      ctx.beginPath();ctx.arc(ix(1),iy,20,0.4,5.9);ctx.stroke();
+      ctx.beginPath();const sx=ix(2);ctx.moveTo(sx-20,iy-14);ctx.lineTo(sx+22,iy-18);ctx.lineTo(sx+4,iy+20);ctx.closePath();ctx.stroke();
+      const bx=rtl?pad+20:W-pad-20;ctx.beginPath();ctx.moveTo(bx-16,iy-22);ctx.lineTo(bx+16,iy-22);ctx.lineTo(bx+16,iy+22);ctx.lineTo(bx,iy+8);ctx.lineTo(bx-16,iy+22);ctx.closePath();ctx.stroke();
+      y+=90;
+      capLines.forEach((l,i)=>T(l,X,y+40+i*46,'400 32px '+f,'#050505'));
+      if(head){/* headline sits in the CTA bar on Instagram; nothing else to draw */}
+    }
+  }
+  function drawVertical(tt){
+    const W=1080,H=1920,rtl=ar(),f=fam(),pad=48,X=rtl?W-pad:pad;
+    size(W,H);ctx.direction=rtl?'rtl':'ltr';
+    ctx.fillStyle='#000';ctx.fillRect(0,0,W,H);
+    cover(img,0,0,W,H);
+    let g=ctx.createLinearGradient(0,0,0,360);g.addColorStop(0,'rgba(0,0,0,.55)');g.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=g;ctx.fillRect(0,0,W,360);
+    g=ctx.createLinearGradient(0,H-820,0,H);g.addColorStop(0,'rgba(0,0,0,0)');g.addColorStop(1,'rgba(0,0,0,.78)');ctx.fillStyle=g;ctx.fillRect(0,H-820,W,820);
+    const name=val('name')||'Your Brand',text=val('text');
+    if(!tt){
+      ctx.fillStyle='rgba(255,255,255,.35)';rr(pad,40,W-pad*2,8,4);ctx.fill();ctx.fillStyle='#fff';rr(rtl?W-pad-(W-pad*2)*.35:pad,40,(W-pad*2)*.35,8,4);ctx.fill();
+      const ax=rtl?W-pad-36:pad+36;avatar(ax,120,36,false);
+      T(name,rtl?ax-58:ax+58,116,'700 32px '+f,'#fff');
+      T(rtl?'مُموَّل':'Sponsored',rtl?ax-58:ax+58,152,'400 26px '+f,'rgba(255,255,255,.85)');
+      const lines=wrap(text,'500 36px '+f,W-pad*2,2);
+      lines.forEach((l,i)=>T(l,X,H-330+i*50,'500 36px '+f,'#fff'));
+      ctx.font='800 34px '+f;const bw=Math.max(360,ctx.measureText(cta()).width+120),bx=(W-bw)/2;
+      ctx.fillStyle='#fff';rr(bx,H-200,bw,92,46);ctx.fill();
+      T(cta(),W/2,H-140,'800 34px '+f,'#050505','center');
+      ctx.strokeStyle='#fff';ctx.lineWidth=5;ctx.beginPath();ctx.moveTo(W/2-18,H-226);ctx.lineTo(W/2,H-244);ctx.lineTo(W/2+18,H-226);ctx.stroke();
+    }else{
+      const rx=rtl?pad+50:W-pad-50;
+      avatar(rx,H-980,50,false);
+      ctx.fillStyle='#fe2c55';ctx.beginPath();ctx.arc(rx,H-928,18,0,6.283);ctx.fill();
+      ctx.fillStyle='#fff';ctx.font='900 28px Inter';ctx.textAlign='center';ctx.fillText('+',rx,H-918);
+      /* right rail: heart, comment and share drawn as shapes (no emoji fonts needed) */
+      ctx.fillStyle='rgba(255,255,255,.95)';
+      let y0=H-820;ctx.beginPath();ctx.moveTo(rx,y0+30);ctx.bezierCurveTo(rx-56,y0-6,rx-30,y0-50,rx,y0-24);ctx.bezierCurveTo(rx+30,y0-50,rx+56,y0-6,rx,y0+30);ctx.fill();
+      y0=H-680;ctx.beginPath();ctx.ellipse(rx,y0-6,40,32,0,0,6.283);ctx.fill();ctx.beginPath();ctx.moveTo(rx-22,y0+18);ctx.lineTo(rx-30,y0+40);ctx.lineTo(rx-2,y0+24);ctx.fill();
+      y0=H-540;ctx.beginPath();ctx.moveTo(rx+36,y0-6);ctx.lineTo(rx-4,y0-40);ctx.lineTo(rx-4,y0-20);ctx.quadraticCurveTo(rx-40,y0-18,rx-38,y0+30);ctx.quadraticCurveTo(rx-22,y0+6,rx-4,y0+8);ctx.lineTo(rx-4,y0+28);ctx.closePath();ctx.fill();
+      const maxW=W-pad*2-150,LX=rtl?W-pad:pad;
+      T('@'+name.replace(/\s+/g,'').toLowerCase(),LX,H-430,'800 38px '+f,'#fff');
+      wrap(text,'400 34px '+f,maxW,2).forEach((l,i)=>T(l,LX,H-376+i*48,'400 34px '+f,'#fff'));
+      ctx.font='600 26px '+f;const sp=rtl?'مُموَّل':'Sponsored',sw=ctx.measureText(sp).width+28;
+      ctx.fillStyle='rgba(255,255,255,.25)';rr(rtl?LX-sw:LX,H-262,sw,44,8);ctx.fill();
+      T(sp,rtl?LX-14:LX+14,H-230,'600 26px '+f,'#fff');
+      ctx.fillStyle='#fe2c55';rr(pad,H-190,W-pad*2,96,12);ctx.fill();
+      T(cta(),W/2,H-128,'800 36px '+f,'#fff','center');
+    }
+  }
+  function draw(){
+    ctx.textBaseline='alphabetic';
+    if(st.place==='fb')drawFeed(false);else if(st.place==='ig')drawFeed(true);else drawVertical(st.place==='tt');
+    cv.setAttribute('aria-label',(ar()?'معاينة إعلان: ':'Ad preview: ')+PLACE[st.place][ar()?1:0]+' · '+val('head'));
+  }
+  function redraw(){
+    const t=++token;
+    (st.upload?Promise.resolve(st.upload):load(st.src)).then(i=>{if(t!==token)return;img=i;draw()});
+  }
+  function fill(force){const d=DEF[ar()?'ar':'en'];keys.forEach((k,i)=>{if(force||!st.dirty[k])el[k].value=d[i]})}
+  $$('#apPlace button').forEach(b=>b.addEventListener('click',()=>{$$('#apPlace button').forEach(x=>x.classList.toggle('on',x===b));st.place=b.dataset.v;redraw();track('adpreview_place',{place:st.place})}));
+  $$('#apPics button').forEach(b=>b.addEventListener('click',()=>{$$('#apPics button,.ap-up').forEach(x=>x.classList.toggle('on',x===b));st.src=b.dataset.src;st.upload=null;redraw()}));
+  $('#apFile').addEventListener('change',e=>{
+    const f=e.target.files&&e.target.files[0];if(!f||!/^image\//.test(f.type))return;
+    const url=URL.createObjectURL(f),i=new Image();
+    i.onload=()=>{st.upload=i;$$('#apPics button').forEach(x=>x.classList.remove('on'));$('.ap-up').classList.add('on');redraw()};
+    i.src=url;track('adpreview_upload');
+  });
+  keys.forEach(k=>el[k].addEventListener('input',()=>{st.dirty[k]=true;redraw()}));
+  el.cta.addEventListener('change',redraw);
+  $('#apDl').addEventListener('click',()=>{
+    draw();cv.toBlob(b=>{if(!b)return;const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='ad-preview-'+st.place+'.png';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),2000)},'image/png');
+    track('adpreview_download',{place:st.place});
+  });
+  $('#apWa').addEventListener('click',()=>{
+    const p=PLACE[st.place][ar()?1:0];
+    const t=ar()?`أهلًا كريم، جهّزت معاينة إعلان (${p}) من موقعك.\nالعنوان: ${val('head')}\nالنص: ${val('text')}\nأريد مساعدتك في تشغيله.`:`Hi Karim, I made an ad preview (${p}) on your site.\nHeadline: ${val('head')}\nText: ${val('text')}\nI would like help running it.`;
+    window.open(WA+encodeURIComponent(t),'_blank','noopener');
+    track('adpreview_whatsapp',{place:st.place});
+  });
+  new MutationObserver(()=>{fill(false);redraw()}).observe(root,{attributes:true,attributeFilter:['lang','data-accent']});
+  fill(true);
+  new IntersectionObserver((es,o)=>{if(es.some(e=>e.isIntersecting)){o.disconnect();redraw()}},{rootMargin:'300px'}).observe(cv);
+  (document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(redraw).catch(()=>{});
+  K.adPreview={draw,state:st};
+})();
+
 /* ---------- reel hooks ---------- */
 (function hooks(){
   const list=$('#hkList');if(!list)return;
@@ -321,7 +490,7 @@ const {$,$$,reduce,root,lite,NF,fmtN,WA,track}=K;
 
 (function palette(){
   const ov=$('#cmdk'),inp=$('#ckIn'),list=$('#ckList');if(!ov)return;
-  const S=[['services','Services','الخدمات'],['experience','Experience','الخبرات'],['campaigns','Projects','المشاريع'],['estimator','Campaign Estimator','حاسبة الحملات'],['audit','Ad Audit','فحص الإعلان'],['planner','Campaign Plan','خطة الحملة'],['designs','Designs','التصاميم'],['studio','Poster Lab','مختبر البوسترات'],['hooks','Reel Hooks','هوكس الريلز'],['videos','Videos','الفيديوهات'],['about','About','نبذة'],['book','Request a Call','طلب مكالمة'],['contact','Contact','تواصل']];
+  const S=[['services','Services','الخدمات'],['experience','Experience','الخبرات'],['campaigns','Projects','المشاريع'],['estimator','Campaign Estimator','حاسبة الحملات'],['audit','Ad Audit','فحص الإعلان'],['planner','Campaign Plan','خطة الحملة'],['designs','Designs','التصاميم'],['studio','Poster Lab','مختبر البوسترات'],['adlab','Ad Preview','معاينة الإعلان'],['hooks','Reel Hooks','هوكس الريلز'],['videos','Videos','الفيديوهات'],['about','About','نبذة'],['book','Request a Call','طلب مكالمة'],['contact','Contact','تواصل']];
   const items=S.map(x=>({g:0,en:x[1],ar:x[2],run:()=>{const el=document.getElementById(x[0]);K.goTo(el)}}))
     .concat([
       {g:1,en:'Switch language',ar:'تبديل اللغة',run:()=>$('#lang').click()},

@@ -627,7 +627,7 @@ addEventListener('keydown',stubKey);
 $('#ckBtn')?.addEventListener('click',stubBtn);
 {
   const io=new IntersectionObserver(es=>{if(es.some(e=>e.isIntersecting)){io.disconnect();KC.load()}},{rootMargin:'1400px 0px'});
-  ['#audit','#planner','#studio','#hooks','#book'].forEach(s=>{const el=$(s);if(el)io.observe(el)});
+  ['#audit','#planner','#studio','#adlab','#hooks','#book'].forEach(s=>{const el=$(s);if(el)io.observe(el)});
   addEventListener('load',()=>('requestIdleCallback' in window?requestIdleCallback(KC.load,{timeout:7000}):setTimeout(KC.load,4000)));
 }
 

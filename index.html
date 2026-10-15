@@ -1500,6 +1500,18 @@ html[data-theme=light][data-accent=sky]{--accent-ink:#006a8e}
 html[data-theme=light] .lightbox,html[data-theme=light] .project-media span,html[data-theme=light] .ph{--accent-ink:var(--accent)}
 html[data-theme=light] main:before{opacity:.03}
 html[data-theme=light] .ph{border-color:rgb(var(--fgr) / .22)}
+/* ---------- ad preview ---------- */
+.ap-pics{display:flex;flex-wrap:wrap;gap:8px}
+.ap-pics button,.ap-up{width:58px;height:58px;border-radius:12px;border:2px solid var(--line);padding:0;overflow:hidden;cursor:pointer;background:var(--soft);display:grid;place-items:center}
+.ap-pics button img{width:100%;height:100%;object-fit:cover}
+.ap-pics button.on{border-color:var(--accent)}
+.ap-up{position:relative;width:auto;padding:0 12px;font-size:.72rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.ap-up input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.ap-up:focus-within{outline:2px solid var(--accent);outline-offset:3px}
+.ap-up.on{border-color:var(--accent);color:var(--text)}
+.ap-note{color:var(--muted);font-size:.8rem;margin-top:4px}
+.ap-preview canvas{max-height:78vh;width:auto;max-width:100%;margin-inline:auto;display:block;border-radius:18px;box-shadow:0 22px 60px rgba(0,0,0,.45)}
+[dir=rtl] .ap-up{letter-spacing:0}
 </style>
 </head>
 <body>
@@ -1677,8 +1689,8 @@ html[data-theme=light] .ph{border-color:rgb(var(--fgr) / .22)}
         <div class="viz phone" aria-hidden="true"><div class="ph"><img src="video-5.webp" alt="" width="480" height="854" loading="lazy" decoding="async"><i class="ph-play"></i><u class="ph-bar"><b></b></u></div><span>6 reels in the portfolio</span></div></div>
       <div class="service wide spot"><div class="svc-text"><div class="service-num">03</div><h3>Graphic Design</h3><p>Posters and ad creatives for restaurants, clinics, finance, agriculture and education.</p><ul><li>Commercial posters</li><li>Ad creatives</li><li>Campaign visuals</li></ul></div>
         <div class="viz mosaic" aria-hidden="true"><div class="mo"><img src="design-1-s.webp" alt="" width="720" height="720" loading="lazy" decoding="async"><img src="design-2-s.webp" alt="" width="720" height="720" loading="lazy" decoding="async"><img src="design-3-s.webp" alt="" width="720" height="720" loading="lazy" decoding="async"><img src="design-4-s.webp" alt="" width="720" height="720" loading="lazy" decoding="async"></div><span>Selected posters</span></div></div>
-      <div class="service tools spot"><div class="svc-text"><div class="service-num">04</div><h3>Try the tools</h3><p>Six small tools built from my own campaign numbers. No sign-up.</p></div>
-        <div class="chips"><a href="#estimator">Campaign Estimator</a><a href="#audit">Ad Audit</a><a href="#planner">Campaign Plan</a><a href="#studio">Poster Lab</a><a href="#hooks">Reel Hooks</a><a href="#book">Request a Call</a></div></div>
+      <div class="service tools spot"><div class="svc-text"><div class="service-num">04</div><h3>Try the tools</h3><p>Seven small tools built from my own campaign numbers. No sign-up.</p></div>
+        <div class="chips"><a href="#estimator">Campaign Estimator</a><a href="#audit">Ad Audit</a><a href="#planner">Campaign Plan</a><a href="#studio">Poster Lab</a><a href="#adlab">Ad Preview</a><a href="#hooks">Reel Hooks</a><a href="#book">Request a Call</a></div></div>
     </div>
   </div>
 </section>
@@ -1908,6 +1920,41 @@ html[data-theme=light] .ph{border-color:rgb(var(--fgr) / .22)}
         <div class="cf-actions"><button class="btn" type="button" id="stDl">Download PNG</button><button class="btn dark" type="button" id="stWa">Send the idea on WhatsApp</button></div>
       </div>
       <div class="st-preview"><canvas id="posterCv" width="1080" height="1080" role="img" aria-label="Poster preview"></canvas></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="adlab">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">Ad Preview</div>
+      </div>
+      <div>
+        <h2 class="section-title">See your ad before it runs</h2>
+        <p class="section-copy">Pick a placement, add an image and your text, and see roughly how the ad will look in the feed. Your image stays on your device.</p>
+      </div>
+    </div>
+    <div class="studio adlab reveal">
+      <div class="cform studio-controls">
+        <div>
+          <label>Placement</label>
+          <div class="chips" id="apPlace"><button type="button" class="on" data-v="fb">Facebook feed</button><button type="button" data-v="ig">Instagram feed</button><button type="button" data-v="story">Stories and Reels</button><button type="button" data-v="tt">TikTok</button></div>
+        </div>
+        <div>
+          <label>Image</label>
+          <div class="ap-pics" id="apPics"><button type="button" class="on" data-src="design-1-s.webp" aria-label="Poster 1"><img src="design-1-s.webp" alt="" loading="lazy" decoding="async" width="720" height="720"></button><button type="button" data-src="design-2-s.webp" aria-label="Poster 2"><img src="design-2-s.webp" alt="" loading="lazy" decoding="async" width="720" height="720"></button><button type="button" data-src="design-3-s.webp" aria-label="Poster 3"><img src="design-3-s.webp" alt="" loading="lazy" decoding="async" width="720" height="720"></button><button type="button" data-src="design-4-s.webp" aria-label="Poster 4"><img src="design-4-s.webp" alt="" loading="lazy" decoding="async" width="720" height="720"></button><button type="button" data-src="video-5.webp" aria-label="Reel 1"><img src="video-5.webp" alt="" loading="lazy" decoding="async" width="480" height="854"></button><button type="button" data-src="video-2.webp" aria-label="Reel 2"><img src="video-2.webp" alt="" loading="lazy" decoding="async" width="720" height="1280"></button><label class="ap-up"><input type="file" id="apFile" accept="image/*"><span>Your image</span></label></div>
+        </div>
+        <label>Page name<input id="apName" type="text" maxlength="30" dir="auto" autocomplete="off"></label>
+        <label>Primary text<textarea id="apText" maxlength="180" rows="3" dir="auto"></textarea></label>
+        <div class="cf-row">
+          <label>Headline<input id="apHead" type="text" maxlength="40" dir="auto" autocomplete="off"></label>
+          <label>Button<select id="apCta"><option value="learn">Learn more</option><option value="msg" selected>Send message</option><option value="shop">Shop now</option><option value="book">Book now</option><option value="contact">Contact us</option></select></label>
+        </div>
+        <div class="cf-actions"><button class="btn" type="button" id="apDl">Download PNG</button><button class="btn dark" type="button" id="apWa">Send it on WhatsApp</button></div>
+        <p class="ap-note">An approximate preview drawn by this page, not by the platforms. Real ads can crop and cut text differently.</p>
+      </div>
+      <div class="st-preview ap-preview"><canvas id="apCv" width="1080" height="1500" role="img" aria-label="Ad preview"></canvas></div>
     </div>
   </div>
 </section>

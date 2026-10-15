@@ -17,7 +17,7 @@ test('services bento: four tiles, bar values match the portfolio cards', async (
 
 test('tool chips jump to their section', async ({ page }) => {
   await open(page, '/index.html');
-  for (const id of ['estimator', 'audit', 'planner', 'studio', 'hooks', 'book']) {
+  for (const id of ['estimator', 'audit', 'planner', 'studio', 'adlab', 'hooks', 'book']) {
     await page.evaluate(() => { document.documentElement.style.scrollBehavior = 'auto'; scrollTo(0, 0); });
     await page.evaluate((i) => document.querySelector(`.chips a[href="#${i}"]`).click(), id);
     await expect.poll(() => page.evaluate((i) => Math.abs(Math.round(document.getElementById(i).getBoundingClientRect().top)), id), { timeout: 6000, message: id }).toBeLessThanOrEqual(3);
