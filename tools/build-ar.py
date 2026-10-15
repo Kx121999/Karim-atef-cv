@@ -2,7 +2,8 @@
 """Build ar/index.html: the Arabic version of index.html, pre-rendered so search engines can index it.
 
 Text comes from the dictionary in ar.js (the same one the in-page language switch uses).
-Run from the repo root after editing index.html or ar.js:
+Also builds Arabic copies of the article pages (campaign-costs and the case studies) from tools/ar-articles.json.
+Run from the repo root after editing index.html, ar.js, an article page or tools/ar-articles.json:
 
     python3 tools/build-ar.py            # write ar/index.html
     python3 tools/build-ar.py --check    # exit 1 if ar/index.html is out of date, list untranslated text
@@ -12,12 +13,15 @@ import json
 import os
 import re
 import subprocess
+import urllib.parse
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = 'https://kx121999.github.io/Karim-atef-cv/'
 VOID = {'meta', 'link', 'img', 'br', 'input', 'hr', 'source', 'area', 'base', 'col', 'embed', 'track', 'wbr', 'path', 'circle', 'rect', 'use'}
 
+ARTICLES = ['campaign-costs.html', 'case-zaora.html', 'case-mosque.html']
+ARTICLE_LINKS = set(ARTICLES)
 TITLE = 'كريم عاطف | مسوّق أداء إبداعي في الإمارات'
 DESC = 'كريم عاطف – مسوّق أداء إبداعي في الإمارات: شراء إعلانات (ميتا، تيك توك، لينكدإن)، جذب العملاء المحتملين، ريلز، مونتاج فيديو وتصميم تجاري. نتائج حملات حقيقية وحاسبة لتقدير الحملات.'
 OG_DESC = 'مشتري إعلانات وصانع محتوى ومصمم جرافيك ومونتير فيديو في الإمارات. نتائج حقيقية من إعلانات ميتا، ريلز، بوسترات وحاسبة لتقدير الحملات.'
@@ -53,7 +57,7 @@ def get_attr(tag, name):
     return m.group(1) if m else None
 
 
-def translate(src, AR):
+def translate(src, AR, article=False):
     # protect <script>/<style> blocks, they are not touched
     blocks = []
 
@@ -84,8 +88,18 @@ def translate(src, AR):
                 swap_next = 'EN'
             if n == 'a' and get_attr(p, 'href') and get_attr(p, 'href').startswith('#') and len(get_attr(p, 'href')) > 1:
                 tag = set_attr(tag, 'href', 'ar/' + get_attr(p, 'href'))
+            href = get_attr(p, 'href') if n == 'a' else None
+            if href and (article or href in ARTICLE_LINKS):
+                # links to the other pages of the site stay in Arabic
+                if href == './' or href.startswith('./#'):
+                    tag = set_attr(tag, 'href', 'ar/' + href[2:])
+                elif href in ARTICLE_LINKS:
+                    tag = set_attr(tag, 'href', 'ar/' + href)
             if n == 'a' and re.search(r'\sdownload\b', p) and get_attr(p, 'href') == 'Karim-Atef-CV.pdf':
                 tag = set_attr(tag, 'href', 'Karim-Atef-CV-ar.pdf')
+            al = get_attr(p, 'aria-label')
+            if al is not None and norm(al) in AR and n != 'button':
+                tag = set_attr(tag, 'aria-label', AR[norm(al)])
             if get_attr(p, 'data-ph-ar') is not None:
                 tag = set_attr(tag, 'placeholder', get_attr(p, 'data-ph-ar'))
             if n == 'a' and get_attr(p, 'href') == 'ar/' and get_attr(p, 'hreflang') == 'ar':
@@ -152,24 +166,58 @@ def build():
     return res, missing
 
 
+def build_article(slug):
+    data = json.load(open(os.path.join(ROOT, 'tools', 'ar-articles.json'), encoding='utf-8'))
+    T = data['text']
+    M = data['meta'][slug]
+    src = open(os.path.join(ROOT, slug), encoding='utf-8').read()
+    res, missing = translate(src, T, article=True)
+    res = res.replace('<html lang="en" dir="ltr">', '<html lang="ar" dir="rtl">', 1)
+    res = re.sub(r'<title>[^<]*</title>', '<title>%s</title>' % H.escape(M['title'], quote=False), res, count=1)
+    res = meta(res, 'name', 'description', M['description'])
+    res = meta(res, 'property', 'og:title', M['og_title'])
+    res = meta(res, 'property', 'og:description', M['og_description'])
+    res = meta(res, 'property', 'og:url', SITE + 'ar/' + slug)
+    res = res.replace('<link rel="canonical" href="%s%s" />' % (SITE, slug),
+                      '<base href="../" />\n<link rel="canonical" href="%sar/%s" />' % (SITE, slug), 1)
+    assert '<base href' in res, slug
+    if 'wa' in M:
+        res = re.sub(r'(https://wa\.me/971527366719\?text=)[^"]*', lambda m: m.group(1) + urllib.parse.quote(M['wa']), res, count=1)
+    m = re.search(r'(<script type="application/ld\+json">)(.*?)(</script>)', res, flags=re.S)
+    ld = json.loads(m.group(2))
+    ld.update({'headline': M['og_title'], 'inLanguage': 'ar', 'mainEntityOfPage': SITE + 'ar/' + slug, 'description': M['description']})
+    res = res[:m.start(2)] + json.dumps(ld, ensure_ascii=False, separators=(',', ':')) + res[m.end(2):]
+    return res, missing
+
+
+def targets():
+    yield 'index.html', 'ar/index.html', build
+    for a in ARTICLES:
+        yield a, 'ar/' + a, (lambda a=a: build_article(a))
+
+
 if __name__ == '__main__':
-    res, missing = build()
-    path = os.path.join(ROOT, 'ar', 'index.html')
-    if '--check' in sys.argv:
-        cur = open(path, encoding='utf-8').read() if os.path.exists(path) else ''
+    stale = False
+    for _, out, fn in targets():
+        res, missing = fn()
+        path = os.path.join(ROOT, out)
         uniq = sorted(set(missing))
-        if uniq:
-            print('Untranslated text (%d):' % len(uniq))
-            for t in uniq:
-                print('  -', t[:110])
-        if cur != res:
-            print('ar/index.html is out of date: run python3 tools/build-ar.py')
-            sys.exit(1)
-        print('ar/index.html is up to date')
-    else:
-        os.makedirs(os.path.dirname(path), exist_ok=True)
-        open(path, 'w', encoding='utf-8').write(res)
-        uniq = sorted(set(missing))
-        print('wrote ar/index.html (%d bytes); %d untranslated strings' % (len(res.encode()), len(uniq)))
-        for t in uniq:
-            print('  -', t[:110])
+        if '--check' in sys.argv:
+            cur = open(path, encoding='utf-8').read() if os.path.exists(path) else ''
+            if uniq and out != 'ar/index.html':
+                print('%s: untranslated text (%d):' % (out, len(uniq)))
+                for t in uniq:
+                    print('  -', t[:110])
+            if cur != res:
+                print('%s is out of date: run python3 tools/build-ar.py' % out)
+                stale = True
+            else:
+                print('%s is up to date' % out)
+        else:
+            os.makedirs(os.path.dirname(path), exist_ok=True)
+            open(path, 'w', encoding='utf-8').write(res)
+            print('wrote %s (%d bytes); %d untranslated strings' % (out, len(res.encode()), len(uniq)))
+            if out != 'ar/index.html':
+                for t in uniq:
+                    print('  -', t[:110])
+    sys.exit(1 if stale else 0)

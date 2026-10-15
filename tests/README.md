@@ -24,3 +24,5 @@ If Chromium is installed somewhere else, set `CHROMIUM_PATH=/path/to/chromium`.
 
 Every test also fails on any console error or uncaught exception.
 Headless Chromium has no H.264, so videos are never played; tests only check what opens.
+
+`articles.spec.js` covers the article pages (`campaign-costs.html`, `case-zaora.html`, `case-mosque.html`) and their Arabic copies under `ar/`: render, images, axe, canonical/hreflang, links stay in Arabic, figures match the portfolio cards, and the lightbox link to each case study.
