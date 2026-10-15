@@ -173,7 +173,7 @@ const {$,$$,reduce,root,lite,NF,fmtN,WA,track}=K;
     ctx.font=font;const words=String(text).split(/\s+/).filter(Boolean),out=[];let cur='';
     for(const w of words){const t=cur?cur+' '+w:w;if(ctx.measureText(t).width>max&&cur){out.push(cur);cur=w}else cur=t}
     if(cur)out.push(cur);
-    if(limit&&out.length>limit){const keep=out.slice(0,limit);let last=keep[limit-1]+'…';while(ctx.measureText(last).width>max&&last.length>2)last=last.slice(0,-2)+'…';keep[limit-1]=last;return keep}
+    if(limit&&out.length>limit){const keep=out.slice(0,limit);let last=keep[limit-1]+'…';while(ctx.measureText(last).width>max&&last.length>2)last=last.slice(0,-2)+'…';keep[limit-1]=last;keep.cut=true;return keep}
     return out;
   }
   function cover(im,x,y,w,h){
@@ -186,6 +186,11 @@ const {$,$$,reduce,root,lite,NF,fmtN,WA,track}=K;
     return cache[src]=new Promise(res=>{const i=new Image();i.decoding='async';i.onload=()=>res(i);i.onerror=()=>res(null);i.src=src});
   }
   const val=k=>el[k].value.trim();
+  /* font, width and line limit of each block of copy; the drawings and the length check share them */
+  const FIT={fb:{text:['400 34px',1000,3],head:['700 32px',700,1]},ig:{text:['400 32px',1000,2]},story:{text:['500 36px',984,2]},tt:{text:['400 34px',834,2]}};
+  const pageName=()=>val('name')||'Your Brand';
+  const lines=(p,part,str)=>{const c=FIT[p][part];return wrap(str,c[0]+' '+fam(),c[1],c[2])};
+  const capOf=p=>p==='ig'?pageName()+'  ':'';
   const cta=()=>CTA[el.cta.value][ar()?1:0];
   /* text helpers that respect the page direction */
   function T(s,x,y,font,color,align){ctx.font=font;ctx.fillStyle=color;ctx.textAlign=align||(ar()?'right':'left');ctx.fillText(s,x,y)}
@@ -200,11 +205,11 @@ const {$,$$,reduce,root,lite,NF,fmtN,WA,track}=K;
 
   function drawFeed(ig){
     const W=1080,rtl=ar(),f=fam(),pad=40,X=rtl?W-pad:pad;
-    const head=val('head'),text=val('text'),name=val('name')||'Your Brand';
-    const textLines=ig?[]:wrap(text,'400 34px '+f,W-pad*2,3);
+    const head=val('head'),text=val('text'),name=pageName();
+    const textLines=ig?[]:lines('fb','text',text);
     const imgH=ig?1350:1080;
     const top=ig?120:150, txtH=ig?0:textLines.length*48+(textLines.length?24:0);
-    const capLines=ig?wrap(name+'  '+text,'400 32px '+f,W-pad*2,2):[];
+    const capLines=ig?lines('ig','text',capOf('ig')+text):[];
     const H=top+txtH+imgH+(ig?110+90+capLines.length*46+40:150+96);
     size(W,H);
     ctx.direction=rtl?'rtl':'ltr';
@@ -221,7 +226,7 @@ const {$,$$,reduce,root,lite,NF,fmtN,WA,track}=K;
     if(!ig){
       ctx.fillStyle='#f0f2f5';ctx.fillRect(0,y,W,150);
       T((name).toUpperCase(),X,y+50,'400 24px '+f,'#65676b');
-      const hl=wrap(head,'700 32px '+f,W-pad*2-300,1)[0]||'';
+      const hl=lines('fb','head',head)[0]||'';
       T(hl,X,y+96,'700 32px '+f,'#050505');
       ctx.font='700 30px '+f;const bw=ctx.measureText(cta()).width+60,bx=rtl?pad:W-pad-bw;
       ctx.fillStyle='#e4e6eb';rr(bx,y+44,bw,64,12);ctx.fill();
@@ -254,14 +259,13 @@ const {$,$$,reduce,root,lite,NF,fmtN,WA,track}=K;
     cover(img,0,0,W,H);
     let g=ctx.createLinearGradient(0,0,0,360);g.addColorStop(0,'rgba(0,0,0,.55)');g.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=g;ctx.fillRect(0,0,W,360);
     g=ctx.createLinearGradient(0,H-820,0,H);g.addColorStop(0,'rgba(0,0,0,0)');g.addColorStop(1,'rgba(0,0,0,.78)');ctx.fillStyle=g;ctx.fillRect(0,H-820,W,820);
-    const name=val('name')||'Your Brand',text=val('text');
+    const name=pageName(),text=val('text');
     if(!tt){
       ctx.fillStyle='rgba(255,255,255,.35)';rr(pad,40,W-pad*2,8,4);ctx.fill();ctx.fillStyle='#fff';rr(rtl?W-pad-(W-pad*2)*.35:pad,40,(W-pad*2)*.35,8,4);ctx.fill();
       const ax=rtl?W-pad-36:pad+36;avatar(ax,120,36,false);
       T(name,rtl?ax-58:ax+58,116,'700 32px '+f,'#fff');
       T(rtl?'مُموَّل':'Sponsored',rtl?ax-58:ax+58,152,'400 26px '+f,'rgba(255,255,255,.85)');
-      const lines=wrap(text,'500 36px '+f,W-pad*2,2);
-      lines.forEach((l,i)=>T(l,X,H-330+i*50,'500 36px '+f,'#fff'));
+      lines('story','text',text).forEach((l,i)=>T(l,X,H-330+i*50,'500 36px '+f,'#fff'));
       ctx.font='800 34px '+f;const bw=Math.max(360,ctx.measureText(cta()).width+120),bx=(W-bw)/2;
       ctx.fillStyle='#fff';rr(bx,H-200,bw,92,46);ctx.fill();
       T(cta(),W/2,H-140,'800 34px '+f,'#050505','center');
@@ -276,9 +280,9 @@ const {$,$$,reduce,root,lite,NF,fmtN,WA,track}=K;
       let y0=H-820;ctx.beginPath();ctx.moveTo(rx,y0+30);ctx.bezierCurveTo(rx-56,y0-6,rx-30,y0-50,rx,y0-24);ctx.bezierCurveTo(rx+30,y0-50,rx+56,y0-6,rx,y0+30);ctx.fill();
       y0=H-680;ctx.beginPath();ctx.ellipse(rx,y0-6,40,32,0,0,6.283);ctx.fill();ctx.beginPath();ctx.moveTo(rx-22,y0+18);ctx.lineTo(rx-30,y0+40);ctx.lineTo(rx-2,y0+24);ctx.fill();
       y0=H-540;ctx.beginPath();ctx.moveTo(rx+36,y0-6);ctx.lineTo(rx-4,y0-40);ctx.lineTo(rx-4,y0-20);ctx.quadraticCurveTo(rx-40,y0-18,rx-38,y0+30);ctx.quadraticCurveTo(rx-22,y0+6,rx-4,y0+8);ctx.lineTo(rx-4,y0+28);ctx.closePath();ctx.fill();
-      const maxW=W-pad*2-150,LX=rtl?W-pad:pad;
+      const LX=rtl?W-pad:pad;
       T('@'+name.replace(/\s+/g,'').toLowerCase(),LX,H-430,'800 38px '+f,'#fff');
-      wrap(text,'400 34px '+f,maxW,2).forEach((l,i)=>T(l,LX,H-376+i*48,'400 34px '+f,'#fff'));
+      lines('tt','text',text).forEach((l,i)=>T(l,LX,H-376+i*48,'400 34px '+f,'#fff'));
       ctx.font='600 26px '+f;const sp=rtl?'مُموَّل':'Sponsored',sw=ctx.measureText(sp).width+28;
       ctx.fillStyle='rgba(255,255,255,.25)';rr(rtl?LX-sw:LX,H-262,sw,44,8);ctx.fill();
       T(sp,rtl?LX-14:LX+14,H-230,'600 26px '+f,'#fff');
@@ -291,7 +295,31 @@ const {$,$$,reduce,root,lite,NF,fmtN,WA,track}=K;
     if(st.place==='fb')drawFeed(false);else if(st.place==='ig')drawFeed(true);else drawVertical(st.place==='tt');
     cv.setAttribute('aria-label',(ar()?'معاينة إعلان: ':'Ad preview: ')+PLACE[st.place][ar()?1:0]+' · '+val('head'));
   }
+  /* length check: how much of the copy each placement shows before "more" (same layout as the drawings) */
+  const len=s=>[...s].length,flat=s=>s.split(/\s+/).filter(Boolean).join(' ');
+  function shown(p,part){
+    if(!FIT[p][part])return null;
+    const t=flat(val(part)),pre=flat(capOf(p)),ls=lines(p,part,(pre?pre+' ':'')+t);
+    if(!ls.cut)return {n:len(t),of:len(t),cut:false};
+    const vis=flat(ls.join(' ').replace(/…$/,''));
+    return {n:Math.max(0,len(vis)-(pre?len(pre)+1:0)),of:len(t),cut:true};
+  }
+  const lenList=$('#apLen'),lenSum=$('#apLenSum');
+  function check(){
+    if(!lenList)return;
+    const a=ar(),n=x=>NF.format(x),hr=x=>{const r=x%100;return r>=3&&r<=10?'أحرف':r>=11?'حرفًا':'حرف'},tl=len(flat(val('text'))),hl=len(flat(val('head')));
+    lenSum.textContent=a?`عدد الحروف: النص الأساسي ${n(tl)} · العنوان ${n(hl)}`:`Primary text: ${n(tl)} characters · Headline: ${n(hl)}`;
+    lenList.innerHTML=Object.keys(FIT).map(p=>{
+      const t=shown(p,'text'),h=shown(p,'head'),msg=[];
+      msg.push(!t.of?(a?'لا يوجد نص':'No text'):t.cut?(a?`يظهر ${n(t.n)} من ${n(t.of)} ${hr(t.of)} ثم «المزيد»`:`Shows ${n(t.n)} of ${n(t.of)} characters, then “more”`):(a?'النص يظهر كاملًا':'Text fits'));
+      if(h&&h.cut)msg.push(a?`العنوان يُقصّ بعد ${n(h.n)} من ${n(h.of)}`:`headline cut after ${n(h.n)} of ${n(h.of)}`);
+      if(p==='tt'&&tl>100)msg.push(a?'أطول من حد تيك توك (100 حرف)':'over TikTok’s 100-character limit');
+      const cut=t.cut||(h&&h.cut)||(p==='tt'&&tl>100),w=t.of?Math.round(t.n/t.of*100):0;
+      return `<li class="${p===st.place?'on ':''}${cut?'cut':''}" data-p="${p}"><span class="ap-len-p">${PLACE[p][a?1:0]}</span><span class="ap-len-bar" aria-hidden="true"><i style="width:${w}%"></i></span><span class="ap-len-s">${msg.join(' · ')}</span></li>`;
+    }).join('');
+  }
   function redraw(){
+    check();
     if(!near)return;
     const t=++token;
     (st.upload?Promise.resolve(st.upload):load(st.src)).then(i=>{if(t!==token)return;img=i;draw()});
@@ -318,9 +346,9 @@ const {$,$$,reduce,root,lite,NF,fmtN,WA,track}=K;
     track('adpreview_whatsapp',{place:st.place});
   });
   new MutationObserver(()=>{fill(false);redraw()}).observe(root,{attributes:true,attributeFilter:['lang','data-accent']});
-  fill(true);
+  fill(true);check();
   new IntersectionObserver((es,o)=>{if(es.some(e=>e.isIntersecting)){o.disconnect();near=true;const on=$('#apPics button.on');if(on)st.src=srcOf(on);(document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(redraw,redraw)}},{rootMargin:'300px'}).observe(cv);
-  K.adPreview={draw,state:st};
+  K.adPreview={draw,check,state:st};
 })();
 
 /* ---------- reel hooks ---------- */

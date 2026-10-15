@@ -124,3 +124,31 @@ test('Ad Preview: four placements, own image, download and WhatsApp', async ({ p
   await page.locator('#apWa').click();
   expect(await decodeWa(page)).toContain('Headline: Spring offer');
 });
+
+test('Ad Preview: length check per placement', async ({ page }) => {
+  await jump(page, 'adlab');
+  const row = (p) => page.locator(`#apLen li[data-p=${p}]`);
+  await page.fill('#apText', 'Short offer.');
+  await page.fill('#apHead', 'Spring offer');
+  for (const p of ['fb', 'ig', 'story', 'tt']) await expect(row(p)).not.toHaveClass(/cut/);
+  await expect(row('fb')).toContainText('Text fits');
+  await expect(page.locator('#apLenSum')).toContainText('Primary text: 12 characters');
+  // long copy: cut before "more" in the two-line placements, over TikTok's limit
+  await page.fill('#apText', 'Limited time offer on every apartment in Dubai Marina. Book your viewing today and get an extra discount when you pay upfront. Message us now on WhatsApp for the details');
+  await page.fill('#apHead', 'Dubai Marina apartments up to 20% off this month');
+  for (const p of ['ig', 'story', 'tt']) await expect(row(p)).toHaveClass(/cut/);
+  const shown = +/Shows (\d+) of 169/.exec(await row('ig').textContent())[1];
+  expect(shown).toBeGreaterThan(40);
+  expect(shown).toBeLessThan(169);
+  await expect(row('tt')).toContainText('100-character limit');
+  await expect(row('fb')).toContainText('headline cut');
+  // the current placement is marked and follows the chips
+  await expect(row('fb')).toHaveClass(/on/);
+  await page.locator('#apPlace button[data-v=tt]').click();
+  await expect(row('tt')).toHaveClass(/on/);
+  await expect(row('fb')).not.toHaveClass(/on/);
+  // Arabic
+  await page.evaluate(() => scrollTo(0, 0));
+  await page.locator('#lang').click();
+  await expect(page.locator('#apLenSum')).toContainText('عدد الحروف');
+});
