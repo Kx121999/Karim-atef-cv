@@ -1,0 +1,33 @@
+name: Tests
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Scripts parse
+        run: node --check app.js && node --check tools.js && node --check ar.js && node --check sw.js
+      - name: Arabic page is up to date with index.html and ar.js
+        run: python3 tools/build-ar.py --check
+      - run: npx playwright install --with-deps chromium
+      - name: Browser tests (desktop and mobile widths)
+        run: npx playwright test
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 7

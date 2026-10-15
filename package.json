@@ -1,0 +1,16 @@
+{
+  "name": "karim-atef-cv",
+  "private": true,
+  "description": "Portfolio site for Karim Atef. Static files; npm is only used for tests.",
+  "scripts": {
+    "serve": "http-server . -p 4173 -c-1 --silent",
+    "test": "playwright test",
+    "build:ar": "python3 tools/build-ar.py",
+    "check:ar": "python3 tools/build-ar.py --check"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.56.1",
+    "axe-core": "4.10.2",
+    "http-server": "14.1.1"
+  }
+}
