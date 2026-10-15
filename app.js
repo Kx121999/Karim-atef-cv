@@ -392,7 +392,8 @@ function caseInfo(card){
   const f=n=>Math.round(n).toLocaleString('en-US');
   const L=ar?{res:me.kind==='leads'?'عميل محتمل':'محادثة',cpr:'تكلفة النتيجة',bud:'الميزانية',rank:'ترتيب التكلفة بين حملات '+(me.kind==='leads'?'العملاء المحتملين':'الرسائل'),of:'من',share:'من ميزانية الحملات المعروضة'}:{res:me.kind==='leads'?'leads':'conversations',cpr:'Cost per result',bud:'Budget',rank:'Cost rank among '+(me.kind==='leads'?'lead':'message')+' campaigns',of:'of',share:'of the budget across the six campaigns shown'};
   const story=card.dataset.story?`<p>${card.dataset.story}</p>`:'';
-  return `<div><b>${f(me.res)}</b><span>${L.res}</span></div><div><b>AED ${me.cpr.toFixed(2)}</b><span>${L.cpr}</span></div><div><b>AED ${f(me.budget)}</b><span>${L.bud} · ${Math.round(me.budget/total*100)}% ${L.share}</span></div><div><b>#${rank} ${L.of} ${same.length}</b><span>${L.rank} (1 = ${ar?'الأقل':'lowest'})</span></div>${story}`;
+  const cs=card.dataset.case?`<p><a class="foot-link" href="${ar?'ar/':''}${card.dataset.case}">${ar?'اقرأ دراسة الحالة ←':'Read the case study →'}</a></p>`:'';
+  return `<div><b>${f(me.res)}</b><span>${L.res}</span></div><div><b>AED ${me.cpr.toFixed(2)}</b><span>${L.cpr}</span></div><div><b>AED ${f(me.budget)}</b><span>${L.bud} · ${Math.round(me.budget/total*100)}% ${L.share}</span></div><div><b>#${rank} ${L.of} ${same.length}</b><span>${L.rank} (1 = ${ar?'الأقل':'lowest'})</span></div>${story}${cs}`;
 }
 
 (function globe(){
