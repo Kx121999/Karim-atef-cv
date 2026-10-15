@@ -75,3 +75,19 @@ test('the lightbox links each case-study card to its page, in both languages', a
   await page.waitForTimeout(800); // the language cross-fade (view transition) swallows clicks while it runs
   expect(await link()).toBe('ar/case-zaora.html');
 });
+
+test('every page has its own share image, and the file exists', async ({ page, request }) => {
+  const seen = new Set();
+  for (const url of ['/index.html', '/ar/', ...PAGES.flatMap((s) => ['/' + s, '/ar/' + s])]) {
+    await page.goto(url);
+    const og = await page.locator('meta[property="og:image"]').getAttribute('content');
+    const tw = await page.locator('meta[name="twitter:image"]').getAttribute('content');
+    expect(tw, url).toBe(og);
+    expect(og, url).toMatch(/\/og\/[a-z-]+\.jpg$/);
+    seen.add(og);
+    const res = await request.get(og.replace(BASE, '/'));
+    expect(res.status(), og).toBe(200);
+    expect(res.headers()['content-type'], og).toContain('image/jpeg');
+  }
+  expect(seen.size).toBe(8); // one image per page and language
+});
