@@ -1512,6 +1512,19 @@ html[data-theme=light] .ph{border-color:rgb(var(--fgr) / .22)}
 .ap-note{color:var(--muted);font-size:.8rem;margin-top:4px}
 .ap-preview canvas{max-height:78vh;width:auto;max-width:100%;margin-inline:auto;display:block;border-radius:18px;box-shadow:0 22px 60px rgba(0,0,0,.45)}
 [dir=rtl] .ap-up{letter-spacing:0}
+.ap-len{border:1px solid var(--line);border-radius:16px;padding:14px 16px;background:var(--soft)}
+.ap-len-h{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 12px;font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.ap-len-sum{letter-spacing:0;text-transform:none;font-weight:600}
+.ap-len ul{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:8px}
+.ap-len li{display:grid;grid-template-columns:8.5em 1fr;align-items:center;gap:4px 12px;font-size:.82rem}
+.ap-len-p{font-weight:700;color:var(--muted)}
+.ap-len li.on .ap-len-p{color:var(--text)}
+.ap-len-bar{height:6px;border-radius:3px;background:rgb(var(--fgr) / .12);overflow:hidden}
+.ap-len-bar i{display:block;height:100%;border-radius:inherit;background:var(--accent)}
+.ap-len li.cut .ap-len-bar i{background:#ff9f5a}
+.ap-len-s{grid-column:2;color:var(--muted)}
+.ap-len li.cut .ap-len-s{color:var(--text)}
+[dir=rtl] .ap-len-h{letter-spacing:0}
 /* <picture> wrappers (AVIF with WebP fallback) are layout-neutral */
 picture{display:contents}
 picture>source{display:none}
@@ -1528,9 +1541,9 @@ picture>source{display:none}
    --h is each section's measured height (desktop / tablet / phone); "auto" remembers the real height after the first render.
    goTo() in app.js re-aligns anchor jumps once scrolling stops. ---------- */
 #services,#process,#experience,#campaigns,#estimator,#audit,#planner,#designs,#studio,#adlab,#hooks,#videos,#about,#book,#contact,footer{content-visibility:auto;contain-intrinsic-size:auto var(--h,900px)}
-#services{--h:1160px}#process{--h:520px}#experience{--h:1070px}#campaigns{--h:2190px}#estimator{--h:864px}#audit{--h:800px}#planner{--h:1190px}#designs{--h:800px}#studio{--h:1100px}#adlab{--h:1124px}#hooks{--h:1406px}#videos{--h:1966px}#about{--h:843px}#book{--h:833px}#contact{--h:1528px}footer{--h:170px}
-@media(max-width:1100px){#services{--h:1755px}#process{--h:702px}#experience{--h:1218px}#campaigns{--h:2339px}#estimator{--h:1019px}#audit{--h:779px}#planner{--h:1892px}#designs{--h:1274px}#studio{--h:1517px}#adlab{--h:1721px}#hooks{--h:1661px}#videos{--h:2754px}#about{--h:1077px}#book{--h:803px}#contact{--h:1512px}}
-@media(max-width:600px){#services{--h:2910px}#process{--h:995px}#experience{--h:1454px}#campaigns{--h:4653px}#estimator{--h:1062px}#audit{--h:811px}#planner{--h:2189px}#designs{--h:2028px}#studio{--h:1695px}#adlab{--h:1898px}#hooks{--h:1853px}#videos{--h:4840px}#about{--h:1059px}#book{--h:1005px}#contact{--h:1527px}footer{--h:270px}}
+#services{--h:1160px}#process{--h:520px}#experience{--h:1070px}#campaigns{--h:2190px}#estimator{--h:864px}#audit{--h:800px}#planner{--h:1190px}#designs{--h:800px}#studio{--h:1100px}#adlab{--h:1345px}#hooks{--h:1406px}#videos{--h:1966px}#about{--h:843px}#book{--h:833px}#contact{--h:1528px}footer{--h:170px}
+@media(max-width:1100px){#services{--h:1755px}#process{--h:702px}#experience{--h:1218px}#campaigns{--h:2339px}#estimator{--h:1019px}#audit{--h:779px}#planner{--h:1892px}#designs{--h:1274px}#studio{--h:1517px}#adlab{--h:1942px}#hooks{--h:1661px}#videos{--h:2754px}#about{--h:1077px}#book{--h:803px}#contact{--h:1512px}}
+@media(max-width:600px){#services{--h:2910px}#process{--h:995px}#experience{--h:1454px}#campaigns{--h:4653px}#estimator{--h:1062px}#audit{--h:811px}#planner{--h:2189px}#designs{--h:2028px}#studio{--h:1695px}#adlab{--h:2063px}#hooks{--h:1853px}#videos{--h:4840px}#about{--h:1059px}#book{--h:1005px}#contact{--h:1527px}footer{--h:270px}}
 @media print{#services,#process,#experience,#campaigns,#estimator,#audit,#planner,#designs,#studio,#adlab,#hooks,#videos,#about,#book,#contact,footer{content-visibility:visible}}
 </style>
 </head>
@@ -1966,10 +1979,15 @@ picture>source{display:none}
           <div class="ap-pics" id="apPics"><button type="button" class="on" data-src="design-1-s.webp" aria-label="Poster 1"><picture><source srcset="design-1-s.avif" type="image/avif"><img src="design-1-s.webp" alt="" loading="lazy" decoding="async" width="720" height="720"></picture></button><button type="button" data-src="design-2-s.webp" aria-label="Poster 2"><picture><source srcset="design-2-s.avif" type="image/avif"><img src="design-2-s.webp" alt="" loading="lazy" decoding="async" width="720" height="720"></picture></button><button type="button" data-src="design-3-s.webp" aria-label="Poster 3"><picture><source srcset="design-3-s.avif" type="image/avif"><img src="design-3-s.webp" alt="" loading="lazy" decoding="async" width="720" height="720"></picture></button><button type="button" data-src="design-4-s.webp" aria-label="Poster 4"><picture><source srcset="design-4-s.avif" type="image/avif"><img src="design-4-s.webp" alt="" loading="lazy" decoding="async" width="720" height="720"></picture></button><button type="button" data-src="video-5.webp" aria-label="Reel 1"><img src="video-5.webp" alt="" loading="lazy" decoding="async" width="480" height="854"></button><button type="button" data-src="video-2.webp" aria-label="Reel 2"><img src="video-2.webp" alt="" loading="lazy" decoding="async" width="720" height="1280"></button><label class="ap-up"><input type="file" id="apFile" accept="image/*"><span>Your image</span></label></div>
         </div>
         <label>Page name<input id="apName" type="text" maxlength="30" dir="auto" autocomplete="off"></label>
-        <label>Primary text<textarea id="apText" maxlength="180" rows="3" dir="auto"></textarea></label>
+        <label>Primary text<textarea id="apText" maxlength="1000" rows="3" dir="auto"></textarea></label>
         <div class="cf-row">
-          <label>Headline<input id="apHead" type="text" maxlength="40" dir="auto" autocomplete="off"></label>
+          <label>Headline<input id="apHead" type="text" maxlength="120" dir="auto" autocomplete="off"></label>
           <label>Button<select id="apCta"><option value="learn">Learn more</option><option value="msg" selected>Send message</option><option value="shop">Shop now</option><option value="book">Book now</option><option value="contact">Contact us</option></select></label>
+        </div>
+        <div class="ap-len">
+          <div class="ap-len-h"><span>Length check</span><span class="ap-len-sum" id="apLenSum" data-dyn></span></div>
+          <ul id="apLen" data-dyn></ul>
+          <p class="ap-note">How much of your text each placement shows before “more”, measured on the preview above. As a rule of thumb, Meta suggests about 125 characters of primary text and 40 for the headline; TikTok ad text allows up to 100.</p>
         </div>
         <div class="cf-actions"><button class="btn" type="button" id="apDl">Download PNG</button><button class="btn dark" type="button" id="apWa">Send it on WhatsApp</button></div>
         <p class="ap-note">An approximate preview drawn by this page, not by the platforms. Real ads can crop and cut text differently.</p>
