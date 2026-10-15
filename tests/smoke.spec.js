@@ -34,3 +34,10 @@ test('service worker registers', async ({ page }) => {
   const state = await page.evaluate(async () => { const r = await navigator.serviceWorker.ready; return r.active ? 'active' : 'none'; });
   expect(state).toBe('active');
 });
+
+test('chapter numerals run 01, 02, 03… in page order', async ({ page }) => {
+  await open(page, '/index.html');
+  const nums = await page.$$eval('.section-head', (hs) => hs.filter((h) => h.offsetParent !== null).map((h) => getComputedStyle(h, '::before').content.replace(/"/g, '')));
+  expect(nums.length).toBeGreaterThan(10);
+  expect(nums).toEqual(nums.map((_, i) => String(i + 1).padStart(2, '0')));
+});

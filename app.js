@@ -832,6 +832,9 @@ addEventListener('keydown',e=>{
   if(e.key==='ArrowRight')show(idx+1);
 });
 
+/* page-to-page transitions are skipped on lite devices (the snapshot costs more than it is worth there) */
+addEventListener('pageswap',e=>{if((lite||reduce)&&e.viewTransition)e.viewTransition.skipTransition()});
+
 /* ---------- light / dark theme switch ---------- */
 (function themeSwitch(){
   const b=$('#themeBtn');if(!b)return;

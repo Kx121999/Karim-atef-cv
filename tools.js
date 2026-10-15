@@ -163,6 +163,8 @@ const {$,$$,reduce,root,lite,NF,fmtN,WA,track}=K;
   const el={name:$('#apName'),text:$('#apText'),head:$('#apHead'),cta:$('#apCta')};
   const keys=['name','text','head'];
   const st={place:'fb',src:'design-1-s.webp',upload:null,dirty:{}};
+  let near=false;
+  const srcOf=b=>{const i=$('img',b);return (i&&i.currentSrc)||b.dataset.src};
   const cache={};
   let img=null,token=0;
   const fam=()=>ar()?'Cairo, Inter, sans-serif':'Inter, Cairo, sans-serif';
@@ -290,12 +292,13 @@ const {$,$$,reduce,root,lite,NF,fmtN,WA,track}=K;
     cv.setAttribute('aria-label',(ar()?'معاينة إعلان: ':'Ad preview: ')+PLACE[st.place][ar()?1:0]+' · '+val('head'));
   }
   function redraw(){
+    if(!near)return;
     const t=++token;
     (st.upload?Promise.resolve(st.upload):load(st.src)).then(i=>{if(t!==token)return;img=i;draw()});
   }
   function fill(force){const d=DEF[ar()?'ar':'en'];keys.forEach((k,i)=>{if(force||!st.dirty[k])el[k].value=d[i]})}
   $$('#apPlace button').forEach(b=>b.addEventListener('click',()=>{$$('#apPlace button').forEach(x=>x.classList.toggle('on',x===b));st.place=b.dataset.v;redraw();track('adpreview_place',{place:st.place})}));
-  $$('#apPics button').forEach(b=>b.addEventListener('click',()=>{$$('#apPics button,.ap-up').forEach(x=>x.classList.toggle('on',x===b));st.src=b.dataset.src;st.upload=null;redraw()}));
+  $$('#apPics button').forEach(b=>b.addEventListener('click',()=>{$$('#apPics button,.ap-up').forEach(x=>x.classList.toggle('on',x===b));st.src=srcOf(b);st.upload=null;redraw()}));
   $('#apFile').addEventListener('change',e=>{
     const f=e.target.files&&e.target.files[0];if(!f||!/^image\//.test(f.type))return;
     const url=URL.createObjectURL(f),i=new Image();
@@ -316,8 +319,7 @@ const {$,$$,reduce,root,lite,NF,fmtN,WA,track}=K;
   });
   new MutationObserver(()=>{fill(false);redraw()}).observe(root,{attributes:true,attributeFilter:['lang','data-accent']});
   fill(true);
-  new IntersectionObserver((es,o)=>{if(es.some(e=>e.isIntersecting)){o.disconnect();redraw()}},{rootMargin:'300px'}).observe(cv);
-  (document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(redraw).catch(()=>{});
+  new IntersectionObserver((es,o)=>{if(es.some(e=>e.isIntersecting)){o.disconnect();near=true;const on=$('#apPics button.on');if(on)st.src=srcOf(on);(document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(redraw,redraw)}},{rootMargin:'300px'}).observe(cv);
   K.adPreview={draw,state:st};
 })();
 
