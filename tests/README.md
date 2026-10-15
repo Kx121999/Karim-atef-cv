@@ -28,3 +28,5 @@ Headless Chromium has no H.264, so videos are never played; tests only check wha
 `articles.spec.js` covers the article pages (`campaign-costs.html`, `case-zaora.html`, `case-mosque.html`) and their Arabic copies under `ar/`: render, images, axe, canonical/hreflang, links stay in Arabic, figures match the portfolio cards, and the lightbox link to each case study.
 
 `bento.spec.js` checks the services bento (bar values match the campaign cards, tool chips jump to their sections, Arabic) and the accent colour switch (switch, persist across reloads, reset, canvases and the share card keep working).
+
+`theme.spec.js` covers the light theme: switch, persist, back to dark, theme-color, axe (contrast included) on `/` and `/ar/`, every accent's ink colour, the palette action.

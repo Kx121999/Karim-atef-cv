@@ -327,6 +327,7 @@ const {$,$$,reduce,root,lite,NF,fmtN,WA,track}=K;
       {g:1,en:'Switch language',ar:'تبديل اللغة',run:()=>$('#lang').click()},
       {g:1,en:'Present mode',ar:'وضع العرض',run:()=>$('#presentBtn').click()},
       {g:1,en:'Toggle lite mode',ar:'تبديل الوضع الخفيف',run:()=>$('#liteBtn').click()},
+      {g:1,en:'Switch light / dark theme',ar:'تبديل الوضع الفاتح / الداكن',run:()=>$('#themeBtn').click()},
       {g:1,en:'Download CV (PDF)',ar:'تحميل السيرة الذاتية (PDF)',run:()=>{const a=document.createElement('a');a.href=root.lang==='ar'?'Karim-Atef-CV-ar.pdf':'Karim-Atef-CV.pdf';a.download='';document.body.appendChild(a);a.click();a.remove()}},
       {g:1,en:'Open WhatsApp',ar:'فتح واتساب',run:()=>window.open('https://wa.me/971527366719','_blank','noopener')},
       {g:1,en:'Send an email',ar:'إرسال إيميل',run:()=>{location.href='mailto:kx121999@gmail.com'}}
