@@ -1,4 +1,5 @@
 window.KC_AR={
+'Skip to content':'تخطَّ إلى المحتوى',
 'Karim Atef':'كريم عاطف','KARIM':'كريم','ATEF':'عاطف',
 'Services':'الخدمات','Experience':'الخبرات','Projects':'المشاريع','Designs':'التصاميم','Videos':'الفيديوهات','About':'نبذة','Contact':'تواصل',
 'Available for Work':'متاح للعمل',

@@ -575,6 +575,7 @@ document.addEventListener('click',e=>{
   const h=a.getAttribute('href');if(h.length<2)return;
   const el=document.getElementById(decodeURIComponent(h.slice(1)));if(!el||el.hidden)return;
   e.preventDefault();goTo(el);
+  if(el.getAttribute('tabindex')==='-1')el.focus({preventScroll:true});
   try{history.pushState(null,'',h)}catch(_){}
 });
 if(location.hash.length>1)addEventListener('load',()=>setTimeout(()=>{const el=document.getElementById(decodeURIComponent(location.hash.slice(1)));if(el)goTo(el,false)},350));
@@ -591,6 +592,17 @@ KC.load=()=>KC._p||(KC._p=new Promise(res=>{
   s.onerror=()=>{KC._p=null;res()};
   document.head.appendChild(s);
 }));
+/* keep Tab inside whichever dialog is open */
+addEventListener('keydown',e=>{
+  if(e.key!=='Tab')return;
+  const d=$('#lightbox.open')||$('#present:not([hidden])')||$('#cmdk:not([hidden])');if(!d)return;
+  const f=$$('a[href],button:not([disabled]),input:not([disabled]),select,textarea,[tabindex]:not([tabindex="-1"])',d).filter(x=>x.offsetParent!==null||x===document.activeElement);
+  if(!f.length)return;
+  const a=f[0],z=f[f.length-1];
+  if(!d.contains(document.activeElement)){e.preventDefault();a.focus()}
+  else if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus()}
+  else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}
+});
 addEventListener('keydown',stubKey);
 $('#ckBtn')?.addEventListener('click',stubBtn);
 {
@@ -606,14 +618,15 @@ if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol)){addEventLi
 /* loader counter, then start hero */
 const count=$('.loader-count b');
 const ready=()=>root.classList.add('ready');
-if(reduce){ready()}else{
-  const t0=performance.now(),D=1300;
+if(reduce||root.classList.contains('seen')){ready()}else{
+  const t0=performance.now(),D=1000;
   (function tick(t){
     const p=Math.min((t-t0)/D,1);
     count.textContent=Math.round(100*(1-Math.pow(1-p,3)));
     if(p<1)requestAnimationFrame(tick);
   })(t0);
-  setTimeout(ready,1450);
+  setTimeout(ready,1100);
+  try{sessionStorage.setItem('intro','1')}catch(e){}
 }
 
 /* reveal with stagger + variants */
