@@ -68,6 +68,8 @@ test('the lightbox links each case-study card to its page, in both languages', a
     return href;
   };
   expect(await link()).toBe('case-zaora.html');
+  // the header hides while scrolled down, so switch language from the top of the page
+  await page.evaluate(() => { document.documentElement.style.scrollBehavior = 'auto'; scrollTo(0, 0); });
   await page.locator('#lang').click();
   await expect(page.locator('html')).toHaveAttribute('lang', 'ar');
   await page.waitForTimeout(800); // the language cross-fade (view transition) swallows clicks while it runs
