@@ -26,14 +26,15 @@ $$('.big-name h1 > span').forEach(line=>{
 $('.big-name h1').setAttribute('aria-label','Karim Atef');
 
 /* ---------- language switch (EN / AR) ---------- */
-const TITLE_EN=document.title,TITLE_AR='كريم عاطف | مسوّق أداء إبداعي';
+const STATIC_AR=root.dataset.static==='ar';
+const TITLE_EN=document.title,TITLE_AR=STATIC_AR?document.title:'كريم عاطف | مسوّق أداء إبداعي';
 const norm=t=>t.replace(/\s+/g,' ').trim();
 const origText=new WeakMap();
 const splitEls=$$('.section-title,.contact-panel h2,.creative-card h2');
 splitEls.forEach(el=>el.dataset.en=el.getAttribute('aria-label'));
 const heroLines=$$('.big-name h1 .line');
 heroLines.forEach(l=>l.dataset.en=l.textContent);
-let AR=null;
+let AR=STATIC_AR?{}:null;
 function loadAR(){
   if(AR)return Promise.resolve();
   return new Promise(res=>{
@@ -74,9 +75,11 @@ function setLang(lang,animate){
   try{localStorage.setItem('lang',lang)}catch(e){}
 }
 let saved=null;try{saved=localStorage.getItem('lang')}catch(e){}
-if(saved==='ar')setLang('ar');
+if(saved==='ar'||STATIC_AR)setLang('ar');
 $('#lang')?.addEventListener('pointerenter',loadAR,{once:true});
-$('#lang')?.addEventListener('click',()=>{const next=root.lang==='ar'?'en':'ar';(next==='ar'?loadAR():Promise.resolve()).then(()=>vt(()=>setLang(next)))});
+$('#lang')?.addEventListener('click',()=>{
+  if(STATIC_AR){try{localStorage.setItem('lang','en')}catch(e){}location.assign(document.baseURI);return}
+  const next=root.lang==='ar'?'en':'ar';(next==='ar'?loadAR():Promise.resolve()).then(()=>vt(()=>setLang(next)))});
 
 /* ---------- creative layer: funnel canvas, estimator, process, video preview ---------- */
 (function funnel(){
@@ -575,13 +578,14 @@ function goTo(el,smooth=true){
 }
 KC.goTo=goTo;
 document.addEventListener('click',e=>{
-  const a=e.target.closest&&e.target.closest('a[href^="#"]');
-  if(!a||e.defaultPrevented||e.ctrlKey||e.metaKey||e.shiftKey)return;
-  const h=a.getAttribute('href');if(h.length<2)return;
-  const el=document.getElementById(decodeURIComponent(h.slice(1)));if(!el||el.hidden)return;
+  const a=e.target.closest&&e.target.closest('a[href]');
+  if(!a||e.defaultPrevented||e.ctrlKey||e.metaKey||e.shiftKey||e.button)return;
+  /* same-page links only: "#id", or "ar/#id" on the Arabic page (its <base> points at the site root) */
+  if(a.origin!==location.origin||a.pathname.replace(/index\.html$/,'')!==location.pathname.replace(/index\.html$/,'')||a.hash.length<2)return;
+  const el=document.getElementById(decodeURIComponent(a.hash.slice(1)));if(!el||el.hidden)return;
   e.preventDefault();goTo(el);
   if(el.getAttribute('tabindex')==='-1')el.focus({preventScroll:true});
-  try{history.pushState(null,'',h)}catch(_){}
+  try{history.pushState(null,'',location.pathname+a.hash)}catch(_){}
 });
 if(location.hash.length>1)addEventListener('load',()=>setTimeout(()=>{const el=document.getElementById(decodeURIComponent(location.hash.slice(1)));if(el)goTo(el,false)},350));
 const stubKey=e=>{

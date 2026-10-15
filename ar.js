@@ -1,4 +1,5 @@
 window.KC_AR={
+'Insights: what my Meta Ads campaigns really cost':'تحليل: ما التكلفة الفعلية لحملات إعلانات ميتا الخاصة بي','Lite mode':'الوضع الخفيف','UAE':'الإمارات','Salsabeel / Park DS':'سلسبيل / Park DS','View':'عرض',
 'Skip to content':'تخطَّ إلى المحتوى',
 'Karim Atef':'كريم عاطف','KARIM':'كريم','ATEF':'عاطف',
 'Services':'الخدمات','Experience':'الخبرات','Projects':'المشاريع','Designs':'التصاميم','Videos':'الفيديوهات','About':'نبذة','Contact':'تواصل',
