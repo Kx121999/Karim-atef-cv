@@ -4,10 +4,13 @@ const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
 const root=document.documentElement;
 const lite=root.classList.contains('lite');
 const NF=new Intl.NumberFormat('en-US',{maximumFractionDigits:0});
-const ACCENTS={lime:['#d7ff5f','215 255 95',75],gold:['#ffc857','255 200 87',42],violet:['#b8a1ff','184 161 255',265],sky:['#6fd8ff','111 216 255',195]};
-const AC={hex:'#d7ff5f',rgb:'215,255,95',hue:75,hooks:[]};
+/* [fill colour, fill rgb, story hue, ink colour on the light theme, ink rgb] */
+const ACCENTS={lime:['#d7ff5f','215 255 95',75,'#4a6b00','74 107 0'],gold:['#ffc857','255 200 87',42,'#8a5a00','138 90 0'],violet:['#b8a1ff','184 161 255',265,'#5b3fc4','91 63 196'],sky:['#6fd8ff','111 216 255',195,'#006a8e','0 106 142']};
+const AC={hex:'#d7ff5f',rgb:'215,255,95',hue:75,ink:'#d7ff5f',inkRgb:'215,255,95',light:false,hooks:[]};
 const ac=a=>'rgba('+AC.rgb+','+a+')';
-const readAccent=()=>{const p=ACCENTS[root.dataset.accent]||ACCENTS.lime;AC.hex=p[0];AC.rgb=p[1].split(' ').join(',');AC.hue=p[2]};
+const acs=a=>'rgba('+AC.inkRgb+','+a+')'; /* accent that reads on the current background */
+const fgc=a=>'rgba('+(AC.light?'22,21,15':'245,241,232')+','+a+')';
+const readAccent=()=>{const p=ACCENTS[root.dataset.accent]||ACCENTS.lime;AC.hex=p[0];AC.rgb=p[1].split(' ').join(',');AC.hue=p[2];AC.light=root.dataset.theme==='light';AC.ink=AC.light?p[3]:p[0];AC.inkRgb=(AC.light?p[4]:p[1]).split(' ').join(',')};
 readAccent();
 const canVT=!!document.startViewTransition&&!reduce&&!lite;
 const vt=fn=>{
@@ -100,14 +103,14 @@ $('#lang')?.addEventListener('click',()=>{
     P=Array.from({length:N()},()=>mk(true));
   }
   const glow=document.createElement('canvas');glow.width=glow.height=26;
-  const paintGlow=()=>{const g=glow.getContext('2d'),gr=g.createRadialGradient(13,13,0,13,13,13);g.clearRect(0,0,26,26);gr.addColorStop(0,ac(1));gr.addColorStop(.25,ac(.7));gr.addColorStop(1,ac(0));g.fillStyle=gr;g.fillRect(0,0,26,26)};
+  const paintGlow=()=>{const g=glow.getContext('2d'),gr=g.createRadialGradient(13,13,0,13,13,13);g.clearRect(0,0,26,26);gr.addColorStop(0,acs(1));gr.addColorStop(.25,acs(.7));gr.addColorStop(1,acs(0));g.fillStyle=gr;g.fillRect(0,0,26,26)};
   paintGlow();AC.hooks.push(paintGlow);
   const NY=()=>FH*.62;
   function edge(y,side){const t=Math.min(Math.max((y-FH*.04)/(NY()-FH*.04),0),1);const e=1-Math.pow(1-t,2.2);const half=(topW/2)*(1-e)+(neck/2)*e;return cx+side*half}
   function frame(){
     if(!run)return;
     ctx.clearRect(0,0,W,H);
-    ctx.lineWidth=1;ctx.strokeStyle=ac(.13);
+    ctx.lineWidth=1;ctx.strokeStyle=acs(.13);
     for(const side of[-1,1]){ctx.beginPath();for(let y=FH*.04;y<=NY();y+=8){const x=edge(y,side);y===FH*.04?ctx.moveTo(x,y):ctx.lineTo(x,y)}ctx.stroke()}
     ctx.beginPath();ctx.moveTo(cx-neck/2,NY());ctx.lineTo(cx-neck/2,FH*.86);ctx.moveTo(cx+neck/2,NY());ctx.lineTo(cx+neck/2,FH*.86);ctx.stroke();
     for(const p of P){
@@ -432,10 +435,10 @@ function caseInfo(card){
     const l0=UAE[0]-.35+Math.sin(tt*.00028)*.5+off;
     ctx.clearRect(0,0,W,H);
     const cx=W*.62,cy=H*.5;
-    const g=ctx.createRadialGradient(cx-R*.3,cy-R*.3,R*.1,cx,cy,R);g.addColorStop(0,ac(.035));g.addColorStop(.6,'rgba(8,8,8,.96)');g.addColorStop(1,'rgba(3,3,3,1)');
+    const g=ctx.createRadialGradient(cx-R*.3,cy-R*.3,R*.1,cx,cy,R);g.addColorStop(0,acs(.035));g.addColorStop(.6,AC.light?'rgba(250,248,242,.96)':'rgba(8,8,8,.96)');g.addColorStop(1,AC.light?'rgba(228,223,212,1)':'rgba(3,3,3,1)');
     ctx.fillStyle=g;ctx.beginPath();ctx.arc(cx,cy,R,0,6.283);ctx.fill();
-    ctx.strokeStyle=ac(.28);ctx.lineWidth=1;ctx.stroke();
-    for(const q of pts){const v=proj(q[0],q[1],0,l0);if(v[2]<=0)continue;ctx.fillStyle='rgba(245,241,232,'+(.18+v[2]*.62).toFixed(2)+')';ctx.fillRect(cx+v[0]*R-1,cy-v[1]*R-1,2,2)}
+    ctx.strokeStyle=acs(.28);ctx.lineWidth=1;ctx.stroke();
+    for(const q of pts){const v=proj(q[0],q[1],0,l0);if(v[2]<=0)continue;ctx.fillStyle=fgc((.18+v[2]*.62).toFixed(2));ctx.fillRect(cx+v[0]*R-1,cy-v[1]*R-1,2,2)}
     const u=vec(UAE[0],UAE[1]);
     CITIES.forEach((c,i)=>{
       const a=vec(c[0],c[1]);
@@ -447,16 +450,16 @@ function caseInfo(card){
         const X=cx+v[0]*R,Y=cy-v[1]*R;
         if(!started){ctx.moveTo(X,Y);started=true}else ctx.lineTo(X,Y);
       }
-      ctx.strokeStyle=ac(.35);ctx.lineWidth=1;ctx.stroke();
+      ctx.strokeStyle=acs(.35);ctx.lineWidth=1;ctx.stroke();
       const tp=((tt*.00035)+i*.19)%1,m=slerp(a,u,tp),L=Math.atan2(m[0],m[2]),P=Math.asin(m[1]),v=proj(L,P,Math.sin(tp*Math.PI)*.3,l0);
-      if(v[2]>0){ctx.fillStyle=AC.hex;ctx.beginPath();ctx.arc(cx+v[0]*R,cy-v[1]*R,2.2,0,6.283);ctx.fill()}
-      const sv=proj(c[0],c[1],0,l0);if(sv[2]>0){ctx.fillStyle='rgba(245,241,232,.9)';ctx.beginPath();ctx.arc(cx+sv[0]*R,cy-sv[1]*R,2,0,6.283);ctx.fill()}
+      if(v[2]>0){ctx.fillStyle=AC.ink;ctx.beginPath();ctx.arc(cx+v[0]*R,cy-v[1]*R,2.2,0,6.283);ctx.fill()}
+      const sv=proj(c[0],c[1],0,l0);if(sv[2]>0){ctx.fillStyle=fgc(.9);ctx.beginPath();ctx.arc(cx+sv[0]*R,cy-sv[1]*R,2,0,6.283);ctx.fill()}
     });
     const pv=proj(UAE[0],UAE[1],0,l0);
     if(pv[2]>0){
       const X=cx+pv[0]*R,Y=cy-pv[1]*R,pulse=(tt%1800)/1800;
-      ctx.strokeStyle=ac((1-pulse).toFixed(2));ctx.lineWidth=2;ctx.beginPath();ctx.arc(X,Y,6+pulse*30,0,6.283);ctx.stroke();
-      ctx.fillStyle=AC.hex;ctx.shadowColor=AC.hex;ctx.shadowBlur=14;ctx.beginPath();ctx.arc(X,Y,5,0,6.283);ctx.fill();ctx.shadowBlur=0;
+      ctx.strokeStyle=acs((1-pulse).toFixed(2));ctx.lineWidth=2;ctx.beginPath();ctx.arc(X,Y,6+pulse*30,0,6.283);ctx.stroke();
+      ctx.fillStyle=AC.ink;ctx.shadowColor=AC.ink;ctx.shadowBlur=14;ctx.beginPath();ctx.arc(X,Y,5,0,6.283);ctx.fill();ctx.shadowBlur=0;
     }
     raf=requestAnimationFrame(frame);
   }
@@ -828,6 +831,20 @@ addEventListener('keydown',e=>{
   if(e.key==='ArrowLeft')show(idx-1);
   if(e.key==='ArrowRight')show(idx+1);
 });
+
+/* ---------- light / dark theme switch ---------- */
+(function themeSwitch(){
+  const b=$('#themeBtn');if(!b)return;
+  const meta=$('meta[name=theme-color]');
+  const label=()=>{const ar=root.lang==='ar',light=root.dataset.theme==='light';b.textContent=light?(ar?'الوضع الداكن':'Dark theme'):(ar?'الوضع الفاتح':'Light theme');b.setAttribute('aria-pressed',light+'');if(meta)meta.content=light?'#f4f1ea':'#050505'};
+  label();
+  b.addEventListener('click',()=>{
+    const light=root.dataset.theme!=='light';
+    vt(()=>{if(light)root.dataset.theme='light';else delete root.dataset.theme;readAccent();AC.hooks.forEach(f=>f());label()});
+    try{localStorage.setItem('theme',light?'light':'dark')}catch(_){}
+  });
+  new MutationObserver(label).observe(root,{attributes:true,attributeFilter:['lang']});
+})();
 
 /* ---------- accent colour switch ---------- */
 (function accentSwitch(){

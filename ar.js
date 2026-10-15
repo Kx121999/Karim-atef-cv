@@ -1,4 +1,5 @@
 window.KC_AR={
+'Light theme':'الوضع الفاتح',
 'Accent colour':'لون التمييز','Lime':'ليموني','Gold':'ذهبي','Violet':'بنفسجي','Sky':'سماوي',
 'My message campaigns, AED per conversation':'حملات الرسائل لديّ، بالدرهم للمحادثة','Mosque':'المسجد','Salsabeel':'سلسبيل','Blended AED 20.34':'المتوسط المجمّع 20.34 درهمًا','6 reels in the portfolio':'6 ريلز في الأعمال','Selected posters':'بوسترات مختارة','Try the tools':'جرّب الأدوات','Six small tools built from my own campaign numbers. No sign-up.':'ست أدوات صغيرة مبنية على أرقام حملاتي الخاصة. بدون تسجيل.','Cost per conversation in my three message campaigns, in AED: Mosque 14.60, Salsabeel 35.52, Zaora 38.10. Blended 20.34.':'تكلفة المحادثة في حملات الرسائل الثلاث لديّ بالدرهم: المسجد 14.60، سلسبيل 35.52، Zaora 38.10. المتوسط المجمّع 20.34.',
 'Insights: what my Meta Ads campaigns really cost':'تحليل: ما التكلفة الفعلية لحملات إعلانات ميتا الخاصة بي','Lite mode':'الوضع الخفيف','UAE':'الإمارات','Salsabeel / Park DS':'سلسبيل / Park DS','View':'عرض',
