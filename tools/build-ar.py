@@ -98,7 +98,7 @@ def translate(src, AR, article=False):
             if n == 'a' and re.search(r'\sdownload\b', p) and get_attr(p, 'href') == 'Karim-Atef-CV.pdf':
                 tag = set_attr(tag, 'href', 'Karim-Atef-CV-ar.pdf')
             al = get_attr(p, 'aria-label')
-            if al is not None and norm(al) in AR and n != 'button':
+            if al is not None and norm(al) in AR and get_attr(p, 'id') != 'lang':
                 tag = set_attr(tag, 'aria-label', AR[norm(al)])
             if get_attr(p, 'data-ph-ar') is not None:
                 tag = set_attr(tag, 'placeholder', get_attr(p, 'data-ph-ar'))
