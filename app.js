@@ -4,12 +4,17 @@ const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
 const root=document.documentElement;
 const lite=root.classList.contains('lite');
 const NF=new Intl.NumberFormat('en-US',{maximumFractionDigits:0});
+const canVT=!!document.startViewTransition&&!reduce&&!lite;
+const vt=fn=>{
+  if(!canVT){fn();return Promise.resolve()}
+  try{return document.startViewTransition(fn).finished.catch(()=>{})}catch(e){fn();return Promise.resolve()}
+};
 
 /* split text into masked words / letters */
 function splitWords(el){
   const words=el.textContent.trim().split(/\s+/);
   el.setAttribute('aria-label',el.textContent.trim());
-  el.innerHTML=words.map((w,i)=>`<span class="w" aria-hidden="true"><span style="--i:${i}">${w}</span></span>`).join(' ');
+  el.innerHTML=words.map((w,i)=>`<span class="w" aria-hidden="true" style="--i:${i}"><span style="--i:${i}">${w}</span></span>`).join(' ');
 }
 $$('.section-title,.contact-panel h2,.creative-card h2').forEach(splitWords);
 let n=0;
@@ -71,7 +76,7 @@ function setLang(lang,animate){
 let saved=null;try{saved=localStorage.getItem('lang')}catch(e){}
 if(saved==='ar')setLang('ar');
 $('#lang')?.addEventListener('pointerenter',loadAR,{once:true});
-$('#lang')?.addEventListener('click',()=>setLang(root.lang==='ar'?'en':'ar'));
+$('#lang')?.addEventListener('click',()=>{const next=root.lang==='ar'?'en':'ar';(next==='ar'?loadAR():Promise.resolve()).then(()=>vt(()=>setLang(next)))});
 
 /* ---------- creative layer: funnel canvas, estimator, process, video preview ---------- */
 (function funnel(){
@@ -762,12 +767,26 @@ function show(i,instant){
   boxImg.classList.add('swap');
   setTimeout(()=>{boxImg.src=src;boxImg.alt=alt;boxImg.classList.remove('swap')},180);
 }
+function inView(el){const r=el.getBoundingClientRect();return r.bottom>0&&r.top<innerHeight&&r.right>0&&r.left<innerWidth}
+let flyer=null;
+/* zoom between a card thumbnail and the lightbox image (Web Animations, no snapshots) */
+function fly(thumb,inward){
+  if(flyer)flyer.cancel();flyer=null;
+  if(lite||reduce||!thumb||!inView(thumb))return null;
+  const a=thumb.getBoundingClientRect(),b=boxImg.getBoundingClientRect();
+  if(!a.width||!b.width)return null;
+  const s=`translate(${a.left+a.width/2-(b.left+b.width/2)}px,${a.top+a.height/2-(b.top+b.height/2)}px) scale(${a.width/b.width})`;
+  flyer=boxImg.animate(inward?[{transform:s,opacity:0},{opacity:1,offset:.35},{transform:'none',opacity:1}]:[{transform:'none',opacity:1},{transform:s,opacity:0}],{duration:inward?520:340,easing:'cubic-bezier(.2,.8,.2,1)',fill:'both'});
+  return flyer;
+}
 function openBox(card){
   lastFocus=document.activeElement;
   group=$$('[data-img]',card.parentElement).filter(c=>c.style.display!=='none');
   show(group.indexOf(card),true);
   lb.classList.add('open');lb.setAttribute('aria-hidden','false');
   $('#closeBox').focus();
+  const thumb=$('img',card);
+  if(!lite&&!reduce)boxImg.decode().catch(()=>{}).then(()=>fly(thumb,true));
 }
 const boxVid=$('#boxVid');
 function openVideo(src){
@@ -777,8 +796,9 @@ function openVideo(src){
 }
 function closeBox(){
   boxVid.pause();
+  const card=group[idx],an=!lb.classList.contains('vid')&&card?fly($('img',card),false):null;
   lb.classList.remove('open');lb.setAttribute('aria-hidden','true');
-  setTimeout(()=>{if(!lb.classList.contains('open')){boxImg.removeAttribute('src');boxVid.removeAttribute('src');boxVid.load();lb.classList.remove('vid')}},350);
+  setTimeout(()=>{if(!lb.classList.contains('open')){boxImg.removeAttribute('src');boxVid.removeAttribute('src');boxVid.load();lb.classList.remove('vid');if(flyer){flyer.cancel();flyer=null}}},350);
   lastFocus&&lastFocus.focus&&lastFocus.focus();
 }
 $$('[data-img]').forEach(c=>{
@@ -796,4 +816,32 @@ addEventListener('keydown',e=>{
   if(e.key==='ArrowLeft')show(idx-1);
   if(e.key==='ArrowRight')show(idx+1);
 });
+
+/* ---------- visual v2: colour story and locked heading widths ---------- */
+(function visualV2(){
+  if(!lite&&!reduce){
+    const HUE={home:75,story:75,services:150,process:190,experience:45,campaigns:205,estimator:275,audit:275,planner:275,designs:330,studio:330,hooks:15,videos:15,about:95,book:75,contact:75};
+    const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&HUE[e.target.id]!=null)root.style.setProperty('--hue',HUE[e.target.id])}),{rootMargin:'-45% 0px -50% 0px'});
+    Object.keys(HUE).forEach(id=>{const el=document.getElementById(id);if(el)io.observe(el)});
+  }
+  if(lite||reduce||!(window.CSS&&CSS.supports&&CSS.supports('animation-timeline:view()')))return;
+  /* each word keeps the width it has at full weight, so the thin-to-bold animation never re-wraps a heading */
+  const seen=new Set(),vis=new Set();
+  const lock=h=>{
+    const ws=$$('.w',h);root.setAttribute('data-m','1');
+    ws.forEach(w=>{w.style.minWidth=''});
+    const px=ws.map(w=>w.getBoundingClientRect().width);
+    ws.forEach((w,i)=>{if(px[i])w.style.minWidth=px[i]+'px'});
+    root.removeAttribute('data-m');seen.add(h);
+  };
+  const unlockAll=()=>{seen.clear();$$('.section-title .w').forEach(w=>{w.style.minWidth=''})};
+  const io2=new IntersectionObserver(es=>es.forEach(e=>{
+    if(e.isIntersecting){vis.add(e.target);if(!seen.has(e.target))lock(e.target)}else vis.delete(e.target);
+  }),{rootMargin:'120px 0px'});
+  $$('.section-title').forEach(h=>io2.observe(h));
+  const relock=()=>{unlockAll();requestAnimationFrame(()=>vis.forEach(lock))};
+  let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(relock,200)});
+  new MutationObserver(()=>{unlockAll();setTimeout(()=>{$$('.section-title').forEach(h=>{if(vis.has(h))lock(h)})},50)}).observe(root,{attributes:true,attributeFilter:['lang']});
+})();
+
 })();

@@ -1392,6 +1392,43 @@ main:focus{outline:none}
   .reveal img.zoomin{scale:1}
   .ticker-track{animation:none!important}
 }
+/* ---------- visual v2: colour story, grain, chapter numerals, scroll-driven type, card lens, view transitions ---------- */
+@property --hue{syntax:'<number>';inherits:true;initial-value:75}
+html{--hue:75;transition:--hue 1.6s ease}
+body:before{
+  background:
+    radial-gradient(circle at 15% 0%,hsl(var(--hue) 100% 68% / .10),transparent 32%),
+    radial-gradient(circle at 92% 18%,hsl(calc(var(--hue) + 70) 90% 62% / .07),transparent 30%),
+    radial-gradient(circle at 60% 100%,hsl(calc(var(--hue) - 50) 90% 60% / .05),transparent 36%),
+    linear-gradient(180deg,#050505,#090909 45%,#050505);
+}
+html:not(.lite) main:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.045;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* chapter numerals behind each section heading */
+main{counter-reset:sec}
+.section-head{position:relative;counter-increment:sec}
+.section-head:before{content:counter(sec,decimal-leading-zero);position:absolute;inset-inline-start:-.03em;top:50%;translate:0 -58%;z-index:-1;direction:ltr;font-size:clamp(6rem,17vw,15rem);font-weight:900;letter-spacing:-.08em;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(245,241,232,.11);pointer-events:none}
+@media(max-width:700px){.section-head:before{font-size:6.5rem;top:0;translate:0 -30%}}
+
+/* headings: words go from thin outline to solid as they scroll in; widths are locked in JS so lines never re-wrap */
+@keyframes kin{from{font-variation-settings:"wght" 200;color:transparent;-webkit-text-stroke-width:1px}to{font-variation-settings:"wght" 900;color:var(--text);-webkit-text-stroke-width:0}}
+@keyframes numdrift{from{translate:0 -36%}to{translate:0 -84%}}
+@supports (animation-timeline:view()){@media(prefers-reduced-motion:no-preference){
+  html:not(.lite):not([data-m]) .section-title .w{-webkit-text-stroke:1px var(--text);animation:kin linear both;animation-timeline:view();animation-range:entry 0% cover calc(32% + var(--i)*6%)}
+  html:not(.lite) .section-head:before{animation:numdrift linear both;animation-timeline:view();animation-range:cover}
+}}
+
+/* project and design cards: cursor lens, neighbours step back */
+@media(hover:hover) and (pointer:fine){
+  html:not(.lite) .project-card:before,html:not(.lite) .design-card:before{content:"View";position:absolute;left:0;top:0;z-index:6;width:92px;height:92px;margin:-46px 0 0 -46px;border-radius:50%;display:grid;place-items:center;background:var(--accent);color:#000;font-size:.72rem;font-weight:900;letter-spacing:.16em;text-transform:uppercase;pointer-events:none;translate:var(--mx,50%) var(--my,50%);scale:0;transition:scale .35s var(--ease),translate .14s ease-out}
+  html[lang=ar]:not(.lite) .project-card:before,html[lang=ar]:not(.lite) .design-card:before{content:"عرض";letter-spacing:0;font-size:.9rem}
+  html:not(.lite) .project-card:hover:before,html:not(.lite) .design-card:hover:before{scale:1}
+  .project-grid:has(.project-card:hover) .project-card.show:not(:hover),.design-grid:has(.design-card:hover) .design-card.show:not(:hover){opacity:.5}
+  .tilt.reveal.show.done.project-card,.tilt.reveal.show.done.design-card{transition:transform .25s ease-out,border-color .3s,opacity .3s}
+}
+
+/* view transition: language switch */
+::view-transition-old(root),::view-transition-new(root){animation-duration:.45s}
 </style>
 </head>
 <body>
